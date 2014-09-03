@@ -1,0 +1,44 @@
+table.spreadsheet li {
+    list-style: none;
+}
+table.spreadsheet li:before {
+    content: "✓ ";
+}
+
+table.spreadsheet input {
+    border: none;
+    width: 80px;
+    font-size: 14px;
+    padding: 2px;
+}
+
+table.spreadsheet input:hover {
+    background-color: #eee;
+}
+
+table.spreadsheet input:focus {
+    background-color: #ccf;
+}
+
+table.spreadsheet input:not(:focus) {
+    text-align: right;
+}
+
+table.spreadsheet {
+    border-collapse: collapse;  
+}
+
+table.spreadsheet td {
+    border: 1px solid #999;
+    padding: 0;
+}
+
+table.spreadsheet tr:first-child td, td:first-child {
+    background-color: #ccc;
+    padding: 1px 3px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
