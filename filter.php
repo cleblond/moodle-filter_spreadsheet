@@ -71,8 +71,9 @@ class filter_spreadsheet extends moodle_text_filter {
        
 
 
-        $search = '/<table.*?class="(.*?spreadsheet.*?)">(.*?)<\/table>/';
+//        $search = '/<table.*?class="(.*?spreadsheet.*?)">(.*?)<\/table>/';
 
+        $search = '/<span.*?class="(.*?spreadsheet.*?)">(.*?)<\/span>/';
      
         $newtext = preg_replace_callback($search, 'filter_spreadsheet_replace_callback', $text);
 
@@ -88,32 +89,34 @@ function filter_spreadsheet_replace_callback($matches) {
      //echo $matches[0];
     //echo "In call back";
 
-$script = ' 
-<script type="text/javascript">
-var DATA={}, INPUTS=[].slice.call(document.querySelectorAll("input"));
-INPUTS.forEach(function(elm) {
-    elm.onfocus = function(e) {
-        e.target.value = localStorage[e.target.id] || "";
-    };
-    elm.onblur = function(e) {
-        localStorage[e.target.id] = e.target.value;
-        computeAll();
-    };
-    var getter = function() {
-        var value = localStorage[elm.id] || "";
-        if (value.charAt(0) == "=") {
-            with (DATA) return eval(value.substring(1));
-        } else { return isNaN(parseFloat(value)) ? value : parseFloat(value); }
-    };
-    Object.defineProperty(DATA, elm.id, {get:getter});
-    Object.defineProperty(DATA, elm.id.toLowerCase(), {get:getter});
-});
-(window.computeAll = function() {
-    INPUTS.forEach(function(elm) { try { elm.value = DATA[elm.id]; } catch(e) {} });
-})();
-</script>';
 
-$script = '<script src="http://localhost/dhtmlxSpreadsheet_v20/codebase/spreadsheet.php?math=true&parent=gridbox"></script><div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>';
+print_object($matches);
+
+echo $CFG->dirroot;
+echo $CFG->wwwroot;
+
+//$script = '<script src="http://localhost/dhtmlxspreadsheet/codebase/spreadsheet.php?math=true&parent=gridbox&sheet='.time().'"></script><div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>';
+
+$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
+<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+
+$script .= '<script>
+		window.onload = function() {
+			var dhx_sh1 = new dhtmlxSpreadSheet({
+				load: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
+				save: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
+				parent: "gridobj1",
+				icons_path: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/imgs/icons/",
+				autowidth: true,
+				autoheight: false
+			}); 
+			dhx_sh1.load("1");
+		};
+	</script>
+<div class="ssheet_cont" id="gridobj1"></div>';
+
 
     return $script;
 }
