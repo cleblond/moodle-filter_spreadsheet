@@ -54,7 +54,7 @@ class filter_spreadsheet extends moodle_text_filter {
 
     public function filter($text, array $options = array()) {
         // Global declared in case YUI JSmol module is inserted elsewhere in page (e.g. JSmol resource artefact?).
-        global $CFG, $yui_jsmol_has_been_configured;
+        global $CFG, $USER, $yui_jsmol_has_been_configured;
         //$wwwroot = $CFG->wwwroot;
         //$host = preg_replace('~^.*://([^:/]*).*$~', '$1', $wwwroot);
 
@@ -85,7 +85,7 @@ class filter_spreadsheet extends moodle_text_filter {
 }
 
 function filter_spreadsheet_replace_callback($matches) {
-    global $CFG;
+    global $CFG, $USER;
      //echo $matches[0];
     //echo "In call back";
 
@@ -96,7 +96,7 @@ echo $CFG->dirroot;
 echo $CFG->wwwroot;
 
 //$script = '<script src="http://localhost/dhtmlxspreadsheet/codebase/spreadsheet.php?math=true&parent=gridbox&sheet='.time().'"></script><div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>';
-
+echo $USER->id;
 $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
 $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
 <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
@@ -112,11 +112,10 @@ $script .= '<script>
 				autowidth: true,
 				autoheight: false
 			}); 
-			dhx_sh1.load("1");
+
+			dhx_sh1.load("1411095319" , "junk");
 		};
 	</script>
 <div class="ssheet_cont" id="gridobj1"></div>';
-
-
     return $script;
 }
