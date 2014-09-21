@@ -40,7 +40,7 @@ class adminConnector {
 		while ($data = $this->wrapper->next($res)) {
 			$id = $data['sheetid'];
 			$item = "\n\t{ id: '{$id}', data: [ '{$id}', ";
-			$item .= "'{$data['rows']}', '{$data['cols']}', '{$data['key']}', ";
+			$item .= "'{$data['rows']}', '{$data['cols']}', '{$data['accesskey']}', ";
 			$item .= "'{$preview_btn_start}{$id}{$preview_btn_end}', '{$remove_btn_start}{$id}{$remove_btn_end}'] }";
 			$sheets_list[] = $item;
 		}
@@ -55,7 +55,7 @@ class adminConnector {
 	}
 
 	protected function editSheet() {
-		$fields = Array("sheetid", "rows", "cols", "key");
+		$fields = Array("sheetid", "rows", "cols", "accesskey");
 		$sheet = $this->request->get("gr_id");
 		for ($i = 0; $i < 10000; $i++) {
 			if ($this->request->get("c".$i) !== false) {

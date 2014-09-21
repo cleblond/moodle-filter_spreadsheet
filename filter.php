@@ -74,6 +74,7 @@ class filter_spreadsheet extends moodle_text_filter {
 //        $search = '/<table.*?class="(.*?spreadsheet.*?)">(.*?)<\/table>/';
 
         $search = '/<span.*?class="(.*?spreadsheet.*?)">(.*?)<\/span>/';
+        $search = '/<span.*?class="(.*?)".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/span>/';
      
         $newtext = preg_replace_callback($search, 'filter_spreadsheet_replace_callback', $text);
 
@@ -85,18 +86,36 @@ class filter_spreadsheet extends moodle_text_filter {
 }
 
 function filter_spreadsheet_replace_callback($matches) {
-    global $CFG, $USER;
+    global $CFG, $USER, $DB;
      //echo $matches[0];
     //echo "In call back";
 
-
+require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
 print_object($matches);
 
-echo $CFG->dirroot;
-echo $CFG->wwwroot;
+
+
+$res = mysqli_connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass);
+mysqli_select_db($res, $CFG->dbname);
+
+
+
+//check to see if this is owner
+$key='';
+if($matches[6] == $USER->id){
+echo "HERE";
+$result = $DB->get_record('atto_spreadsheet_sheet', array('sheetid'=>$matches[2]));
+print_object($result);
+
+$key = $result->accesskey;
+//echo $key;
+}
+//$key='ggg';
+
+
 
 //$script = '<script src="http://localhost/dhtmlxspreadsheet/codebase/spreadsheet.php?math=true&parent=gridbox&sheet='.time().'"></script><div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>';
-echo $USER->id;
+//echo $USER->id;
 $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
 $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
 <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
@@ -113,7 +132,7 @@ $script .= '<script>
 				autoheight: false
 			}); 
 
-			dhx_sh1.load("1411095319" , "junk");
+			dhx_sh1.load("'.$matches[2].'" , "'.$key.'");
 		};
 	</script>
 <div class="ssheet_cont" id="gridobj1"></div>';

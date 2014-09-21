@@ -220,10 +220,12 @@ class GridCellConnector {
 	protected function check_key() {
 		if ($this->read_only == true) return false;
 		$key = $this->request->get('key');
+                //echo $key;
 		$sheet = $this->request->get('sheet');
-		$res = $this->wrapper->query("SELECT `key` FROM {$this->db_prefix}sheet WHERE sheetid='".$this->e($sheet)."'");
+                //echo $sheet;
+		$res = $this->wrapper->query("SELECT `accesskey` FROM {$this->db_prefix}sheet WHERE sheetid='".$this->e($sheet)."'");
 		$sheetkey = $this->wrapper->get_next($res);
-		$sheetkey = $sheetkey['key'];
+		$sheetkey = $sheetkey['accesskey'];
 		if (($sheetkey == null)||($sheetkey == $key))
 			return true;
 		else
