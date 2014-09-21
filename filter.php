@@ -86,36 +86,55 @@ class filter_spreadsheet extends moodle_text_filter {
 }
 
 function filter_spreadsheet_replace_callback($matches) {
-    global $CFG, $USER, $DB;
+    global $CFG, $USER, $DB, $PAGE;
      //echo $matches[0];
     //echo "In call back";
-
+    echo $USER->id;
 require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
 print_object($matches);
 
 
 
-$res = mysqli_connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass);
-mysqli_select_db($res, $CFG->dbname);
+//$res = mysqli_connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass);
+//mysqli_select_db($res, $CFG->dbname);
 
 
 
-//check to see if this is owner
+//check to see if this is owner or in group of owner
 $key='';
-if($matches[6] == $USER->id){
-echo "HERE";
-$result = $DB->get_record('atto_spreadsheet_sheet', array('sheetid'=>$matches[2]));
-print_object($result);
-
-$key = $result->accesskey;
-//echo $key;
+if($matches[6] == $USER->id or $matches[4] == true){
+//    echo "HERE";
+    $result = $DB->get_record('atto_spreadsheet_sheet', array('sheetid'=>$matches[2]));
+//    print_object($result);
+    //print_object($PAGE->cm);
+    $dbuserid = $result->userid;
+//    echo $USER->id;
+    //echo $result->userid;
+    if ($USER->id == $result->userid) {
+//    echo "userid";
+    $key = $result->accesskey;
+    } else if ($result->groupmode == 1){
+//      echo "group mode";
+      ///Check to see if in same group
+      $context = $PAGE->context;
+      $coursecontext = $context->get_course_context();
+// current course id
+      $courseid = $coursecontext->instanceid; 
+//      echo $courseid;
+      $groups = groups_get_user_groups($courseid, $USER->id);
+      $groupsowner = groups_get_user_groups($courseid, $result->userid);
+//      print_object($groups);
+//      print_object($groupsowner);
+      $intersect = array_intersect($groups[0], $groupsowner[0]);
+      print_object($intersect);
+      if(!empty($intersect)){$key = $result->accesskey; echo "intersect";}
+    } else {
+    $key = '';
+    }
 }
-//$key='ggg';
 
+//echo $key;
 
-
-//$script = '<script src="http://localhost/dhtmlxspreadsheet/codebase/spreadsheet.php?math=true&parent=gridbox&sheet='.time().'"></script><div id="gridbox" style="width: 800px; height: 400px; background-color:white;"></div>';
-//echo $USER->id;
 $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
 $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
 <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
@@ -128,6 +147,7 @@ $script .= '<script>
 				save: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
 				parent: "gridobj1",
 				icons_path: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/imgs/icons/",
+				math: true,
 				autowidth: true,
 				autoheight: false
 			}); 
