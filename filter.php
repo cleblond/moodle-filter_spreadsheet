@@ -104,7 +104,7 @@ print_object($matches);
 $key='';
 if($matches[6] == $USER->id or $matches[4] == true){
 //    echo "HERE";
-    $result = $DB->get_record('atto_spreadsheet_sheet', array('sheetid'=>$matches[2]));
+    $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
 //    print_object($result);
     //print_object($PAGE->cm);
     $dbuserid = $result->userid;
