@@ -52,6 +52,28 @@ defined('MOODLE_INTERNAL') || die();
 
 class filter_spreadsheet extends moodle_text_filter {
 
+
+
+    public function setup($page, $context) {
+        global $CFG;
+        
+        // This only requires execution once per request.
+        static $spreadinitialised = false;
+
+        if (empty($spreadinitialised)) {
+$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
+<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+        echo $script;
+        $spreadinitialised = true;
+        }
+    }
+
+
+
+
+
     public function filter($text, array $options = array()) {
         // Global declared in case YUI JSmol module is inserted elsewhere in page (e.g. JSmol resource artefact?).
         global $CFG, $USER, $yui_jsmol_has_been_configured;
@@ -73,10 +95,11 @@ class filter_spreadsheet extends moodle_text_filter {
 
 //        $search = '/<table.*?class="(.*?spreadsheet.*?)">(.*?)<\/table>/';
 
-        $search = '/<span.*?class="(.*?spreadsheet.*?)">(.*?)<\/span>/';
-        $search = '/<span.*?class="(.*?)".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/span>/';
+//        $search = '/<span.*?class="(.*?spreadsheet.*?)">(.*?)<\/span>/';
+        $search = '/<div.*?class="(.*?)".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
      
-        $newtext = preg_replace_callback($search, 'filter_spreadsheet_replace_callback', $text);
+        $newtext = preg_replace_callback($search, 'filter_spreadsheet_replace_callback', $text, -1, $count);
+        echo $count;
 
 //        $newtext = preg_replace($search,'JUNNNK',$text);
 
@@ -89,11 +112,11 @@ function filter_spreadsheet_replace_callback($matches) {
     global $CFG, $USER, $DB, $PAGE;
      //echo $matches[0];
     //echo "In call back";
-    echo $USER->id;
+//    echo $USER->id;
 require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
-print_object($matches);
+//print_object($matches);
 
-
+//echo $count;
 
 //$res = mysqli_connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass);
 //mysqli_select_db($res, $CFG->dbname);
@@ -102,10 +125,11 @@ print_object($matches);
 
 //check to see if this is owner or in group of owner
 $key='';
+print_object($matches);
 if($matches[6] == $USER->id or $matches[4] == true){
 //    echo "HERE";
     $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
-//    print_object($result);
+    print_object($result);
     //print_object($PAGE->cm);
     $dbuserid = $result->userid;
 //    echo $USER->id;
@@ -126,7 +150,7 @@ if($matches[6] == $USER->id or $matches[4] == true){
 //      print_object($groups);
 //      print_object($groupsowner);
       $intersect = array_intersect($groups[0], $groupsowner[0]);
-      print_object($intersect);
+//      print_object($intersect);
       if(!empty($intersect)){$key = $result->accesskey; echo "intersect";}
     } else {
     $key = '';
@@ -135,26 +159,28 @@ if($matches[6] == $USER->id or $matches[4] == true){
 
 //echo $key;
 
-$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
-$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
-<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
-<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+//$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+//$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
+//<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+//<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
 
-$script .= '<script>
+$unique = uniqid();
+
+$script = '<script>
 		window.onload = function() {
-			var dhx_sh1 = new dhtmlxSpreadSheet({
+			var dhx_sh1'.$unique.' = new dhtmlxSpreadSheet({
 				load: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
 				save: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
-				parent: "gridobj1",
+				parent: "gridobj'.$unique.'",
 				icons_path: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/imgs/icons/",
 				math: true,
-				autowidth: true,
+				autowidth: false,
 				autoheight: false
 			}); 
 
-			dhx_sh1.load("'.$matches[2].'" , "'.$key.'");
+			dhx_sh1'.$unique.'.load("'.$matches[2].'" , "'.$key.'");
 		};
 	</script>
-<div class="ssheet_cont" id="gridobj1"></div>';
+<div class="ssheet_cont" id="gridobj'.$unique.'"></div>';
     return $script;
 }
