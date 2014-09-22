@@ -15,45 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * spreadsheet filter.
+ * Serve question type files
  *
+ * @since      2.0
  * @package    filter
  * @subpackage spreadsheet
- * @copyright  2006 Dan Stowell
- * @copyright  2007-2008 Szymon Kalasz Internationalisation strings added as part of GHOP
- * @url        http://moodle.org/mod/forum/discuss.php?d=88201
- * @copyright  20011 Geoffrey Rowland <growland at strode-college dot ac dot uk> Updated for Moodle 2
- * @copyright  20013 Geoffrey Rowland <growland at strode-college dot ac dot uk> Updated to use JSmol
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
 
-// spreadsheet/JSmol plugin filtering for viewing molecules online
-//
-// This filter will replace any links to a .mol, .sdf, .csmol, .pdb,
-// .pdb.gz .xyz, .cml, .mol2, or .cif file
-// with the JavaScript (and associated technologies) needed to display the molecular structure inline
-//
-// If required, allows customisation of the spreadsheet applet size (default 350 px)
-//
-// Similarly, allows selection of a few different spreadsheet control sets depending on the chemical context
-// e.g. small molecule, biological macromolecule, crystal
-//
-// Also, customisation of the initial display though spreadsheet scripting
-//
-// To activate this filter, go to admin and enable 'spreadsheet'.
-//
-// Latest JSmol version is available from http://chemapps.stolaf.edu/spreadsheet/jsmol.zip
-// Unzipped jsmol folder (and contents) can be used to replace/update the jsmol folder in this bundle
-// spreadsheet project site: http://spreadsheet.sourceforge.net/
-// spreadsheet interactive scripting documentation(Use with spreadsheetSCRIPT{ }): http://chemapps.stolaf.edu/spreadsheet/docs/
-// spreadsheet Wiki: http//wiki.spreadsheet.org.
-
 class filter_spreadsheet extends moodle_text_filter {
-
-
-
     public function setup($page, $context) {
         global $CFG;
         
@@ -61,126 +35,73 @@ class filter_spreadsheet extends moodle_text_filter {
         static $spreadinitialised = false;
 
         if (empty($spreadinitialised)) {
-$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
-$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
-<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
-<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+            $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+            $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
+                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
         echo $script;
         $spreadinitialised = true;
         }
     }
 
-
-
-
-
     public function filter($text, array $options = array()) {
-        // Global declared in case YUI JSmol module is inserted elsewhere in page (e.g. JSmol resource artefact?).
         global $CFG, $USER, $yui_jsmol_has_been_configured;
-        //$wwwroot = $CFG->wwwroot;
-        //$host = preg_replace('~^.*://([^:/]*).*$~', '$1', $wwwroot);
-
-        // Edit $spreadsheetfiletypes to add/remove chemical structure file types that can be displayed.
-        // For more detail see: http://wiki.spreadsheet.org/index.php/File_formats.
-        //$spreadsheetfiletypes ='cif|cml|csmol|mol|mol2|pdb\.gz|pdb|pse|sdf|xyz';
-
-       $str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
-
-       //$newstr = preg_replace('/<table .*?class="(.*?someClass.*?)">(.*?)<\/table>/','JUNNNK',$str);
-
-       //echo $newstr;
-
-       
-
-
-//        $search = '/<table.*?class="(.*?spreadsheet.*?)">(.*?)<\/table>/';
-
-//        $search = '/<span.*?class="(.*?spreadsheet.*?)">(.*?)<\/span>/';
+        $str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
         $search = '/<div.*?class="(.*?)".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
-     
-        $newtext = preg_replace_callback($search, 'filter_spreadsheet_replace_callback', $text, -1, $count);
-        echo $count;
+        $numofmatches = preg_match_all($search, $text, $matches);
+        $id = 1;
 
-//        $newtext = preg_replace($search,'JUNNNK',$text);
-
-
-        return $newtext;
-    }
-}
-
-function filter_spreadsheet_replace_callback($matches) {
-    global $CFG, $USER, $DB, $PAGE;
-     //echo $matches[0];
-    //echo "In call back";
-//    echo $USER->id;
-require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
-//print_object($matches);
-
-//echo $count;
-
-//$res = mysqli_connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass);
-//mysqli_select_db($res, $CFG->dbname);
-
-
-
-//check to see if this is owner or in group of owner
-$key='';
-print_object($matches);
-if($matches[6] == $USER->id or $matches[4] == true){
-//    echo "HERE";
-    $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
-    print_object($result);
-    //print_object($PAGE->cm);
-    $dbuserid = $result->userid;
-//    echo $USER->id;
-    //echo $result->userid;
-    if ($USER->id == $result->userid) {
-//    echo "userid";
-    $key = $result->accesskey;
-    } else if ($result->groupmode == 1){
-//      echo "group mode";
-      ///Check to see if in same group
-      $context = $PAGE->context;
-      $coursecontext = $context->get_course_context();
-// current course id
-      $courseid = $coursecontext->instanceid; 
-//      echo $courseid;
-      $groups = groups_get_user_groups($courseid, $USER->id);
-      $groupsowner = groups_get_user_groups($courseid, $result->userid);
-//      print_object($groups);
-//      print_object($groupsowner);
-      $intersect = array_intersect($groups[0], $groupsowner[0]);
-//      print_object($intersect);
-      if(!empty($intersect)){$key = $result->accesskey; echo "intersect";}
-    } else {
-    $key = '';
-    }
-}
-
-//echo $key;
-
-//$script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
-//$script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
-//<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
-//<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
-
-$unique = uniqid();
-
-$script = '<script>
-		window.onload = function() {
-			var dhx_sh1'.$unique.' = new dhtmlxSpreadSheet({
+        $newtext = preg_replace_callback($search, function($matches) use (&$id) {
+            global $CFG, $USER, $DB, $PAGE;
+            require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
+            echo "id=".$id;
+            $key='';
+            print_object($matches);
+            if($matches[6] == $USER->id or $matches[4] == true){
+                $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
+                print_object($result);
+                $dbuserid = $result->userid;
+                if ($USER->id == $result->userid) {
+                    $key = $result->accesskey;
+                } else if ($result->groupmode == 1){
+                    $context = $PAGE->context;
+                    $coursecontext = $context->get_course_context();
+                    $courseid = $coursecontext->instanceid; 
+                    $groups = groups_get_user_groups($courseid, $USER->id);
+                    $groupsowner = groups_get_user_groups($courseid, $result->userid);
+                    $intersect = array_intersect($groups[0], $groupsowner[0]);
+                    if(!empty($intersect)){
+                        $key = $result->accesskey; echo "intersect";}
+                    } else {
+                        $key = '';
+                    }
+            }
+            $unique = uniqid();
+            $script = '<script>
+		func'.$id.' = function() {
+			var dhx_sh1'.$id.' = new dhtmlxSpreadSheet({
 				load: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
 				save: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/php/data.php",
-				parent: "gridobj'.$unique.'",
+				parent: "gridobj'.$id.'",
 				icons_path: "'.$CFG->wwwroot.'/filter/spreadsheet/codebase/imgs/icons/",
 				math: true,
 				autowidth: false,
 				autoheight: false
 			}); 
-
-			dhx_sh1'.$unique.'.load("'.$matches[2].'" , "'.$key.'");
+			dhx_sh1'.$id.'.load("'.$matches[2].'" , "'.$key.'");
 		};
-	</script>
-<div class="ssheet_cont" id="gridobj'.$unique.'"></div>';
-    return $script;
+	        </script>
+                <div class="ssheet_cont" id="gridobj'.$id.'"></div>';
+            $id++;
+            return $script;
+        }, $text, -1, $count);
+
+    $onload = '<script>window.onload = function() {';
+    for ($i=1; $i<$id; $i++) {
+        $onload .= 'func'.$i.'();';
+    } 
+    $onload .= '}</script>';
+        return $newtext.$onload;
+    }
 }
+
