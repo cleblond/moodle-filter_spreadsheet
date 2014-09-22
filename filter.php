@@ -54,12 +54,11 @@ class filter_spreadsheet extends moodle_text_filter {
         $newtext = preg_replace_callback($search, function($matches) use (&$id) {
             global $CFG, $USER, $DB, $PAGE;
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
-            echo "id=".$id;
             $key='';
-            print_object($matches);
+            //print_object($matches);
             if($matches[6] == $USER->id or $matches[4] == true){
                 $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
-                print_object($result);
+                //print_object($result);
                 $dbuserid = $result->userid;
                 if ($USER->id == $result->userid) {
                     $key = $result->accesskey;
