@@ -46,7 +46,7 @@ class filter_spreadsheet extends moodle_text_filter {
 
     public function filter($text, array $options = array()) {
         global $CFG, $USER, $yui_jsmol_has_been_configured;
-        $str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
+        //$str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
         $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
         //$numofmatches = preg_match_all($search, $text, $matches);
         $id = 1;
