@@ -47,7 +47,7 @@ class filter_spreadsheet extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG, $USER, $yui_jsmol_has_been_configured;
         $str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
-        $search = '/<div.*?class="(.*?)".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
+        $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
         $numofmatches = preg_match_all($search, $text, $matches);
         $id = 1;
 
@@ -56,8 +56,8 @@ class filter_spreadsheet extends moodle_text_filter {
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
             $key='';
             //print_object($matches);
-            if($matches[6] == $USER->id or $matches[4] == true){
-                $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[2]));
+            if($matches[5] == $USER->id or $matches[3] == true){
+                $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]));
                 //print_object($result);
                 $dbuserid = $result->userid;
                 if ($USER->id == $result->userid) {
@@ -75,6 +75,7 @@ class filter_spreadsheet extends moodle_text_filter {
                         $key = '';
                     }
             }
+            //echo $key;
             $unique = uniqid();
             $script = '<script>
 		func'.$id.' = function() {
@@ -87,7 +88,7 @@ class filter_spreadsheet extends moodle_text_filter {
 				autowidth: false,
 				autoheight: false
 			}); 
-			dhx_sh1'.$id.'.load("'.$matches[2].'" , "'.$key.'");
+			dhx_sh1'.$id.'.load("'.$matches[1].'" , "'.$key.'");
 		};
 	        </script>
                 <div class="ssheet_cont" id="gridobj'.$id.'"></div>';
@@ -95,12 +96,16 @@ class filter_spreadsheet extends moodle_text_filter {
             return $script;
         }, $text, -1, $count);
 
-    $onload = '<script>window.onload = function() {';
+//echo "spreadinit=".$count;
+    if ($count !==0) {
+    $onload = '<script type="text/javascript">window.onload = function() {';
+//    $onload = '';
     for ($i=1; $i<$id; $i++) {
         $onload .= 'func'.$i.'();';
     } 
     $onload .= '}</script>';
-        return $newtext.$onload;
+        return $onload.$newtext;
+    }
     }
 }
 
