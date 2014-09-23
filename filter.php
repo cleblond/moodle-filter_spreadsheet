@@ -28,21 +28,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 class filter_spreadsheet extends moodle_text_filter {
-    public function setup($page, $context) {
-        global $CFG;
-        
-        // This only requires execution once per request.
-        static $spreadinitialised = false;
-
-        if (empty($spreadinitialised)) {
-            $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
-            $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
-                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
-                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
-        echo $script;
-        $spreadinitialised = true;
-        }
-    }
+  
 
     public function filter($text, array $options = array()) {
         global $CFG, $USER;
@@ -97,15 +83,27 @@ class filter_spreadsheet extends moodle_text_filter {
         }, $text, -1, $count);
 
 //echo "spreadinit=".$count;
-    if ($count !==0) {
+    if ($count !== 0) {
     $onload = '<script type="text/javascript">window.onload = function() {';
 //    $onload = '';
     for ($i=1; $i<$id; $i++) {
         $onload .= 'func'.$i.'();';
     } 
     $onload .= '}</script>';
-    $newtext = $onload.$newtext; 
+
+
+    $script = '<script src="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+            $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
+                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+                       <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+
+
+
+
+
+    $newtext = $script.$onload.$newtext;
     }
+
     return $newtext;
     }
 }
