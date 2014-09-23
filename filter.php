@@ -104,8 +104,9 @@ class filter_spreadsheet extends moodle_text_filter {
         $onload .= 'func'.$i.'();';
     } 
     $onload .= '}</script>';
-        return $onload.$newtext;
+    $newtext = $onload.$newtext; 
     }
+    return $newtext;
     }
 }
 
