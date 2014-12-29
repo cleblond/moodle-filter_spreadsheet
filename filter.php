@@ -41,7 +41,7 @@ class filter_spreadsheet extends moodle_text_filter {
             global $CFG, $USER, $DB, $PAGE;
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
             $key='';
-            print_object($matches);
+            //print_object($matches);
         //Must be in database already!
 	if($result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]))){;
             if($matches[5] == $USER->id or $matches[3] == true){
@@ -64,13 +64,12 @@ class filter_spreadsheet extends moodle_text_filter {
                     }
             }
             $indb = true;
-	} else {   //Not in database...will be created below automatically!
+	} else {   //Not in database..give warning and get out!
             $indb = false;
-            $script = "NOTE: THIS SPREADSHEET DOES NOT EXIST";
+            $script = get_string('sheetnotindb', 'filter_spreadsheet');
             return $script;
 	}
-
-            echo "key=$key";
+        //    echo "key=$key";
 
             //echo $key;
             $unique = uniqid();
@@ -94,10 +93,8 @@ class filter_spreadsheet extends moodle_text_filter {
 
         }, $text, -1, $count);
 
-//echo "spreadinit=".$count;
     if ($count !== 0) {
     $onload = '<script type="text/javascript">window.onload = function() {';
-//    $onload = '';
     for ($i=1; $i<$id; $i++) {
         $onload .= 'func'.$i.'();';
     } 
@@ -111,7 +108,6 @@ class filter_spreadsheet extends moodle_text_filter {
 
     $newtext = $script.$onload.$newtext;
     }
-
     return $newtext;
     }
 }

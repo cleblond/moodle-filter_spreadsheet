@@ -24,6 +24,7 @@
  */
 
 $string['filtername'] = 'spreadsheet';
+$string['sheetnotindb'] = "THIS SPREADSHEET DOES NOT EXIST IN THE DATABASE!";
 
 
 
