@@ -33,7 +33,7 @@ class filter_spreadsheet extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG, $USER;
         //$str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
-        $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)">(.*?)<\/div>/';
+        $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)".*?>(.*?)<\/div>/';
         //$numofmatches = preg_match_all($search, $text, $matches);
         $id = 1;
 
@@ -41,7 +41,9 @@ class filter_spreadsheet extends moodle_text_filter {
             global $CFG, $USER, $DB, $PAGE;
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
             $key='';
-            //print_object($matches);
+            print_object($matches);
+        //Must be in database already!
+	if($result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]))){;
             if($matches[5] == $USER->id or $matches[3] == true){
                 $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]));
                 //print_object($result);
@@ -61,6 +63,15 @@ class filter_spreadsheet extends moodle_text_filter {
                         $key = '';
                     }
             }
+            $indb = true;
+	} else {   //Not in database...will be created below automatically!
+            $indb = false;
+            $script = "NOTE: THIS SPREADSHEET DOES NOT EXIST";
+            return $script;
+	}
+
+            echo "key=$key";
+
             //echo $key;
             $unique = uniqid();
             $script = '<script>
@@ -80,6 +91,7 @@ class filter_spreadsheet extends moodle_text_filter {
                 <div class="ssheet_cont" id="gridobj'.$id.'"></div>';
             $id++;
             return $script;
+
         }, $text, -1, $count);
 
 //echo "spreadinit=".$count;
@@ -96,10 +108,6 @@ class filter_spreadsheet extends moodle_text_filter {
             $script .= '<link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlx_core.css">
                        <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
                        <link rel="stylesheet" href="'.$CFG->wwwroot.'/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
-
-
-
-
 
     $newtext = $script.$onload.$newtext;
     }
