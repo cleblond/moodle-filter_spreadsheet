@@ -33,7 +33,8 @@ class filter_spreadsheet extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG, $USER;
         //$str = '<table>test</table><table class="spreadsheet someOtherClass">content</table>';
-        $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)".*?>(.*?)<\/div>/';
+  /*      $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?math="(.*?)".*?group="(.*?)".*?readonly="(.*?)".*?uid="(.*?)".*?>(.*?)<\/div>/';   */
+  $search = '/<div.*?class="eo_spreadsheet".*?sheet="(.*?)".*?<\/div>/';
         //$numofmatches = preg_match_all($search, $text, $matches);
         $id = 1;
 
@@ -41,10 +42,12 @@ class filter_spreadsheet extends moodle_text_filter {
             global $CFG, $USER, $DB, $PAGE;
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
             $key='';
-            //print_object($matches);
+        //    print_object($matches);
         //Must be in database already!
 	if($result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]))){;
-            if($matches[5] == $USER->id or $matches[3] == true){
+          //  echo "sheetuserid=".$result->userid; 
+            if ($result->userid == $USER->id) { 
+            //if($matches[5] == $USER->id or $matches[3] == true){
                 $result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid'=>$matches[1]));
                 //print_object($result);
                 $dbuserid = $result->userid;
