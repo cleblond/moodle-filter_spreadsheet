@@ -54,7 +54,7 @@
     </TABLE>
     <TABLE NAME="filter_spreadsheet_sheet" COMMENT="filter_spreadsheet_sheet table retrofitted from MySQL">
       <FIELDS>
-        <FIELD NAME="sheetid" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="" SEQUENCE="false"/>
+        <FIELD NAME="sheetid" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="NULL" SEQUENCE="false"/>
         <FIELD NAME="userid" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="accesskey" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
