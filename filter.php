@@ -27,24 +27,17 @@ class filter_spreadsheet extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG, $USER;
         $search = '/<div.*?class="eo_spreadsheet (.*?)".*?<\/div>/';
-        //$numofmatches = preg_match_all($search, $text, $matches);
         $id     = 1;
         $newtext = preg_replace_callback($search, function($matches) use (&$id) {
             global $CFG, $USER, $DB, $PAGE;
             require_once($CFG->dirroot . "/filter/spreadsheet/codebase/php/grid_cell_connector.php");
             $key = '';
-            //Must be in database already!
-            if ($result = $DB->get_record('filter_spreadsheet_sheet', array(
-                'sheetid' => $matches[1]
-            ))) {
-                ;
-                //  echo "sheetuserid=".$result->userid; 
+            // Must be in database already!
+            if ($result = $DB->get_record('filter_spreadsheet_sheet', array('sheetid' => $matches[1]))) {
                 if ($result->userid == $USER->id) {
-                    //if($matches[5] == $USER->id or $matches[3] == true){
                     $result   = $DB->get_record('filter_spreadsheet_sheet', array(
                         'sheetid' => $matches[1]
                     ));
-                    //print_object($result);
                     $dbuserid = $result->userid;
                     if ($USER->id == $result->userid) {
                         $key = $result->accesskey;
@@ -64,7 +57,7 @@ class filter_spreadsheet extends moodle_text_filter {
                     }
                 }
                 $indb = true;
-            } else { //Not in database..give warning and get out!
+            } else { // Not in database..give warning and get out!
                 $indb   = false;
                 $script = get_string('sheetnotindb', 'filter_spreadsheet');
                 return $script;
@@ -80,7 +73,7 @@ class filter_spreadsheet extends moodle_text_filter {
                 math: true,
                 autowidth: false,
                 autoheight: false
-            }); 
+            });
             dhx_sh1' . $id . '.load("' . $matches[1] . '" , "' . $key . '");
         };
             </script>
