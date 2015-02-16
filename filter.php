@@ -26,7 +26,8 @@ defined('MOODLE_INTERNAL') || die();
 class filter_spreadsheet extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG, $USER;
-        $search = '/<div.*?class="eo_spreadsheet (.*?)".*?<\/div>/';
+        //echo "spreadsheet filter";
+        $search = '/<div class="eo_spreadsheet (.*?)".*?<\/div>/';
         $id     = 1;
         $newtext = preg_replace_callback($search, function($matches) use (&$id) {
             global $CFG, $USER, $DB, $PAGE;
@@ -81,6 +82,10 @@ class filter_spreadsheet extends moodle_text_filter {
             $id++;
             return $script;
         }, $text, -1, $count);
+
+        //print_object($text);
+        //echo "count=$count";
+        //$count = 1;
         if ($count !== 0) {
             $onload = '<script type="text/javascript">window.onload = function() {';
             for ($i = 1; $i < $id; $i++) {
@@ -88,11 +93,16 @@ class filter_spreadsheet extends moodle_text_filter {
             }
             $onload .= '}</script>';
             $script = '<script src="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/spreadsheet.php?load=js"></script>';
+/*            $script .= '<link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlx_core.css">
+                       <link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
+                       <link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">'; */
             $script .= '<link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlx_core.css">
                        <link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlxspreadsheet.css">
                        <link rel="stylesheet" href="' . $CFG->wwwroot . '/filter/spreadsheet/codebase/dhtmlxgrid_wp.css">';
+            //$script = ''; 
             $newtext = $script . $onload . $newtext;
         }
+        //print_object($newtext);
         return $newtext;
     }
 }
