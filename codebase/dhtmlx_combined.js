@@ -1048,7 +1048,7 @@ function dhtmlXGridCellObject(obj){
 			return this.getValue();
 	}
 	
-//#excell_methods:04062008{
+//excell_methods:04062008{
 	/**
 	*	@desc: determ. font style if it was set
 	*	@returns: font name only if it was set for the cell
@@ -1175,7 +1175,7 @@ function dhtmlXGridCellObject(obj){
 		} else
 			this.cell.style.textAlign=val
 	}
-//#}
+//}
 	/**
 	*	@desc: determines whether cell value was changed
 	*	@returns: true if cell value was changed, otherwise - false
@@ -1296,29 +1296,29 @@ dhtmlXGridCellObject.prototype.getTitle=function(){
 
 dhtmlXGridCellObject.prototype.setCValue=function(val, val2){
 	this.cell.innerHTML=val;
-//#__pro_feature:21092006{
-//#on_cell_changed:23102006{
+//__pro_feature:21092006{
+//on_cell_changed:23102006{
 	this.grid.callEvent("onCellChanged", [
 		this.cell.parentNode.idd,
 		this.cell._cellIndex,
 		(arguments.length > 1 ? val2 : val)
 	]);
-//#}
-//#}
+//}
+//}
 }
 
 dhtmlXGridCellObject.prototype.setCTxtValue=function(val){
 	this.cell.innerHTML="";
 	this.cell.appendChild(document.createTextNode(val));
-//#__pro_feature:21092006{	
-//#on_cell_changed:23102006{
+//__pro_feature:21092006{	
+//on_cell_changed:23102006{
 	this.grid.callEvent("onCellChanged", [
 		this.cell.parentNode.idd,
 		this.cell._cellIndex,
 		val
 	]);
-//#}
-//#}
+//}
+//}
 }
 
 /**
@@ -1487,7 +1487,7 @@ function eXcell_edtxt(cell){
 	}
 }
 eXcell_edtxt.prototype=new eXcell_ed;
-//#__pro_feature:21092006{
+//__pro_feature:21092006{
 /**
 *	@desc: simple numeric text editor
 *	@returns: dhtmlxGrid cell editor object
@@ -1527,9 +1527,9 @@ eXcell_edn.prototype.setValue=function(val){
 	}
 	this.setCValue(this.grid._aplNF(val, this.cell._cellIndex), val);
 }
-//#}
+//}
 
-//#ch_excell:04062008{
+//ch_excell:04062008{
 /**
 *	@desc: checkbox editor
 *	@returns: dhtmlxGrid cell editor object
@@ -1639,8 +1639,8 @@ eXcell_ch.prototype.setValue=function(val){
 		+".gif' onclick='new eXcell_ch(this.parentNode).changeState(true); (arguments[0]||event).cancelBubble=true; '>",
 		this.cell.chstate);
 }
-//#}
-//#ra_excell:04062008{
+//}
+//ra_excell:04062008{
 /**
 *	@desc: radio editor
 *	@returns: dhtmlxGrid cell editor object
@@ -1738,8 +1738,8 @@ eXcell_ra.prototype.setValue=function(val){
 	this.setCValue("<img src='"+this.grid.imgURL+"radio_chk"+val+".gif' onclick='new eXcell_ra(this.parentNode).changeState(false);'>",
 		this.cell.chstate);
 }
-//#}
-//#txt_excell:04062008{
+//}
+//txt_excell:04062008{
 /**
 *	@desc: multilene popup editor
 *	@returns: dhtmlxGrid cell editor object
@@ -1900,8 +1900,8 @@ eXcell_txt.prototype.setValue=function(val){
 	else
 		this.setCValue(val.replace(/\n/g, "<br/>"), val);
 }
-//#}
-//#co_excell:04062008{
+//}
+//co_excell:04062008{
 /**
 *	@desc: combobox editor
 *	@returns: dhtmlxGrid cell editor object
@@ -2163,9 +2163,9 @@ function eXcell_corotxt(cell){
 	this.editable=false;
 }
 eXcell_corotxt.prototype=new eXcell_cotxt;
-//#}
+//}
 
-//#cp_excell:04062008{
+//cp_excell:04062008{
 /**
 *	@desc: color picker editor
 *	@returns: dhtmlxGrid cell editor object
@@ -2258,9 +2258,9 @@ eXcell_cp.prototype.setValue=function(val){
 		val);
 	this.cell.firstChild._bg=val;
 }
-//#}
+//}
 
-//#img_excell:04062008{
+//img_excell:04062008{
 /**
 *	@desc: image editor
 *	@returns: dhtmlxGrid cell editor object
@@ -2325,9 +2325,9 @@ eXcell_img.prototype.setValue=function(val){
 	}
 	this.cell._brval=title;
 }
-//#}
+//}
 
-//#price_excell:04062008{
+//price_excell:04062008{
 /**
 *	@desc: text editor with price (USD) formatting
 *	@returns: dhtmlxGrid cell editor object
@@ -2356,9 +2356,9 @@ eXcell_price.prototype.setValue=function(val){
 
 	this.setCValue("<span>$</span><span style='padding-right:2px;color:"+color+";'>"+val+"</span>", val);
 }
-//#}
+//}
 
-//#dyn_excells:04062008{
+//dyn_excells:04062008{
 /**
 *	@desc: text editor with additional formatting for positive and negative numbers (arrow down/up and color)
 *	@returns: dhtmlxGrid cell editor object
@@ -2394,7 +2394,7 @@ eXcell_dyn.prototype.setValue=function(val){
 		+"</span></div>",
 		val);
 }
-//#}
+//}
 
 /**
 *	@desc: readonly editor
@@ -2830,10 +2830,10 @@ function dhtmlXGridObject(id){
 		this.entBox.className="gridbox gridbox_"+name;
 		this.skin_h_correction=0;
 		
-//#alter_css:06042008{		
+//alter_css:06042008{		
 		this.enableAlterCss("ev_"+name, "odd_"+name, this.isTreeGrid())
 		this._fixAlterCss()
-//#}
+//}
 		switch (name){
 			case "clear":
 				this._topMb=document.createElement("DIV");
@@ -3065,16 +3065,16 @@ function dhtmlXGridObject(id){
 		else {
 			this.noHeader=false
 		}
-//#__pro_feature:21092006{
-//#column_hidden:21092006{
+//__pro_feature:21092006{
+//column_hidden:21092006{
 		if (this._ivizcol)
 			this.setColHidden();
-//#}
-//#}
-//#header_footer:06042008{		
+//}
+//}
+//header_footer:06042008{		
 		this.attachHeader();
 		this.attachHeader(0, 0, "_aFoot");
-//#}
+//}
 		this.setSizes();
 
 		if (fl)
@@ -3406,7 +3406,7 @@ function dhtmlXGridObject(id){
 		this.iconURL=path;
 	}	
 	this.setIconsPath=this.setIconPath;
-//#column_resize:06042008{
+//column_resize:06042008{
 	/**
 	*   @desc: part of column resize routine
 	*   @type: private
@@ -3547,8 +3547,8 @@ function dhtmlXGridObject(id){
 				this.setSortImgPos();
 		}
 	}
-//#}
-//#sorting:06042008{
+//}
+//sorting:06042008{
 	/**
 	*    @desc: sets position and visibility of sort arrow
 	*    @param: state - true/false - show/hide image
@@ -3616,7 +3616,7 @@ function dhtmlXGridObject(id){
 			this.sortImg.style.left=this.sortImg.defLeft+"px"; //-parseInt(this.hdrBox.scrollLeft)
 		}
 	}
-//#}
+//}
 	/**
 	*   @desc: manage activity of the grid.
 	*   @param: fl - true to activate,false to deactivate
@@ -3681,7 +3681,7 @@ function dhtmlXGridObject(id){
 		this.doClick(el, fl, selMethod)
 	};
 
-//#context_menu:06042008{
+//context_menu:06042008{
 	/**
 	*   @desc: called onmousedown inside grid area
 	*   @type: private
@@ -3756,7 +3756,7 @@ if (_isIE){
 		}
 		return true;
 	}
-//#}
+//}
 	/**
 	*    @desc: occures on cell click (supports treegrid)
 	*   @param: [el] - cell to click on
@@ -3930,13 +3930,13 @@ if (_isIE){
 		if (typeof (r) != "object")
 			r=this.render_row(r)
 		if (!r || r==-1) return null;
-//#__pro_feature:21092006{
-//#colspan:20092006{
+//__pro_feature:21092006{
+//colspan:20092006{
 		if (r._childIndexes)
 			var c = r.childNodes[r._childIndexes[cInd]];
 		else
-//#}
-//#}
+//}
+//}
 			var c = r.childNodes[cInd];
 
 		if (!c)
@@ -4022,10 +4022,10 @@ if (_isIE){
 			return false;
 		var c = this.cell;
 
-//#locked_row:11052006{
+//locked_row:11052006{
 		if (c.parentNode._locked)
 			return false;
-//#}
+//}
 
 		this.editor=this.cells4(c);
 
@@ -4318,9 +4318,9 @@ if (_isIE){
 				(e||window.event)
 			])))
 				return false;
-//#sorting:06042008{				
+//sorting:06042008{				
 			that.sortField(el._cellIndexS, false, el)
-//#}
+//}
 		}
 		this.grid.resized = null;
 	}
@@ -4607,12 +4607,12 @@ if (_isIE){
 		if (!r) return;
 		for (var i = 0; i < r.childNodes.length; i++){
 			var pfix = r.childNodes[i]._attrs["style"]||"";
-//#__pro_feature:21092006{
-//#column_hidden:21092006{
+//__pro_feature:21092006{
+//column_hidden:21092006{
 	if ((this._hrrar)&&(this._hrrar[i]))
 		pfix="display:none;";
-//#}
-//#}
+//}
+//}
 			if (_isIE)
 				r.childNodes[i].style.cssText=pfix+"width:"+r.childNodes[i].style.width+";"+styleString;
 			else
@@ -4650,12 +4650,12 @@ if (_isIE){
 		if (!cell)
 			return;
 		var pfix = "";
-//#__pro_feature:21092006{
-//#column_hidden:21092006{
+//__pro_feature:21092006{
+//column_hidden:21092006{
 		if ((this._hrrar)&&(this._hrrar[ind]))
 			pfix="display:none;";
-//#}
-//#}
+//}
+//}
 		if (_isIE)
 			cell.style.cssText=pfix+"width:"+cell.style.width+";"+styleString;
 		else
@@ -4699,7 +4699,7 @@ if (_isIE){
 	}
 	
 	
-//#moving_rows:06042008{
+//moving_rows:06042008{
 	/**
 	*   @desc: moves row one position up if possible
 	*   @param: row_id -  row id
@@ -4753,8 +4753,8 @@ if (_isIE){
 				this._fixAlterCss(rInd);
 		}
 	}
-//#}
-//#co_excell:06042008{
+//}
+//co_excell:06042008{
 	/**
 	* @desc: gets Combo object of specified column. Use it to change select box value for cell before editor opened
 	*   @type: public
@@ -4767,7 +4767,7 @@ if (_isIE){
 		}
 		return this.combos[col_ind];
 	}
-//#}
+//}
 	/**
 	*   @desc: sets user data to row
 	*   @param: row_id -  row id. if empty then user data is set for grid (not row)
@@ -5034,7 +5034,7 @@ if (_isIE){
 		this.callEvent("onClearAll", []);
 	}
 
-//#sorting:06042008{
+//sorting:06042008{
 	/**
 	*   @desc: sorts grid by specified field
 	*    @invoke: header click
@@ -5086,8 +5086,8 @@ if (_isIE){
 			this.setSortImgPos(false, false, false, r_el);
 		}
 	}
-//#__pro_feature:21092006{
-//#custom_sort:21092006{
+//__pro_feature:21092006{
+//custom_sort:21092006{
 	/**
 	*   @desc: set custom sorting (custom sort has three params - valueA,valueB,order; where order can be asc or des)
 	*   @param: func - function to use for comparison
@@ -5102,9 +5102,9 @@ if (_isIE){
 		this._customSorts[col]=( typeof (func) == "string") ? eval(func) : func;
 		this.fldSort[col]="cus";
 	}
-//#}
-//#}
-//#}
+//}
+//}
+//}
 	/**
 	*   @desc: specify if values passed to Header are images file names
 	*   @param: fl - true to treat column header values as image names
@@ -5225,8 +5225,8 @@ if (_isIE){
 	*/
 	this.setColSorting=function(sortStr){
 		this.fldSort=sortStr.split(this.delim)
-//#__pro_feature:21092006{
-//#custom_sort:21092006{
+//__pro_feature:21092006{
+//custom_sort:21092006{
 		for (var i = 0; i < this.fldSort.length; i++)
 			if (((this.fldSort[i]).length > 4)&&( typeof (window[this.fldSort[i]]) == "function")){
 				if (!this._customSorts)
@@ -5234,8 +5234,8 @@ if (_isIE){
 				this._customSorts[i]=window[this.fldSort[i]];
 				this.fldSort[i]="cus";
 			}
-//#}
-//#}
+//}
+//}
 	}
 	/**
 	*   @desc: set align of values in columns
@@ -5338,7 +5338,7 @@ if (_isIE){
 	this.setColumnColor=function(clr){
 		this.columnColor=clr.split(this.delim)
 	}
-//#alter_css:06042008{
+//alter_css:06042008{
 	/**
 	*   @desc: set even/odd css styles
 	*   @param: cssE - name of css class for even rows
@@ -5362,7 +5362,7 @@ if (_isIE){
 		this._cssEven=cssE;
 		this._cssUnEven=cssU;
 	}
-//#}
+//}
 	/**
 	*   @desc: recolor grid from defined point
 	*   @type: private
@@ -5370,7 +5370,7 @@ if (_isIE){
 	*   @topic: 3,6
 	*/
 	this._fixAlterCss=function(ind){
-//#alter_css:06042008{		
+//alter_css:06042008{		
 		if (this._h2 && (this._cssSP || this._cssSU))
 			return this._fixAlterCssTGR(ind);
 		if (!this._cssEven && !this._cssUnEven) return;
@@ -5397,9 +5397,9 @@ if (_isIE){
 				j++;
 			}
 		}
-//#}		
+//}		
 	}
-//#__pro_feature:21092006{
+//__pro_feature:21092006{
 	/**
 	*     @desc: clear wasChanged state for all cells in grid
 	*     @type: public
@@ -5441,7 +5441,7 @@ if (_isIE){
 	};
 
 
-//#serialization:21092006{
+//serialization:21092006{
 
 	this._sUDa=false;
 	this._sAll=false;
@@ -5574,10 +5574,10 @@ if (_isIE){
 				if (this._asCDATA)
 					zxVal="<![CDATA["+zxVal+"]]>";
 
-				//#colspan:20092006{
+				//colspan:20092006{
 				if ((this._ecspn)&&(zx.cell.colSpan)&&zx.cell.colSpan > 1)
 					out.push(" colspan=\""+zx.cell.colSpan+"\" ");
-				//#}
+				//}
 
 				if (this._chAttr){
 					if (zx.wasChanged()){
@@ -5594,13 +5594,13 @@ if (_isIE){
 				else
 					out.push(">"+zxVal+"</cell>");
 
-				//#colspan:20092006{
+				//colspan:20092006{
 				if ((this._ecspn)&&(zx.cell.colSpan))
 					for (var u = 0; u < zx.cell.colSpan-1; u++){
 						out.push("<cell/>");
 						jj++;
 					}
-			//#}
+			//}
 			}
 		}
 
@@ -5672,8 +5672,8 @@ if (_isIE){
 		out+='</rows>';
 		return out;
 	}
-//#}
-//#}
+//}
+//}
 
 	/**
 	*    @desc: returns absolute left and top position of specified element
@@ -5731,7 +5731,7 @@ if (_isIE){
 	this.objBox.onscroll=function(){
 		this.grid._doOnScroll();
 	};
-//#column_resize:06042008{
+//column_resize:06042008{
 	if ((!_isOpera)||(_OperaRv > 8.5)){
 		this.hdr.onmousemove=function(e){
 			this.grid.changeCursorState(e||window.event);
@@ -5740,10 +5740,10 @@ if (_isIE){
 			return this.grid.startColResize(e||window.event);
 		};		
 	}
-//#}
-//#tooltips:06042008{
+//}
+//tooltips:06042008{
 	this.obj.onmousemove=this._drawTooltip;
-//#}
+//}
 	this.objBox.onclick=function(e){
 		(e||event).cancelBubble=true;
 	};
@@ -5756,7 +5756,7 @@ if (_isIE){
 					
 		(e||event).cancelBubble=true;
 	};
-//#context_menu:06042008{
+//context_menu:06042008{
 	if (_isMacOS){
 		this.entBox.oncontextmenu=function(e){
 			e.cancelBubble=true;
@@ -5774,7 +5774,7 @@ if (_isIE){
 		};
 	}
     	
-//#}		
+//}		
 	this.obj.ondblclick=function(e){
 		if (!this.grid.wasDblClicked(e||window.event)) 
 			return false; 
@@ -5874,7 +5874,7 @@ dhtmlXGridObject.prototype={
 		return (this.cellType._dhx_find("tree") != -1);
 	},
 	
-//#column_hidden:21092006{	
+//column_hidden:21092006{	
 	/**
 	*   @desc: hide/show row (warning! - this command doesn't affect row indexes, only visual appearance)
 	*   @param: ind - column index
@@ -5917,7 +5917,7 @@ dhtmlXGridObject.prototype={
 		this.setSizes();
 	},
 	
-//#__pro_feature:21092006{
+//__pro_feature:21092006{
 	/**
 	*   @desc: hide/show column
 	*   @param: ind - column index
@@ -6092,10 +6092,10 @@ dhtmlXGridObject.prototype={
 			this.obj.border=0;
 		}
 	},
-//#}	
-//#}
-//#__pro_feature:21092006{	
-//#colspan:20092006{
+//}	
+//}
+//__pro_feature:21092006{	
+//colspan:20092006{
 	/**
 	*   @desc: enable/disable colspan support
 	*   @param: mode - true/false
@@ -6105,9 +6105,9 @@ dhtmlXGridObject.prototype={
 	enableColSpan:function(mode){
 		this._ecspn=convertStringToBoolean(mode);
 	},
-//#}
-//#}
-//#hovering:060402008{	
+//}
+//}
+//hovering:060402008{	
 	/**
 	*   @desc: enable/disable hovering row on mouse over
 	*   @param: mode - true/false
@@ -6143,7 +6143,7 @@ dhtmlXGridObject.prototype={
 			}
 		}
 	},
-//#}	
+//}	
 	/**
 	*   @desc: enable/disable events which fire excell editing, mutual exclusive with enableLightMouseNavigation
 	*   @param: click - true/false - enable/disable editing by single click
@@ -6157,7 +6157,7 @@ dhtmlXGridObject.prototype={
 		this._f2kE=convertStringToBoolean(f2Key);
 	},
 	
-//#hovering:060402008{	
+//hovering:060402008{	
 	/**
 	*   @desc: enable/disable light mouse navigation mode (row selection with mouse over, editing with single click), mutual exclusive with enableEditEvents
 	*   @param: mode - true/false
@@ -6245,9 +6245,9 @@ dhtmlXGridObject.prototype={
 		}
 		this._onmousemove(e);
 	},
-//#}	
-//#__pro_feature:21092006{
-//#distrb_parsing:21092006{
+//}	
+//__pro_feature:21092006{
+//distrb_parsing:21092006{
 	/**
 	*   @desc: enable/disable distributed parsing (rows paresed portion by portion with some timeout)
 	*   @param: mode - true/false
@@ -6263,8 +6263,8 @@ dhtmlXGridObject.prototype={
 		} else
 			this._ads_count=0;
 	},
-//#}
-//#}
+//}
+//}
 	/**
 		*     @desc: destructor, removes grid and cleans used memory
 		*     @type: public
@@ -6316,7 +6316,7 @@ dhtmlXGridObject.prototype={
 		return null;
 	},
 	
-//#sorting:06042008{	
+//sorting:06042008{	
 	/**
 	*     @desc: get sorting state of grid
 	*     @type: public
@@ -6332,7 +6332,7 @@ dhtmlXGridObject.prototype={
 		}
 		return z;
 	},
-//#}
+//}
 	
 	/**
 	*     @desc: enable autoheight of grid
@@ -6356,7 +6356,7 @@ dhtmlXGridObject.prototype={
 		//   this._activeResize();
 		}
 	},
-//#sorting:06042008{	
+//sorting:06042008{	
 	enableStableSorting:function(mode){
 		this._sst=convertStringToBoolean(mode);
 		this.rowsCol.stablesort=function(cmp){
@@ -6373,7 +6373,7 @@ dhtmlXGridObject.prototype={
 			}
 		}
 	},
-//#}
+//}
 	
 	/**
 	*     @desc: enable/disable hot keys in grid
@@ -6385,7 +6385,7 @@ dhtmlXGridObject.prototype={
 		this._htkebl=!convertStringToBoolean(mode);
 	},
 	
-//#context_menu:06042008{	
+//context_menu:06042008{	
 	/**
 	*     @desc: enable/disable context menu
 	*     @param: dhtmlxMenu object, if null - context menu will be disabled
@@ -6395,12 +6395,12 @@ dhtmlXGridObject.prototype={
 	enableContextMenu:function(menu){
 		this._ctmndx=menu;
 	},
-//#}	
+//}	
 	
 	/*backward compatibility*/
 	setScrollbarWidthCorrection:function(width){
 	},
-//#tooltips:06042008{	
+//tooltips:06042008{	
 	/**
 	*     @desc: enable/disable tooltips for specified colums
 	*     @param: list - list of true/false values, tooltips enabled for all columns by default
@@ -6412,9 +6412,9 @@ dhtmlXGridObject.prototype={
 	
 		for (var i = 0; i < this._enbTts.length; i++)this._enbTts[i]=convertStringToBoolean(this._enbTts[i]);
 	},
-//#}	
+//}	
 	
-//#column_resize:06042008{
+//column_resize:06042008{
 	/**
 	*     @desc: enable/disable resizing for specified colums
 	*     @param: list - list of true/false values, resizing enabled for all columns by default
@@ -6442,7 +6442,7 @@ dhtmlXGridObject.prototype={
 		} else
 			this._drsclmW=width.split(",");
 	},
-//#}	
+//}	
 	
 	/**
 	*     @desc: enable/disable unique id for cells (id will be automaticaly created using the following template: "c_[RowId]_[colIndex]")
@@ -6455,7 +6455,7 @@ dhtmlXGridObject.prototype={
 	},
 	
 	
-//#locked_row:11052006{
+//locked_row:11052006{
 	/**
 	*     @desc: lock/unlock row for editing
 	*     @param: rowId - id of row
@@ -6473,7 +6473,7 @@ dhtmlXGridObject.prototype={
 				this.editStop();
 		}
 	},
-//#}
+//}
 	
 	/**
 	*   @desc:  get values of all cells in row
@@ -6489,8 +6489,8 @@ dhtmlXGridObject.prototype={
 	
 		return text;
 	},
-//#__pro_feature:21092006{	
-//#data_format:12052006{
+//__pro_feature:21092006{	
+//data_format:12052006{
 	/**
 	*     @desc: set mask for date formatting in cell
 	*     @param: mask - date mask, d,m,y will mean day,month,year; for example "d/m/y" - 22/05/1985
@@ -6580,10 +6580,10 @@ dhtmlXGridObject.prototype={
 			for (var j = (a[0] > 0 ? 0 : 1)+a[0]+a[1]; j < data.length; j+=a[1])data[j]+=a[5];
 		return c+data.reverse().join("")+a[3];
 	},
-//#}
-//#}	
+//}
+//}	
 	
-//#config_from_xml:20092006{
+//config_from_xml:20092006{
 	
 	/**
 	*   @desc:  configure grid structure from XML
@@ -6724,7 +6724,7 @@ dhtmlXGridObject.prototype={
 	},
 	
 	
-//#}
+//}
 	
 	
 	/**
@@ -6763,7 +6763,7 @@ dhtmlXGridObject.prototype={
 	*   @topic: 5
 	*/	
 	setCheckedRows:function(cInd,v){this.forEachRowA(function(id){if(this.cells(id,cInd).isCheckbox())this.cells(id,cInd).setValue(v)})},
-//#tooltips:06042008{	
+//tooltips:06042008{	
 	/**
 	*   @desc:  grid body onmouseover function
 	*   @type:  private
@@ -6815,7 +6815,7 @@ dhtmlXGridObject.prototype={
 	
 		return true;
 	},
-//#}	
+//}	
 	/**
 	*   @desc:  can be used for setting correction for cell padding, while calculation setSizes
 	*   @type:  private
@@ -6846,8 +6846,8 @@ dhtmlXGridObject.prototype={
 		return this.getAllRowIds();
 	},
 	
-//#__pro_feature:21092006{	
-//#colspan:20092006{
+//__pro_feature:21092006{	
+//colspan:20092006{
 	
 	/**
 	*   @desc: dynamicaly set colspan in row starting from specified column index
@@ -6914,8 +6914,8 @@ dhtmlXGridObject.prototype={
 		}
 	},
 	
-//#}
-//#}
+//}
+//}
 	
 	/**
 	*   @desc: prevent caching in IE  by adding random values to URL string
@@ -6990,7 +6990,7 @@ dhtmlXGridObject.prototype={
 		this.setSizes();
 	},
 	
-//#header_footer:06042008{
+//header_footer:06042008{
 	/**
 	*   @desc: remove header line from grid (opposite to attachHeader)
 	*   @param: index - index of row to be removed ( zero based )
@@ -7162,7 +7162,7 @@ dhtmlXGridObject.prototype={
 			}, 500);
 		}
 	},
-//#__pro_feature:21092006{	
+//__pro_feature:21092006{	
 	/**
 	*   @desc: attach additional line to footer
 	*   @param: values - array of header titles
@@ -7173,10 +7173,10 @@ dhtmlXGridObject.prototype={
 	attachFooter:function(values, style){
 		this.attachHeader(values, style, "_aFoot");
 	},
-//#}
-//#}
-//#__pro_feature:21092006{
-//#dyn_cell_types:04062008{
+//}
+//}
+//__pro_feature:21092006{
+//dyn_cell_types:04062008{
 	/**
 	*   @desc: set excell type for cell in question
 	*   @param: rowId - row ID
@@ -7229,8 +7229,8 @@ dhtmlXGridObject.prototype={
 			this.cellType[colIndex]=type;
 	},
 	
-//#}
-//#}
+//}
+//}
 
 	/**
 	*   @desc: execute code for each row in a grid
@@ -7278,7 +7278,7 @@ dhtmlXGridObject.prototype={
 		if (arguments.length == 1)
 			this.objBox.style.overflowX=mode?"hidden":"auto";
 	},
-//#update_from_xml:06042008{	
+//update_from_xml:06042008{	
 	/**
 	*   @desc: refresh grid from XML ( doesnt work for buffering, tree grid or rows in smart rendering mode )
 	*   @param: insert_new - insert new items
@@ -7388,8 +7388,8 @@ dhtmlXGridObject.prototype={
 			this.filterByAll();
 		}
 	},
-//#}	
-//#co_excell:06042008{
+//}	
+//co_excell:06042008{
 	/**
 	*   @desc: get combobox specific for cell in question
 	*   @param: id - row id
@@ -7403,7 +7403,7 @@ dhtmlXGridObject.prototype={
 			cell._combo=new dhtmlXGridComboObject();
 		return cell._combo;
 	},
-//#}
+//}
 	/**
 	*   @desc: set tab order of columns
 	*   @param: order - list of tab indexes (default delimiter is ",")
@@ -7583,7 +7583,7 @@ dhtmlXGridObject.prototype={
 		return r;
 	},
 	
-//#non_xml_data:06042008{
+//non_xml_data:06042008{
 	_process_jsarray_row:function(r, data){
 		r._attrs={
 		};
@@ -7641,7 +7641,7 @@ dhtmlXGridObject.prototype={
 	_get_csv_data:function(data, ind){
 		return data.split(this.csv.cell)[ind];
 	},
-//#}
+//}
 	_process_store_row:function(row, data){
 		var result = [];
 		for (var i = 0; i < this.columnIds.length; i++)
@@ -7652,7 +7652,7 @@ dhtmlXGridObject.prototype={
 		row._attrs = data;
 		this._fillRow(row, (this._c_order ? this._swapColumns(result) : result));
 	},	
-//#xml_data:06042008{
+//xml_data:06042008{
 	_process_xml_row:function(r, xml){		
 		var cellsCol = this.xmlLoader.doXPath(this.xml.cell, xml);
 		var strAr = [];
@@ -7723,7 +7723,7 @@ dhtmlXGridObject.prototype={
 		}
 		return (data.firstChild ? data.firstChild.data : "");
 	},
-//#}	
+//}	
 	_fillRow:function(r, text){
 		if (this.editor)
 			this.editStop();
@@ -7829,7 +7829,7 @@ dhtmlXGridObject.prototype={
 		}
 		this.xmlLoader.loadXML(url);
 	},
-//#__pro_feature:21092006{		
+//__pro_feature:21092006{		
 	loadXMLString:function(str, afterCall){
 		var t = new dtmlXMLLoaderObject(function(){
 		});
@@ -7837,7 +7837,7 @@ dhtmlXGridObject.prototype={
 		t.loadXMLString(str);
 		this.parse(t, afterCall, "xml")
 	},
-//#}
+//}
 	loadXML:function(url, afterCall){
 		this.load(url, afterCall, "xml")
 	},
@@ -7886,7 +7886,7 @@ dhtmlXGridObject.prototype={
 	
 		return data;
 	},
-//#xml_data:06042008{	
+//xml_data:06042008{	
 	_process_xml:function(xml){ 
 		if (!xml.doXPath){
 			var t = new dtmlXMLLoaderObject(function(){});
@@ -7905,9 +7905,9 @@ dhtmlXGridObject.prototype={
 		this._parsing=true;
 		var top = xml.getXMLTopNode(this.xml.top)
 		if (top.tagName!=this.xml.top) return;
-		//#config_from_xml:20092006{
+		//config_from_xml:20092006{
 		this._parseHead(top);
-		//#}
+		//}
 		var rows = xml.doXPath(this.xml.row, top)
 		var cr = parseInt(xml.doXPath("//"+this.xml.top)[0].getAttribute("pos")||0);
 		var total = parseInt(xml.doXPath("//"+this.xml.top)[0].getAttribute("total_count")||0);
@@ -7955,8 +7955,8 @@ dhtmlXGridObject.prototype={
 		this._parsing=false;
 		return xml.xmlDoc.responseXML?xml.xmlDoc.responseXML:xml.xmlDoc;
 	},
-//#}
-//#non_xml_data:06042008{	
+//}
+//non_xml_data:06042008{	
 	_process_jsarray:function(data){
 		this._parsing=true;
 	
@@ -8068,7 +8068,7 @@ dhtmlXGridObject.prototype={
 		this.render_dataset();
 		this._parsing=false;
 	},
-//#}	
+//}	
 	render_dataset:function(min, max){ 
 		//normal mode - render all
 		//var p=this.obj.parentNode;
@@ -8170,7 +8170,7 @@ dhtmlXGridObject.prototype={
 		}
 		return this.cells3(row, ind)[method ? method : "getValue"]();
 	},
-//#sorting:06042008{	
+//sorting:06042008{	
 	/**
 	*   @desc: sort grid
 	*   @param: col - index of column, by which grid need to be sorted
@@ -8219,8 +8219,8 @@ dhtmlXGridObject.prototype={
 			s["stablesort"]=this.rowsCol.stablesort;
 			sort="stablesort";
 		}
-//#__pro_feature:21092006{	
-//#custom_sort:21092006{
+//__pro_feature:21092006{	
+//custom_sort:21092006{
 		if (type.length > 4)
 			type=window[type];
 	
@@ -8236,8 +8236,8 @@ dhtmlXGridObject.prototype={
 			});
 		}
 		else
-//#}
-//#}
+//}
+//}
 		if (type == 'str'){
 			s[sort](function(a, b){
 				if (order == "asc")
@@ -8281,7 +8281,7 @@ dhtmlXGridObject.prototype={
 		this._reset_view();
 		this.callEvent("onGridReconstructed", []);
 	},
-//#}		
+//}		
 	_reset_view:function(skip){
 		if (!this.obj.rows[0]) return;
 		this.callEvent("onResetView",[]);
@@ -10333,7 +10333,7 @@ dhtmlXToolbarObject.prototype.addButton = function(id, pos, text, imgEnabled, im
 dhtmlXToolbarObject.prototype.addText = function(id, pos, text) {
 	this._addItem({id:id,type:"text",text:text}, pos);
 }
-//#tool_list:06062008{
+//tool_list:06062008{
 /**
 *   @desc: adds a select button to webbar
 *   @param: id - id of a select button
@@ -10366,8 +10366,8 @@ dhtmlXToolbarObject.prototype.addButtonSelect = function(id, pos, text, opts, im
 	}
 	this._addItem({id:id, type:"buttonSelect", text:text, img:imgEnabled, imgdis:imgDisabled, renderSelect:renderSelect, openAll:openAll, items:items, maxOpen:maxOpen}, pos);
 }
-//#}
-//#tool_2state:06062008{
+//}
+//tool_2state:06062008{
 /**
 *   @desc: adds a two-state button to webbar
 *   @param: id - id of a two-state button
@@ -10380,7 +10380,7 @@ dhtmlXToolbarObject.prototype.addButtonSelect = function(id, pos, text, opts, im
 dhtmlXToolbarObject.prototype.addButtonTwoState = function(id, pos, text, imgEnabled, imgDisabled) {
 	this._addItem({id:id, type:"buttonTwoState", img:imgEnabled, imgdis:imgDisabled, text:text}, pos);
 }
-//#}
+//}
 /**
 *   @desc: adds a separator to webbar
 *   @param: id - id of a separator
@@ -10390,7 +10390,7 @@ dhtmlXToolbarObject.prototype.addButtonTwoState = function(id, pos, text, imgEna
 dhtmlXToolbarObject.prototype.addSeparator = function(id, pos) {
 	this._addItem({id:id,type:"separator"}, pos);
 }
-//#tool_slider:06062008{
+//tool_slider:06062008{
 /**
 *   @desc: adds a slider to webbar
 *   @param: id - id of a slider
@@ -10407,7 +10407,7 @@ dhtmlXToolbarObject.prototype.addSeparator = function(id, pos) {
 dhtmlXToolbarObject.prototype.addSlider = function(id, pos, len, valueMin, valueMax, valueNow, textMin, textMax, tip) {
 	this._addItem({id:id, type:"slider", length:len, valueMin:valueMin, valueMax:valueMax, valueNow:valueNow, textMin:textMin, textMax:textMax, toolTip:tip}, pos);
 }
-//#}
+//}
 /**
 *   @desc: adds an input item to webbar
 *   @param: id - id of an input item
@@ -11032,7 +11032,7 @@ dhtmlXToolbarObject.prototype._removeItem = function(itemId) {
 	
 	
 };
-//#tool_list:06062008{
+//tool_list:06062008{
 (function(){
 	var list="addListOption,removeListOption,showListOption,hideListOption,isListOptionVisible,enableListOption,disableListOption,isListOptionEnabled,setListOptionPosition,getListOptionPosition,setListOptionText,getListOptionText,setListOptionToolTip,getListOptionToolTip,setListOptionImage,getListOptionImage,clearListOptionImage,forEachListOption,getAllListOptions,setListOptionSelected,getListOptionSelected".split(",")
 	var functor = function(name){
@@ -11201,7 +11201,7 @@ dhtmlXToolbarObject.prototype._removeItem = function(itemId) {
 *   @type: public
 */
 //dhtmlXToolbarObject.prototype.getListOptionSelected = function(parentId) {
-//#}
+//}
 dhtmlXToolbarObject.prototype._rtlParseBtn = function(t1, t2) {
 	return t1+t2;
 }
@@ -11428,7 +11428,7 @@ dhtmlXToolbarObject.prototype._buttonObject = function(that, id, data) {
 	}
 	return this;
 }
-//#tool_list:06062008{
+//tool_list:06062008{
 /* ****************************************************************************************************************************************************************
 	object: buttonSelect
 ***************************************************************************************************************************************************************** */
@@ -12094,9 +12094,9 @@ dhtmlXToolbarObject.prototype._buttonSelectObject = function(that, id, data) {
 	//
 	return this;
 }
-//#}
+//}
 	
-//#tool_input:06062008{
+//tool_input:06062008{
 /*****************************************************************************************************************************************************************
 	object: buttonInput
 ***************************************************************************************************************************************************************** */
@@ -12161,8 +12161,8 @@ dhtmlXToolbarObject.prototype._buttonInputObject = function(that, id, data) {
 	//
 	return this;
 }
-//#}
-//#tool_2state:06062008{
+//}
+//tool_2state:06062008{
 /*****************************************************************************************************************************************************************
 	object: buttonTwoState
 ***************************************************************************************************************************************************************** */
@@ -12297,8 +12297,8 @@ dhtmlXToolbarObject.prototype._buttonTwoStateObject = function(that, id, data) {
 	//
 	return this;
 }
-//#}
-//#tool_slider:06062008{
+//}
+//tool_slider:06062008{
 /*****************************************************************************************************************************************************************
 	object: slider
 ***************************************************************************************************************************************************************** */
@@ -12501,7 +12501,7 @@ dhtmlXToolbarObject.prototype._sliderObject = function(that, id, data) {
 	//
 	return this;
 }
-//#}
+//}
 dhtmlXToolbarObject.prototype.unload = function() {
 	
 	if (this._isIPad) {
@@ -13018,7 +13018,7 @@ function dhtmlXMenuObject(baseId, skin) {
 				}
 			}
 			
-			//#menu_overflow:06062008#{
+			//menu_overflow:06062008#{
 			if (this.limit > 0 && this.limit < itemCount)  {
 				
 				// add overflow arrows if they not exists
@@ -13039,7 +13039,7 @@ function dhtmlXMenuObject(baseId, skin) {
 				arrowDown.style.zIndex = this.zInd;
 				arrDownH = arrowDown.offsetHeight;
 			}
-			//#}
+			//}
 			
 			if (this.limit > 0) {
 				if (this.limit < itemCount)  {
@@ -13157,7 +13157,7 @@ function dhtmlXMenuObject(baseId, skin) {
 				this.idPull["sxDac_"+id]._show();
 			} else {
 				this.idPull[pId].style.visibility = "";
-				//#menu_overflow:06062008#{
+				//menu_overflow:06062008#{
 				if (this.limit > 0 && this.limit < itemCount)  {
 					// this.idPull[pId].scrollTop = 0;
 					arrowUp.style.left = x+"px";
@@ -13172,7 +13172,7 @@ function dhtmlXMenuObject(baseId, skin) {
 					//
 					this._checkArrowsState(id);
 				}
-				//#}
+				//}
 				// show ie6 cover
 				if (this._isIE6) {
 					var pIdIE6 = pId+"_ie6cover";
@@ -13416,15 +13416,15 @@ function dhtmlXMenuObject(baseId, skin) {
 				if (r.getAttribute("cssNormal") != null) { item["cssNormal"] = r.getAttribute("cssNormal"); }
 				// type
 				item["type"] = r.getAttribute("type")||"item";
-//#menu_checks:06062008{
+//menu_checks:06062008{
 				if (item["type"] == "checkbox") {
 					item["checked"] = (r.getAttribute("checked")!=null);
 					// set classname
 					item["imgen"] = "chbx_"+(item["checked"]?"1":"0");
 					item["imgdis"] = item["imgen"];
 				}
-//#}
-//#menu_radio:06062008{
+//}
+//menu_radio:06062008{
 				if (item["type"] == "radio") {
 					item["checked"] = (r.getAttribute("checked")!=null);
 					item["imgen"] = "rdbt_"+(item["checked"]?"1":"0");
@@ -13433,7 +13433,7 @@ function dhtmlXMenuObject(baseId, skin) {
 					if (this.radio[item["group"]]==null) { this.radio[item["group"]] = new Array(); }
 					this.radio[item["group"]][this.radio[item["group"]].length] = item["id"];
 				}
-//#}
+//}
 				// enable/disable
 				item["state"] = (r.getAttribute("enabled")!=null||r.getAttribute("disabled")!=null?(r.getAttribute("enabled")=="false"||r.getAttribute("disabled")=="true"?"disabled":"enabled"):"enabled");
 				item["parent"] = (parentId!=null?parentId:this.idPrefix+this.topId);
@@ -14104,7 +14104,7 @@ dhtmlXMenuObject.prototype._getAllParents = function(id) {
 	return parents;
 }
 
-//#menu_context:06062008{
+//menu_context:06062008{
 	
 /****************************************************************************************************************************************************/
 /*								 	CONTEXT STUFF								    */
@@ -14290,7 +14290,7 @@ dhtmlXMenuObject.prototype._autoDetectVisibleArea = function() {
 }*/
 
 
-//#}
+//}
 
 /**
 *   @desc: returns item's position in the current polygon
@@ -15129,7 +15129,7 @@ dhtmlXMenuObject.prototype._changeItemVisible = function(id, visible) {
 }
 /****************************************************************************************************************************************************/
 /*								 	USERDATA								    */
-//#menu_userdata:06062008{
+//menu_userdata:06062008{
 /**
 *   @desc: sets userdata for an item
 *   @param: id - the item
@@ -15150,7 +15150,7 @@ dhtmlXMenuObject.prototype.setUserData = function(id, name, value) {
 dhtmlXMenuObject.prototype.getUserData = function(id, name) {
 	return (this.userData[this.idPrefix+id+"_"+name]!=null?this.userData[this.idPrefix+id+"_"+name]:null);
 }
-//#}
+//}
 /****************************************************************************************************************************************************/
 /*								 	OPENMODE/TIMEOUT							    */
 /**
@@ -15310,7 +15310,7 @@ dhtmlXMenuObject.prototype.getTooltip = function(id) {
 }
 /****************************************************************************************************************************************************/
 /*								 	HOTKEYS									    */
-//#menu_hotkey:06062008#{
+//menu_hotkey:06062008#{
 // hot-keys, added in 0.4
 /**
 *   @desc: sets menu hot-key (just text label)
@@ -15366,7 +15366,7 @@ dhtmlXMenuObject.prototype.getHotKey = function(id) {
 }
 /****************************************************************************************************************************************************/
 /*								 	MISC									    */
-//#}
+//}
 /* set toplevel item selected */
 dhtmlXMenuObject.prototype.setItemSelected = function(id) {
 	if (this.itemPull[this.idPrefix+id] == null) return null;
@@ -15461,7 +15461,7 @@ dhtmlXMenuObject.prototype.generateSQL = function() {
 	return sql+values;
 }
 */
-//#menu_overflow:06062008#{
+//menu_overflow:06062008#{
 /****************************************************************************************************************************************************/
 /*								 	OVERFLOW								    */
 /* clear all selected subitems in polygon, implemented in 0.4 */
@@ -15694,10 +15694,10 @@ dhtmlXMenuObject.prototype.setOverflowHeight = function(itemsNum) {
 		return;
 	}
 }
-//#}
+//}
 /****************************************************************************************************************************************************/
 /*								 	RADIOBUTTONS								    */
-//#menu_radio:06062008{
+//menu_radio:06062008{
 dhtmlXMenuObject.prototype._getRadioImgObj = function(id) {
 	try { var imgObj = this.idPull[this.idPrefix+id].childNodes[(this._rtl?2:0)].childNodes[0] } catch(e) { var imgObj = null; }
 	return imgObj;
@@ -15811,10 +15811,10 @@ dhtmlXMenuObject.prototype.addRadioButton = function(mode, nextToId, pos, itemId
 	//
 	if (state == true) this.setRadioChecked(gr, String(id).replace(this.idPrefix, ""));
 }
-//#}
+//}
 /****************************************************************************************************************************************************/
 /*								 	CHECKBOXES								    */
-//#menu_checks:06062008{
+//menu_checks:06062008{
 dhtmlXMenuObject.prototype._getCheckboxState = function(id) {
 	if (this.itemPull[this.idPrefix+id] == null) return null;
 	return this.itemPull[this.idPrefix+id]["checked"];
@@ -15905,7 +15905,7 @@ dhtmlXMenuObject.prototype.addCheckbox = function(mode, nextToId, pos, itemId, i
 		this._redefineComplexState(parentId);
 	}
 }
-//#}
+//}
 /****************************************************************************************************************************************************/
 /*								 	SERIALIZE								    */
 dhtmlXMenuObject.prototype._readLevel = function(parentId) {
@@ -15956,3 +15956,4159 @@ dhtmlXMenuObject.prototype.serialize = function() {
 
 
 
+
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ /*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ function dhtmlxSpreadSheet(obj) {
+	this.settings = {
+		version: '1.0',
+		init_instantly: false,
+		sheet: obj.sheet || null,
+		cols: 26,
+		rows: 50,
+		show_row_numbers: true,
+		show_export_buttons: true,
+		fullscreen: false,
+//		method: 'jsonp', // ajax
+		method: 'ajax',
+		// addition parameter for toolbar settings
+		// always should be true
+		ever: true,
+		column_width: 64,
+		left_width: 40,
+		skin: obj.skin||"dhx_skyblue",
+		load_url: obj.load,
+		save_url: obj.save,
+		icons_path: obj.icons_path || "../codebase/imgs/icons",
+		image_path: obj.image_path || "../codebase/imgs/",
+		math: (typeof(obj.math) !== 'undefined') ? obj.math : false,
+		key: null,
+		styles: [],
+		timeout: 500,
+		export_pdf_url: 'http://dhtmlxgrid.appspot.com/export/pdf',
+		export_excel_url: 'http://dhtmlxgrid.appspot.com/export/excel',
+		defaults: {
+			rows: 50,
+			cols: 26,
+			show_row_numbers: true,
+			show_export_buttons: true
+		}
+	};
+	// used to implement formuals copying
+	this._copydump = {
+		inside: null,
+		outside: null
+	};
+	/*! parameter 'show' shows which of items
+	 *	can be shown in toolbar
+	 *	show='opt1,!opt2,opt3' means condition:
+	 *	show='ever' - show independece of parameters
+	 *	(this.settings.opt1 == true) && (this.settings.opt2 != true) && (this.settings.opt3 == true)
+	 **/
+	this.settings.defaults.toolbar_items = [
+		{type: "buttonTwoState", id: "bold", text: "Bold", img: "bold.png", pressed: false, tooltip: "Bold text (Ctrl+B)", show: '!read_only'},
+		{type: "buttonTwoState", id: "italic", text: "Italic", img: "italic.png", pressed: false, tooltip: "Italic text (Ctrl+I)", show: '!read_only'},
+		{type: "buttonSelect", id: "topcolor", text: "Color", img: "colors/color_000000.png", tooltip: "Text color", openAll: true, show: '!read_only', options: [
+			{id: "color__000000", type: "obj", text: "Black", img: 'colors/color_000000.png'},
+			{id: "color__ffffff", type: "obj", text: "White", img: 'colors/color_ffffff.png'},
+			{id: "color__ff0000", type: "obj", text: "Red", img: 'colors/color_ff0000.png'},
+			{id: "color__ffc000", type: "obj", text: "Orange", img: 'colors/color_ffc000.png'},
+			{id: "color__ffff00", type: "obj", text: "Yellow", img: 'colors/color_ffff00.png'},
+			{id: "color__92d050", type: "obj", text: "LightGreen", img: 'colors/color_92d050.png'},
+			{id: "color__00b050", type: "obj", text: "Green", img: 'colors/color_00b050.png'},
+			{id: "color__00b0f0", type: "obj", text: "LightBlue", img: 'colors/color_00b0f0.png'},
+			{id: "color__0070c0", type: "obj", text: "Blue", img: 'colors/color_0070c0.png'}
+		]},
+		{type: "buttonSelect", id: "topbgcolor", text: "Background", img: "colors/color_ffffff.png", tooltip: "Background color", openAll: true, show: '!read_only', options: [
+			{id: "bgcolor__000000", type: "obj", text: "Black", img: 'colors/color_000000.png'},
+			{id: "bgcolor__ffffff", type: "obj", text: "White", img: 'colors/color_ffffff.png'},
+			{id: "bgcolor__ff0000", type: "obj", text: "Red", img: 'colors/color_ff0000.png'},
+			{id: "bgcolor__ffc000", type: "obj", text: "Orange", img: 'colors/color_ffc000.png'},
+			{id: "bgcolor__ffff00", type: "obj", text: "Yellow", img: 'colors/color_ffff00.png'},
+			{id: "bgcolor__92d050", type: "obj", text: "LightGreen", img: 'colors/color_92d050.png'},
+			{id: "bgcolor__00b050", type: "obj", text: "Green", img: 'colors/color_00b050.png'},
+			{id: "bgcolor__00b0f0", type: "obj", text: "LightBlue", img: 'colors/color_00b0f0.png'},
+			{id: "bgcolor__0070c0", type: "obj", text: "Blue", img: 'colors/color_0070c0.png'}
+		]},
+		{type: "buttonSelect", id: "topalign", text: "Align", img: "align_left.png", tooltip: "Text align in cell", openAll: true, show: '!read_only', options: [
+			{id: "align__left", type: "obj", text: "Left", img: 'align_left.png'},
+			{id: "align__center", type: "obj", text: "Center", img: 'align_center.png'},
+			{id: "align__right", type: "obj", text: "Right", img: 'align_right.png'},
+			{id: "align__justify", type: "obj", text: "Justify", img: 'align_justify.png'}
+		]},
+		{type: "button", id: "edit", text: "Edit", img: "iconedit.gif", tooltip: "Edit selected cell", show: '!read_only'},
+		{type: "button", id: "undo", img: "undo.gif", img_disabled: "undo_dis.gif", disabled: true, tooltip: "Undo last change (Ctrl+Z)", show: '!read_only'},
+		{type: "button", id: "redo", img: "redo.gif", img_disabled: "redo_dis.gif", disabled: true, tooltip: "Redo last change (Ctrl+Y)", show: '!read_only'},
+
+		{ type: "button", id: "export_pdf", text: "PDF", img: "export_pdf.png", show: 'show_export_buttons', pos: 'right'},
+		{ type: "button", id: "export_excel", text: "Excel", img: "export_excel.png", show: 'show_export_buttons', pos: 'right'},
+		{ type: "button", id: "settings", text: "Settings", img: "settings.png", show: '!read_only', pos: 'right'}
+	];
+
+	this.settings.defaults.math_items = [
+		{ id: "math", type: "buttonInput", width: 300 },
+		{ id: "save", type: "button", text: "Save" },
+		{ id: "cancel", type: "button", text: "Cancel" },
+		{ id: "function", type: "button", text: "F(x)", show: 'math' }
+	];
+	this.tool_heights = {
+		'dhx_skyblue': 26,
+		'dhx_web': 32
+	};
+	this.tool_borders = {
+		'dhx_skyblue': 0,
+		'dhx_web': 2
+	};
+	this.tool_height = this.tool_heights[this.settings.skin];
+	this.stack = [];
+	this._in_progr = {};
+	this.undo = new dhtmlxUndo();
+	this._last_value = null;
+	this.dont_lose_focus = false;
+	if (!obj.parent) {
+		this.settings.parent = this.getFullscreenCont();
+		this.settings.fullscreen = true;
+	} else if (typeof(obj.parent) == "string")
+		this.settings.parent = document.getElementById(obj.parent);
+	else
+		this.settings.parent = obj.parent;
+	this.settings.autoheight = (this.settings.fullscreen) ? false : (typeof(obj.autoheight) !== 'undefined' ? obj.autoheight : true);
+	this.settings.autowidth = (this.settings.fullscreen) ? false : (typeof(obj.autowidth) !== 'undefined' ? obj.autowidth : true);
+	this.settings.parent = this.processParentCont(this.settings.parent);
+	this.setSizes();
+	if (this.settings.init_instantly === true)
+		this.init();
+}
+
+dhtmlxSpreadSheet.prototype = {
+
+	init: function() {
+		this.toolbarInit();
+		this.mathInit();
+		this.setSizes();
+		if (!this.grid)
+			this.grid = new dhtmlXGridObject(this.settings.parent.grid);
+		this.grid.ssheet = this;
+
+		this.grid.setSkin(this.settings.skin);
+		this.grid.setImagePath(this.settings.image_path);
+		this.fillHeader();
+
+		this.attachGridKeys(this.grid);
+		this.grid.doClick = function() { return self.doClick.apply(self.grid, arguments); };
+
+		var cell_type = this.settings.read_only ? 'rotxt' : 'edsh';
+		var resize_type = 'true';
+		var widths = [this.settings.left_width];
+		var types = ['ro'];
+		var sorts = ['na'];
+		var aligns = ['right'];
+		var resize = [resize_type];
+		for (var i = 0; i < this.settings.cols; i++) {
+			widths.push(this.settings.column_width);
+			types.push(cell_type);
+			sorts.push('na');
+			aligns.push('left');
+			resize.push(resize_type);
+		}
+		this.grid.setInitWidths(widths.join(','));
+		this.grid.setColTypes(types.join(','));
+		this.grid.setColSorting(sorts.join(','));
+		this.grid.setColAlign(aligns.join(','));
+		this.grid.enableResizing(resize.join(','));
+		this.grid.enableBlockSelection(true);
+		if (this.settings.autoheight === true)
+			this.grid.enableAutoHeight(true);
+		if (this.settings.autowidth === true)
+			this.grid.enableAutoWidth(true);
+		this.grid.setColumnHidden(0, !this.settings.show_row_numbers);
+		
+		// adds context menu
+		var menu = this.addContext();
+		this.grid.enableContextMenu(menu);
+		this.grid.init();
+		this.fillEmpty();
+		this.attachDblClickToHeader();
+		this.lefttopEvent();
+
+		var self = this;
+		this.grid.attachEvent("onBeforeBlockSelected", function(id, index){
+			if (index === 0) return false;
+			self.mathCancel();
+			return true;
+		});
+		this.grid.attachEvent("onBeforeSelect", function(rId, cInd) {
+			if (cInd === 0) return false;
+			SpreadsheetBuffer.to_area(self, self.grid.getSelectedBlock());
+			return true;
+		});
+		if (!this.settings.read_only) {
+			this.grid.attachEvent("onResizeEnd", function(e) {
+				if (!e.resized) return;
+				var index = e.resized._cellIndex;
+				if (index === 0) return;
+				self.saveHeadCell(index);
+				self.setSizes();
+			});
+			if (!this.grid.startColResize_original) {
+				this.grid.startColResize_original = this.grid.startColResize;
+				this.grid.startColResize = function(ev) {
+					var el = ev.target||ev.srcElement;
+					if (el.tagName != "TD")
+						el=this.getFirstParentOfType(el, "TD")
+
+					self._old("header", [el._cellIndex]);
+
+					self.grid.startColResize_original(ev)
+				};
+			}
+		}
+		this.grid.attachEvent("onResize", function(cInd,cWidth,obj){
+			if (cInd === 0) return false;
+			return true;
+		});
+
+		// load cell styles in toolbar
+		this.grid.attachEvent("onRowSelect", function(id, cInd) {
+			if (cInd === 0) return false;
+			if (self.dont_lose_focus !== true) {
+				SpreadsheetBuffer.to_area(self, self.grid.getSelectedBlock());
+			} else
+				self.dont_lose_focus = false;
+			self.loadCellStyle(id, cInd);
+			return true;
+		});
+		this.grid.attachEvent("onBlockSelected", function() {
+			SpreadsheetBuffer.to_area(self, self.grid.getSelectedBlock());
+			self.loadCellStyle();
+		});
+		this.grid.attachEvent("onBlockSelectionShown", function() {
+			if (!this._selectionObj.id) this._selectionObj.id = self.grid.uid();
+			self.context.addContextZone(this._selectionObj.id);
+		});
+		// event for applying styles after cell edition
+		this.grid.attachEvent("onEditCell", function(stage,rId,cInd,nValue,oValue) {
+			if (stage == 0)
+				if (self.isLocked(rId, cInd)) return false;
+			if (stage == 1) {
+				self.dont_lose_focus = true;
+				self._old("cells", [rId, cInd, rId, cInd]);
+			}
+			if (stage == 2) {
+				if (!self.grid.cells(rId, cInd).getRealChanged(true)) return false;
+				this.clearBorderSelection();
+				SpreadsheetBuffer.unselect(self);
+				self.to_stack(rId, cInd);
+				self.validateCell(rId, cInd);
+				window.setTimeout(function() {
+					self.applyStyles();
+				}, 100);
+			}
+			return true;
+		});
+		this.grid.attachEvent("onBorderSelected", function(rId1, cInd1, rId2, cInd2){
+			var range;
+			if ((rId1 === rId2)&&(cInd1 === cInd2)) {
+				range = self.getColName(cInd1) + rId1;
+			} else {
+				range = self.getColName(cInd1) + rId1 + ':' + self.getColName(cInd2) + rId2;
+			}
+			SpreadSheetMathHint.setRange(range);
+			return true;
+		});
+		this.grid.attachEvent("onBorderSelectionStart", function(rId, cInd){
+			return (cInd === 0) ? false : true;
+		});
+		this.grid.attachEvent("onBorderSelectionMove", function(rId1, cInd1, rId2, cInd2){
+			return (cInd2 === 0) ? false: true;
+		});
+		this.grid.attachEvent("onTab", function(mode){
+			var block = this.getSelectedBlock();
+			if (!mode && block && block.LeftTopCol === 1) return false;
+			return true;
+		});
+		dhtmlxEvent(this.settings.parent.parent, "mouseup", function() {
+			window.setTimeout(function() {
+				self.grid.isActive = true;
+			}, 1);
+		});
+
+		// prevent loose focus event calling
+		this.grid.entBox.onbeforedeactivate = null;
+		this.grid.selectCell(0, 1);
+		this.settings.parent.grid.className += ' spreadsheet';
+		this.editor = SpreadSheetHeaderEditor.init();
+		this.config = SpreadSheetConfig.init(this.settings.parent.parent);
+		this.buffer = SpreadsheetBuffer.init();
+	},
+
+	toolbarInit: function() {
+		var items = this.get_toolbar_config(this.settings.defaults.toolbar_items);
+		if (items.length === 0) {
+			this.settings.hide_toolbar = true;
+			this.setSizes();
+			return;
+		} else {
+			this.settings.hide_toolbar = false;
+		}
+		this.toolbar = new dhtmlXToolbarObject({
+			parent: this.settings.parent.toolbar,
+			icon_path: this.settings.icons_path,
+			items: items,
+			skin: this.settings.skin
+		});
+
+		// sets toolbar items position
+		var poss = { left: false, right: false };
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].pos == 'right')
+				poss.right = i;
+			else
+				poss.left = i;
+		}
+		if (poss.left === false)
+			this.toolbar.setAlign('right');
+		if (poss.right === false)
+			this.toolbar.setAlign('left');
+		if ((poss.left !== false) && (poss.right !== false))
+			this.toolbar.addSpacer(items[poss.left].id);
+
+		var self = this;
+		this.toolbar.attachEvent("onClick", function(id) { return self.toolbarClick(id); });
+		this.toolbar.attachEvent("onStateChange", function(id, state) {
+			self.setCellsStyle(id, state);
+		});
+	},
+
+	/*! check default configuration and return hash of values
+	 *	which can be shown according the rule 'show' in its config
+	 *	show='opt1,!opt2,opt3' means condition:
+	 *	(this.settings.opt1 == true) && (this.settings.opt2 != true) && (this.settings.opt3 == true)
+	 **/
+	get_toolbar_config: function(all_items) {
+		var enabled_items = [];
+		for (var i = 0; i < all_items.length; i++) {
+			var item = all_items[i];
+			var show = (item.show || 'ever').split(',');
+			var show_res = true;
+			for (var j = 0; j < show.length; j++) {
+				var rule = show[j];
+				var invert = false;
+				if (rule.substr(0, 1) == '!') {
+					rule = rule.substr(1);
+					invert = true;
+				}
+				var rule_result;
+				if (typeof(this.settings[rule]) != 'undefined') {
+					rule_result = (invert === true) ? !this.settings[rule] : this.settings[rule];
+				} else {
+					rule_result = false;
+				}
+				show_res = (show_res && rule_result);
+			}
+
+			if (show_res === true)
+				enabled_items.push(all_items[i]);
+		}
+		return enabled_items;
+	},
+
+
+	toolbarClick: function(id) {
+		var block = this.grid.getSelectedBlock();
+		switch (id) {
+			case 'settings':
+				if (this.settings.read_only) return false;
+				this.config.set({
+					cols: this.settings.cols,
+					rows: this.settings.rows,
+					show_row_numbers: this.settings.show_row_numbers,
+					show_export_buttons: this.settings.show_export_buttons
+				});
+				var pos = this.get_settings_pos();
+				this.config.show(this, pos.x, pos.y);
+				break;
+			case 'export_pdf':
+				this.export_to('pdf');
+				break;
+			case 'export_excel':
+				// hide first column with row numbers before printing
+				this.grid.setColumnHidden(0, true);
+				this.export_to('excel');
+				this.grid.setColumnHidden(0, false);
+				break;
+			case 'undo':
+				this._undo("undo");
+				break;
+			case 'redo':
+				this._undo("redo");
+				break;
+			case 'edit':
+				if (block === null) break;
+				block.LeftTopRow = parseInt(block.LeftTopRow, 10);
+				block.RightBottomRow = parseInt(block.RightBottomRow, 10);
+				if (this.isLocked(block.LeftTopRow, block.LeftTopCol)) return false;
+
+				var value = this.grid.cells(block.LeftTopRow, block.LeftTopCol).getRealValue();
+				this.hideToolbar();
+				this.mathBegin(value);
+				break;
+			default:
+				if (block === null) break;
+				if (this.isLocked(block.LeftTopRow, block.LeftTopCol)) return false;
+				this.setCellsStyle(id);
+				break;
+		}
+		return true;
+	},
+
+
+	get_settings_pos: function() {
+		var item_name = 'settings';
+		var prefix = this.toolbar.idPrefix;
+		var obj = null;
+		for (var i in this.toolbar.objPull) {
+			if (i == prefix + item_name) {
+				obj = this.toolbar.objPull[i].obj;
+			}
+		}
+		if (obj === null) return { x: 0, y: 0 };
+		var pos = SpreadSheetConfig.get_pos(obj);
+		return { x: pos.x - 240, y: pos.y + 30 };
+	},
+
+	fillHeader: function() {
+		var cols = [""];
+		for (var i = 0; i < this.settings.cols; i++)
+			cols.push(this.getColName(i + 1));
+		this.grid.setHeader(cols.join(","));
+	},
+
+	fillEmpty: function() {
+		var data = { rows: [] };
+		for (var i = 0; i < this.settings.rows; i++) {
+			var row = [i + 1];
+			for (var j = 1; j <= this.settings.cols; j++)
+				row[j] = "";
+			data.rows.push({ id: i + 1, data: row });
+		}
+		this.grid.parse(data, "json");
+	},
+
+	getColName: function(index) {
+		var letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+		var name = '';
+		var ind = index;
+		var ready = false;
+		var ch = "";
+		var length = letters.length;
+		while (!ready) {
+			var rest = Math.floor(index/length);
+			var c = index - rest*length;
+			index = Math.floor(index/length);
+			c--;
+			if (c == -1) {
+				c = length - 1;
+				index--;
+			}
+			ch = (c) + ch;
+			name = letters[c] + name;
+			if (index <= 0)
+				ready = true;
+		}
+		return name;
+	},
+
+	getColIndex: function(col) {
+		var value = 0;
+		col = col.toLowerCase();
+		for (var i = 0; i < col.length; i++) {
+			var ord = col.charCodeAt(i) - 96;
+			if (ord < 0 || ord > 26) continue;
+			value += ord*Math.pow(26, col.length - i - 1);
+		}
+		return value;
+	},
+
+	load: function(sheet, key, save_settings) {
+		var self = this;
+		this.settings.sheet = sheet = sheet || this.settings.sheet || null;
+		this.settings.key = key || null;
+		if (this.settings.sheet === null) return;
+		var url = this.addParamToUrl(this.settings.load_url, 'sheet', sheet);
+		if (this.settings.key)
+			url = this.addParamToUrl(url, 'key', this.settings.key);
+		if (this.settings.math)
+			url = this.addParamToUrl(url, 'dhx_math', 'true');
+
+		var post = {};
+		if (save_settings === true) {
+			var cfg = this.serialize_settings();
+			post.sh_cfg = cfg;
+		}
+		SpreadsheetLoader.request(url, post, function(response) {
+			var cells, col, row, value, width, i;
+			var cfg = (typeof(response.config) != 'undefined') ? self.unserialize_settings(response.config) : self.settings.defaults;
+			for (i in cfg) self.settings[i] = cfg[i];
+			cfg.read_only = response.readonly;
+
+			self.refresh(cfg, true);
+			cells = response.cells;
+			for (i = 0; i < cells.length; i++) {
+				col = cells[i].col;
+				row = cells[i].row;
+				value = cells[i].text;
+				var calc = cells[i].calc;
+				self.setValue(row, col, value, calc);
+				var style = cells[i].style;
+				if (style) {
+					self.getCellStyle(row, col).unserialize(style);
+				}
+			}
+			cells = response.head;
+			var els = self.grid.hdr.getElementsByTagName('div');
+			for (i = 0; i < cells.length; i++) {
+				col = parseInt(cells[i].col, 10);
+				width = cells[i].width;
+				value = cells[i].label;
+				if (col !== 0) {
+					value  = value.replace(/</g, '&lt;');
+					value  = value.replace(/>/g, '&gt;');
+					if (typeof(els[col])!= "undefined") els[col].innerHTML = value;
+				}
+				self.grid.setColWidth(col, width);
+			}
+			self.grid.setSizes();
+			self.applyStyles();
+			self.setSizes();
+			self.render();
+		}, this, this.settings.method);
+	},
+
+	addParamToUrl: function(url, param_name, param_value) {
+		url += (url.indexOf("?")==-1)? "?" : "&";
+		url += param_name + '=' + this.escape(param_value);
+		return url;
+	},
+
+	setValue: function(row, col, formatted, real) {
+		row = parseInt(row, 10);
+		col = parseInt(col, 10);
+		if ((row > this.settings.rows)||(col > this.settings.cols)) return;
+		real = (typeof(real) !== 'undefined') ? real : formatted;
+		if (!(this.grid.editor && this.grid.cells(row, col).cell === this.grid.editor.cell))
+			this.grid.cells(row, col).setCValue(real, formatted);
+	},
+
+	clearAll: function() {
+		this.grid.clearAll();
+		this.fillEmpty();
+		for (var i = 1; i < this.settings.cols; i++)
+			this.grid.setColWidth(i, this.settings.column_width);
+	},
+
+	attachDblClickToHeader: function() {
+		if (this.settings.read_only) return;
+		var els = this.grid.hdr.getElementsByTagName('div');
+		for (var i = 1; i < els.length; i++) {
+			this.processHeaderCell(els[i], i);
+		}
+	},
+
+	lefttopEvent: function() {
+		if (this.settings.read_only) return;
+		var els = this.grid.hdr.getElementsByTagName('td');
+		var el = els[0];
+		var self = this;
+		dhtmlxEvent(el, "click", function() {
+			self.grid._selectAll();
+		});
+		dhtmlxEvent(el, "mouseover", function() {
+			el.className += ' selectall dhtmlxGrid_selection';
+		});
+		dhtmlxEvent(el, "mouseout", function() {
+			el.className = el.className.replace(' selectall dhtmlxGrid_selection', '');
+		});
+	},
+
+	processHeaderCell: function(el, pos) {
+		var self = this;
+		dhtmlxEvent(el, "dblclick", function(e) {
+			var target = e.target || e.srcElement;
+			var text = target.innerHTML;
+			self._old("header", [pos]);
+			self.editor.editStart(target, text, [self,pos,el]);
+		});
+	},
+
+	saveHeadCell: function(pos, name) {
+		var col = this.getCol(pos);
+		name = name || col.name;
+		var el = col.width;
+		var width = col.width;
+		this._push();
+
+		var self = this;
+		var sheet = this.settings.sheet;
+		if (this.settings.sheet === null) return;
+		var url = this.addParamToUrl(this.settings.save_url, "sheet", sheet);
+		if (this.settings.key)
+			url = this.addParamToUrl(url, "key", this.settings.key);
+		url = this.addParamToUrl(url, "edit", "header");
+		var post = {
+			col: this.escape(pos),
+			name: this.escape(name),
+			width: this.escape(width)
+		};
+		SpreadsheetLoader.request(url, post, function(actions) {
+			var col = parseInt(actions.col, 10);
+			var status = actions.type;
+			if (status == "deleted") el.innerHTML = self.getColName(col);
+			self.grid.setSizes();
+		}, this, this.settings.method);
+	},
+
+	getCol: function(index) {
+		var col = {};
+		col.col = index;
+		var els = this.grid.hdr.getElementsByTagName('div');
+		col.el = els[index];
+		col.name = this.grid.getColLabel(index);
+		col.width = this.grid.getColWidth(index);
+		return col;
+	},
+
+	refresh: function(config, dont_load) {
+		this.settings.cols = (config.cols > 0) ? config.cols : this.settings.cols;
+		this.settings.rows = (config.rows > 0) ? config.rows : this.settings.rows;
+		this.settings.show_row_numbers = (typeof(config.show_row_numbers) !== 'undefined') ? config.show_row_numbers : true;
+		this.settings.show_export_buttons = (typeof(config.show_export_buttons) !== 'undefined') ? config.show_export_buttons : true;
+		this.settings.read_only = config.read_only || false;
+		if (this.grid)
+			this.unload();
+		this.init();
+		this.settings.show_export_buttons = (typeof(config.show_export_buttons) !== 'undefined') ? config.show_export_buttons : true;
+		if ((this.settings.sheet !== null)&&(dont_load !== true))
+			this.load(this.settings.sheet, this.settings.key, true);
+	},
+
+	unload: function() {
+		if (this.settings.hide_toolbar === false)
+			this.toolbar.unload();
+		this.grid.clearAll(true);
+		this.grid = null;
+		this.settings.styles = [];
+	},
+
+	getFullscreenCont: function() {
+		document.body.parentNode.style.height = "100%";
+		document.body.parentNode.style.width = "100%";
+		document.body.style.height = "100%";
+		document.body.style.width = "100%";
+		document.body.style.margin = "0px";
+		document.body.style.padding = "0px";
+		document.body.style.overflow = "hidden";
+		var parent = document.createElement("div");
+		parent.style.height = "100%";
+		parent.style.width = "100%";
+		parent.style.position = "absolute";
+		parent.style.top = "0px";
+		parent.style.left = "0px";
+		document.body.appendChild(parent);
+		this.settings.fullscreen = true;
+		return parent;
+	},
+
+	/*! creates two inner containers for toolbar and grid
+	 **/
+	processParentCont: function(parent) {
+//		parent.style.position = 'relative';
+		var toolbar_cont = document.createElement("div");
+		toolbar_cont.style.height = this.tool_height + "px";
+		parent.appendChild(toolbar_cont);
+		var math_cont = document.createElement("div");
+		math_cont.style.height = this.tool_height + "px";
+		math_cont.style.display = "none";
+		parent.appendChild(math_cont);
+		var grid_cont = document.createElement("div");
+		var self = this;
+		if (this.settings.fullscreen)
+			dhtmlxEvent(window, "resize", function() {
+				window.setTimeout(function() {
+					self.setSizes();
+				}, 100);
+			});
+		dhtmlxEvent(parent, "click", function() {
+			if (self.grid) self.grid.setActive(true);
+		});
+		parent.appendChild(grid_cont);
+		return { grid: grid_cont, toolbar: toolbar_cont, math: math_cont, parent: parent };
+	},
+
+	setSizes: function(hide_toolbar) {
+		var scroll_width = 0;
+		var parent = (this.settings.parent.parent || this.settings.parent);
+		var toolbar_height = (this.settings.hide_toolbar === true) ? 0 : this.tool_height;
+		var size;
+		if (this.settings.fullscreen === true)
+			size = this.getSize(parent);
+		else {
+			size = this.getSize(this.settings.parent.grid);
+			if (size.height === 0) size.height = this.tool_height;
+			if (this.settings.autowidth)
+				parent.style.width = size.width + "px";
+			else
+				size.width = parent.offsetWidth;
+			if (this.settings.autoheight)
+				parent.style.height = (size.height) + "px";
+			else
+				size.height = parent.offsetHeight;
+		}
+		this.settings.parent.toolbar.style.height = toolbar_height + "px";
+		this.settings.parent.toolbar.style.width = (size.width - 10 - scroll_width - this.tool_borders[this.settings.skin]) + "px";
+		this.settings.parent.grid.style.height = (size.height - toolbar_height) + "px";
+		this.settings.parent.grid.style.width = (size.width - 2 - scroll_width) + "px";
+		if (this.grid) this.grid.setSizes();
+	},
+
+	showToolbar: function() {
+		this.settings.parent.toolbar.style.display = 'block';
+		this.toolbar._fixSpacer();
+	},
+
+	hideToolbar: function() {
+		this.settings.parent.toolbar.style.display = 'none';
+	},
+
+	/*! callback for style buttons click
+	 *	@param id
+	 *		id of clicked button
+	 *	@param state
+	 *		on/off state for TwoStateButton
+	 **/
+	setCellsStyle: function(id, state) {
+		if (this.settings.read_only) return;
+
+		var ids_dont_process = {
+			"topcolor": true,
+			"topbgcolor": true,
+			"topalign": true
+		};
+		if (ids_dont_process[id]) return;
+
+		var name = id;
+		var value = state ? 'true' : 'false';
+
+		var name_parse = name.split("__");
+		if (name_parse.length == 2) {
+			name = name_parse[0];
+			value = name_parse[1];
+		}
+		var block = this.grid.getSelectedBlock();
+		this._old("cells", [block.LeftTopRow, block.LeftTopCol, block.RightBottomRow, block.RightBottomCol]);
+
+		// apply styles for each selected cell
+		this.mapSelection(function(row, col) {
+			if (this.isLocked(row, col)) return false;
+			var style = this.getCellStyle(row, col);
+			style.set(name, value);
+			this.to_stack(row, col);
+			this.applyStyles(row, col);
+			this.loadCellStyle();
+			return true;
+		});
+	},
+
+
+	/*! returns style object or creates new by row/col
+	 **/
+	getCellStyle: function(row, col) {
+		var id = row + "___" + col;
+		if (this.settings.styles[id])
+			return this.settings.styles[id];
+		else {
+			this.settings.styles[id] = new SpreadSheetCss();
+			return this.settings.styles[id];
+		}
+	},
+
+	/*! applies all saved styles to cells
+	 **/
+	applyStyles: function(row, col) {
+		if (typeof(col) == "undefined") {
+			for (var i in this.settings.styles) {
+				var coords = i.split('___');
+				row = coords[0];
+				col = coords[1];
+				this.applyCellStyle(row, col);
+			}
+		} else
+			this.applyCellStyle(row, col);
+	},
+
+	applyCellStyle: function(row, col) {
+		if (row < (this.grid.rowsBuffer.length + 1) && col < this.grid._cCount){
+			var cell = this.grid.cells(row, col);
+			cell.cell.style.cssText = this.settings.styles[row + '___' + col].get_css();
+		}
+	},
+
+	/*! load in toolbar styles for selected cell
+	 **/
+	loadCellStyle: function(row, col) {
+		if (this.settings.read_only) return;
+		if (col === 0) return;
+		if (this.settings.hide_toolbar === true) return;
+		var block = this.grid.getSelectedBlock("id");
+		if (block !== null) {
+			block.LeftTopRow = parseInt(block.LeftTopRow, 10);
+			block.RightBottomRow = parseInt(block.RightBottomRow, 10);
+		}
+		if (block === null) return;
+		row = (typeof(row) != "undefined") ? row : block.LeftTopRow;
+		col = (typeof(col) != "undefined") ? col : block.LeftTopCol;
+		if ((typeof(row) == 'undefined') || (typeof(col) == 'undefined')) return;
+		var style = this.getCellStyle(row, col);
+		var json = style.get_json();
+
+		if (json.bold == "true")
+			this.toolbar.setItemState('bold', true);
+		else
+			this.toolbar.setItemState('bold', false);
+
+		if (json.italic == "true")
+			this.toolbar.setItemState('italic', true);
+		else
+			this.toolbar.setItemState('italic', false);
+
+		this.toolbar.setItemImage('topcolor', 'colors/color_' + json.color + '.png');
+		this.toolbar.setItemImage('topbgcolor', 'colors/color_' + json.bgcolor + '.png');
+		this.toolbar.setItemImage('topalign', 'align_' + json.align + '.png');
+	},
+
+	getSize: function(el) {
+		var size = {
+			width: el.offsetWidth,
+			height: el.offsetHeight
+		};
+		return size;
+	},
+
+	escape: function(value) {
+		return encodeURIComponent(value);
+	},
+
+	// get serialized text of some coords block
+	getBlockText: function() {
+		return this.selectedText();
+	},
+
+	selectedText: function(formulas) {
+		var cells_del = "\t";
+		var rows_del = "\n";
+		var text = [];
+
+		var line = [];
+		var last_row = -1;
+		this.mapSelection(function(row, col) {
+			if (last_row >= 0 && row !== last_row) {
+				if (!formulas) line = line.join(cells_del);
+				text.push(line);
+				line = [];
+			}
+			var value = formulas ? this.getCellValue(row, col) : this.grid.cells(row, col).getValue();
+			line.push(value);
+			last_row = row;
+		});
+		if (!formulas) line = line.join(cells_del);
+		text.push(line);
+		if (!formulas) text = text.join(rows_del);
+		return text;
+	},
+
+	getCellValue: function(row, col) {
+		var real = this.grid.cells(row, col).getRealValue();
+		var value = {
+			real: this._math_abs2rel(row, col, real),
+			value: this.grid.cells(row, col).getValue(),
+			width: this.grid.getColWidth(col),
+			style: this.getCellStyle(row, col).serialize()
+		};
+		return value;
+	},
+	setCellValue: function(row, col, value) {
+		if (typeof(value) === "string")
+			return this.setValue(row, col, value);
+		this.grid.setColWidth(col, value.width);
+		this.saveHeadCell(col);
+
+		this.getCellStyle(row, col).unserialize(value.style);
+		var real = this._math_rel2abs(row, col, value.real);
+		this.setValue(row, col, real);
+
+		var self = this;
+		window.setTimeout(function() {
+			self.applyStyles();
+		});
+		this.renderCell(row, col);
+		return true;
+	},
+
+	_math_abs2rel: function(row, col, value) {
+		if (value[0] === '=') {
+			var regexp = /(\$?([A-Z]+))(\$?(\d+))/i;
+			while (regexp.test(value)) {
+				var matches = regexp.exec(value);
+				var _row = matches[4];
+				var _col = this.getColIndex(matches[2]);
+				_row = (matches[3] === matches[4]) ? (_row - row).toString() : ('$' + _row);
+				_col = (matches[1] === matches[2]) ? (_col - col).toString() : ('$' + _col);
+				var rel = "(" + _row + "__" + _col + ")";
+				value = value.replace(matches[0], rel);
+			}
+		}
+		return value;
+	},
+
+	_math_rel2abs: function(row, col, value) {
+		var regexp = /\((\$?(-?\d+))__(\$?(-?\d+))\)/i;
+		while (regexp.test(value)) {
+			var matches = regexp.exec(value);
+			var _abs_row = (matches[1] !== matches[2]);
+			var _abs_col = (matches[3] !== matches[4]);
+
+			var _row = (!_abs_row) ? (parseInt(matches[2], 10) + row) : matches[2];
+			var _col = (!_abs_col) ? (parseInt(matches[4], 10) + col) : matches[4];
+
+			_abs_row = _abs_row ? '$' : '';
+			_abs_col = _abs_col ? '$' : '';
+
+			var abs = (_col < 1) ? '0' : (_abs_col + this.getColName(_col) + _abs_row + _row);
+			value = value.replace(matches[0], abs);
+		}
+		return value;
+	},
+
+	dumpCopy: function() {
+		this._copydump.inside = this.selectedText(true);
+		this._copydump.outside = this.selectedText();
+	},
+
+	// set serialized text to selected block or cell
+	setBlockText: function(text) {
+		if (this.settings.read_only === true) return;
+
+		if (text == this._copydump.outside)
+			text = this._copydump.inside;
+		else {
+			text = text.split("\n");
+			for (var i = 0; i < text.length; i++)
+				text[i] = text[i].split("\t");
+		}
+
+		// when inserting from MS Excel it adds last empty row which shouldn't be inserted
+		// so check if it exists - then don't process last row
+		var inc = ((text.length > 1)&&(text[text.length - 1].length === 1)&&(text[text.length - 1][0] === "")) ? -1 : 0;
+
+		// is one value copied or several cells
+		var single = ((text.length == 1)&&(text[0].length == 1)) ? true : false;
+
+		if (single) {
+			var block = this.grid.getSelectedBlock();
+			if (block)
+				this._old("cells", [block.LeftTopRow, block.LeftTopCol, block.RightBottomRow, block.RightBottomCol]);
+			var fill_value = text[0][0];
+			this.mapSelection(function(row, col) {
+				if (this.isLocked(row, col)) return false;
+				this.setCellValue(row, col, fill_value);
+				this.grid.editStop();
+				this.to_stack(row, col);
+				return true;
+			});
+		} else {
+			var coords = this.grid.getSelectedBlock();
+			if (coords === null) return;
+			var top = parseInt(coords.LeftTopRow, 10);
+			var left = parseInt(coords.LeftTopCol, 10);
+			var textwidth = 0;
+			for (var i = 0; i < text.length; i++)
+				textwidth = Math.max(textwidth, text[i].length);
+			this._old("cells", [top, left, top + text.length + inc - 1, left + textwidth - 1]);
+			for (var i = 0; i < text.length + inc; i++) {
+				for (var j = 0; j < text[i].length; j++) {
+					if ((top + i > this.settings.rows)||(left + j > this.settings.cols))
+						continue;
+					if (this.isLocked(top + i, left + j)) continue;
+					var value = text[i][j];
+					this.setCellValue(top + i, left + j, value);
+					this.to_stack(top + i, left + j);
+				}
+			}
+		}
+		this.grid._refreshBlockSelection();
+	},
+
+	// add cell to save stack
+	to_stack: function(row, col, value) {
+		var cell = {
+			row: row,
+			col: col
+		};
+		this._to_progress(row, col);
+		this._push();
+		if (typeof(value) != "undefined")
+			cell.value = value;
+
+		// check: if this cell already in stack - replace it
+		for (var i = 0; i < this.stack.length; i++)
+			if (this.stack[i].row == cell.row && this.stack[i].col == cell.col) {
+				this.stack[i] = cell;
+				this.send();
+				return true;
+			}
+		// else add as new cell
+		this.stack.push(cell);
+		this.send();
+		return true;
+	},
+
+
+	_to_progress: function(row, col) {
+		if (!this._in_progr[row + '__' + col])
+			this._in_progr[row + '__' + col] = 0;
+		this._in_progr[row + '__' + col]++;
+	},
+
+	_from_progress: function(row, col) {
+		if (this._in_progr[row + '__' + col])
+			this._in_progr[row + '__' + col]--;
+	},
+
+	_in_progress: function(row, col) {
+		return (this._in_progr[row + '__' + col]) ? this._in_progr[row + '__' + col] : 0;
+	},
+
+	// start timer after which request will be sent
+	send: function() {
+		var self = this;
+		if (this.stack.length == 1)
+			window.setTimeout(function() {
+				self.send_save_query();
+			}, this.settings.timeout);
+	},
+
+	// send all data from stack
+	send_save_query: function() {
+		var url = this.addParamToUrl(this.settings.save_url, 'sheet', this.settings.sheet);
+		if (this.settings.math) url = this.addParamToUrl(url, 'dhx_math', 'true');
+		if (this.settings.key)
+			url = this.addParamToUrl(url, 'key', this.settings.key);
+		url = this.addParamToUrl(url, 'edit', 'true');
+		var post = {
+			rows: [],
+			cols: [],
+			values: [],
+			styles: []
+		};
+		if (this.stack.length == 0) return;
+		var i = 0;
+		while (this.stack.length > 0) {
+			var cell = this.stack.pop();
+			post.rows[i] = cell.row;
+			post.cols[i] = cell.col;
+			var value = cell.value || this.grid.cells(cell.row, cell.col).getRealValue();
+			var style = this.getCellStyle(cell.row, cell.col);
+			style = style.serialize();
+			post.values[i] = value;
+			post.styles[i] = style;
+			i++;
+		}
+		var self = this;
+		SpreadsheetLoader.request(url, post, function(response) {
+			for (var i = 0; i < response.length; i++) {
+				var cell = response[i];
+				self._from_progress(cell.row, cell.col);
+				if (cell.type == 'updated' && self._in_progress(cell.row, cell.col) === 0) {
+					self.setValue(cell.row, cell.col, cell.text, cell.calc);
+				}
+			}
+		}, this, "ajax");
+	},
+
+	export_to: function(type) {
+		this.grid.editStop();
+		if (type === 'excel') {
+			var url  = this.addParamToUrl(this.settings.export_excel_url, 'spreadsheet', this.settings.version);
+			this.toExcel(url, 'full_color');
+		} else {
+			url  = this.addParamToUrl(this.settings.export_pdf_url, 'spreadsheet', this.settings.version);
+			this.toPDF(url, 'full_color');
+		}
+	},
+
+	serialize_settings: function(dont_join) {
+		var options = {
+			'cols': this.settings.cols,
+			'rows': this.settings.rows,
+			'show_row_numbers': this.settings.show_row_numbers,
+			'show_export_buttons': this.settings.show_export_buttons
+		};
+		var ser = (dont_join === true) ? {} : [];
+		for (var i in options)
+			if (dont_join)
+				ser[i] = options[i];
+			else
+				ser.push(i + ':' + options[i]);
+		if (!dont_join) ser = ser.join(';');
+		return ser;
+	},
+
+	unserialize_settings: function(settings) {
+		settings = settings.split(';');
+		var config = {};
+		for (var i = 0; i < settings.length; i++) {
+			var option = settings[i].split(':');
+			if (option.length == 2)
+				config[option[0]] = this.process_value(option[1]);
+		}
+		return config;
+	},
+
+	process_value: function(value) {
+		if (value == 'true') return true;
+		if (value == 'false') return false;
+		return value;
+	},
+
+	mathInit: function() {
+		var items = this.get_toolbar_config(this.settings.defaults.math_items);
+		this.math = new dhtmlXToolbarObject({
+			parent: this.settings.parent.math,
+			icon_path: this.settings.icons_path,
+			items: items,
+			skin: this.settings.skin
+		});
+		var input = this.math.objPull[this.math.idPrefix + 'math'].obj.childNodes[0];
+		if (this.settings.math) SpreadSheetMathHint.init(input);
+		var self = this;
+		this.math.attachEvent("onClick", function(id) {
+			switch (id) {
+				case 'save':
+					self.mathSave();
+					break;
+				case 'cancel':
+					self.mathCancel();
+					break;
+				case 'function':
+					if (self.settings.math)
+						SpreadSheetMathHint.all(self.settings.parent.parent, {
+							insert: function(f) {
+								var input = self.math.objPull[self.math.idPrefix + 'math'].obj.childNodes[0];
+								if (input.value.substr(0, 1) !== '=') input.value = '=' + input.value;
+								var cursor = SpreadSheetMathHint.getCursorPos(input);
+								var text = input.value.substr(0, cursor) + f.regexp + input.value.substr(cursor + 1);
+								input.value = text;
+								input.focus();
+								SpreadSheetMathHint.mathKeyDown({ keyCode: -1 });
+							},
+							cancel: function() {
+								input.focus();
+							}
+						});
+					break;
+				default:
+					break;
+			}
+		});
+	},
+
+	mathBegin: function(value) {
+		this.showMath();
+		var input = this.math.objPull[this.math.idPrefix + 'math'].obj.childNodes[0];
+		input.value = value || "";
+
+		if (!this.settings.math) {
+			input.focus();
+			var self = this;
+			input.onkeydown = function(e) {
+				e = e||window.event;
+				var code = e.keyCode||e.which;
+				if (code === 13)
+					self.mathSave();
+			};
+			return false;
+		}
+		SpreadSheetMathHint.input = input;
+		SpreadSheetMathHint.cursor = input.value.length;
+		input.ssheet = this;
+		SpreadSheetMathHint.attachEvent(input, this);
+		SpreadSheetMathHint.showBorders(input);
+		if (input.value.substring(0, 1) === '=')
+			this.grid.enableBorderSelection(true);
+		SpreadSheetMathHint.setCursorPos(input, input.value.length);
+		return true;
+	},
+
+	mathSave: function(input) {
+		input = input || this.math.objPull[this.math.idPrefix + 'math'].obj.childNodes[0];
+		var save_required = (input && input.parentNode && input.parentNode.className.indexOf("dhx_toolbar_btn") !== -1) ? true : false;
+		var value = input.value;
+		value = SpreadSheetMathHint.function_ending(value);
+		this.hideMath();
+		this.showToolbar();
+		this.grid.clearBorderSelection();
+		this.grid.enableBorderSelection(false);
+		var block = this.grid.getSelectedBlock();
+		if (save_required)
+			this._old("cells", [block.LeftTopRow, block.LeftTopCol, block.RightBottomRow, block.RightBottomCol]);
+		this.mapSelection(function(row, col) {
+			this.setValue(row, col, value);
+			this.grid.editStop();
+			if (save_required)
+				this.to_stack(row, col);
+		});
+	},
+
+	mathCancel: function() {
+		this.grid.clearBorderSelection();
+		this.grid.enableBorderSelection(false);
+		this.grid.editStop(true);
+		this.hideMath();
+		this.showToolbar();
+	},
+
+	hideMath: function() {
+		SpreadSheetMathHint.hide();
+		this.settings.parent.math.style.display = 'none';
+		this.math.objPull[this.math.idPrefix + 'math'].obj.childNodes[0].blur();
+//		this.grid.entBox.focus();
+	},
+
+	showMath: function() {
+		this.settings.parent.math.style.display = 'block';
+	},
+
+	mapCells: function(r1, c1, r2, c2, callback) {
+		var tmp;
+		if (r1 > r2) tmp = r1, r1 = r2, r2 = tmp;
+		if (c1 > c2) tmp = c1, c1 = c2,	c2 = tmp;
+
+		var row_ind = 0;
+		var col_ind;
+		for (var row = r1; row <= r2; row++ ) {
+			if (!this.grid.doesRowExist(row)) continue;
+			col_ind = 0;
+			for (var col = c1; col <= c2; col++) {
+				if ((row < 0) || (col <= 0)) continue;
+				if ((row > this.settings.rows)||(col > this.settings.cols)) continue;
+				callback.call(this, row, col, row_ind, col_ind);
+				col_ind++;
+			}
+			row_ind++;
+		}
+	},
+
+	mapSelection: function(callback) {
+		var block = this.grid.getSelectedBlock();
+		if (!block) return;
+		block.LeftTopRow = parseInt(block.LeftTopRow, 10);
+		block.RightBottomRow = parseInt(block.RightBottomRow, 10);
+		this.mapCells(block.LeftTopRow, block.LeftTopCol, block.RightBottomRow, block.RightBottomCol, callback);
+	},
+
+	_undo: function(action) {
+		var state = this.undo[action](this);
+		if (!state) return true;
+		var states = this.undo.states;
+		if (typeof(states[state.type]) === 'undefined') return false;
+		states[state.type].set.apply(this, [state]);
+		return true;
+	},
+
+	_old: function(type, args) {
+		var states = this.undo.states;
+		if (typeof(states[type]) === 'undefined') return false;
+		var state = states[type].get.apply(this, args);
+		state.type = type;
+		this._last_value = state;
+		return true;
+	},
+
+	_push: function() {
+		if (this._last_value) {
+			this.undo.push(this._last_value);
+			this._last_value = null;
+		}
+		this._undo_status();
+	},
+
+	_undo_status: function() {
+		// set undo status
+		if (this.undo.can_undo())
+			this.toolbar.enableItem("undo");
+		else
+			this.toolbar.disableItem("undo");
+		// set redo status
+		if (this.undo.can_redo())
+			this.toolbar.enableItem("redo");
+		else
+			this.toolbar.disableItem("redo");
+	}
+};
+
+
+var SpreadSheetHeaderEditor;
+var SpreadSheetConfig;
+var SpreadSheetMathHint;
+var SpreadSheetCss;
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ /*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ if (typeof(SpreadSheetMathHint) === 'undefined')
+	var SpreadSheetMathHint;
+
+function eXcell_edsh(cell){
+	if (cell){
+		this.cell=cell;
+		this.grid=this.cell.parentNode.grid;
+	}
+	this.dont_take_care = false;
+	this.edit=function(){
+		this.cell.atag=((!this.grid.multiLine)&&(_isKHTML||_isMacOS||_isFF)) ? "INPUT" : "TEXTAREA";
+		this.val=this.getRealValue();
+		this.obj=document.createElement(this.cell.atag);
+		this.obj.setAttribute("autocomplete", "off");
+		this.obj.style.height=(this.cell.offsetHeight-(_isIE ? 8 : 4))+"px";
+		this.obj.className="dhx_combo_edit";
+		this.obj.wrap="soft";
+		this.obj.style.textAlign=this.cell.style.textAlign;
+
+		this.obj.onclick=function(e){
+			(e||event).cancelBubble=true;
+		};
+		this.obj.onmousedown=function(e){
+			(e||event).cancelBubble=true;
+		};
+		this.obj.onmouseup=function(e){
+			(e||event).cancelBubble=true;
+		};
+
+		this.obj.value=this.val;
+		this.cell.innerHTML="";
+		this.cell.appendChild(this.obj);
+		if (this.grid.ssheet.settings.math) {
+			SpreadSheetMathHint.attachEvent(this.obj, this.grid.ssheet);
+			SpreadSheetMathHint.showBorders(this.obj);
+			SpreadsheetBuffer.callback = this.grid.ssheet;
+			if (this.val.substring(0, 1) === '=')
+				this.grid.enableBorderSelection();
+		}
+
+		if (_isFF && !window._KHTMLrv){
+			this.obj.style.overflow="visible";
+
+			if ((this.grid.multiLine)&&(this.obj.offsetHeight >= 18)&&(this.obj.offsetHeight < 40)){
+				this.obj.style.height="36px";
+				this.obj.style.overflow="scroll";
+			}
+		}
+		this.obj.onselectstart=function(e){
+			if (!e)
+				e=event;
+			e.cancelBubble=true;
+			return true;
+		};
+	    this.obj.focus();
+		if (this.grid.ssheet.settings.math)
+			SpreadSheetMathHint.setCursorPos(this.obj, this.obj.value.length);
+	};
+
+	this.getRealValue = function() {
+		return this.cell.getAttribute('real_value');
+	};
+
+	this.getFormattedValue = function() {
+		return this.cell.getAttribute('formatted_value');
+	};
+
+	this.detach=function(mode){
+		if (mode === false) {
+			this.dont_take_care = true;
+			this.obj.value = this.getFormattedValue();
+			this.setCValue(this.getFormattedValue(), this.getRealValue());
+			return true;
+		}
+		this.grid.enableBorderSelection(false);
+		SpreadSheetMathHint.hide();
+		this.obj.value = SpreadSheetMathHint.function_ending(this.obj.value);
+		if (this.obj.value === this.getRealValue()) {
+			this.obj.value = this.getFormattedValue();
+			this.dont_take_care = true;
+			this.setCValue(this.obj.value, this.getRealValue());
+		} else {
+			this.setCValue(this.obj.value, this.obj.value);
+		}
+		return this.obj.val != this.getRealValue();
+	};
+
+	this.getRealChanged = function(change) {
+		if (this.dont_take_care === true) {
+			if (change)
+				this.dont_take_care = false;
+			return false;
+		}
+		return true;
+	};
+
+	this.setCValue=function(val, val2){
+		this.cell._clearCell=true;
+		this.cell.innerHTML='&nbsp;';
+		this.cell.appendChild(document.createTextNode(val));
+		this.cell.setAttribute('real_value', (val2 || val));
+		this.cell.setAttribute('formatted_value', val);
+
+		if (( typeof(val) !== "number")&&(!val||val.toString()._dhx_trim() === "")){
+			val="&nbsp;";
+			this.cell._clearCell=true;
+		} else
+			this.cell._clearCell=false;
+
+		this.grid.callEvent("onCellChanged", [
+			this.cell.parentNode.idd,
+			this.cell._cellIndex,
+			(arguments.length > 1 ? val2 : val)
+		]);
+	};
+
+	this.setValue=function(val){
+		if (this.dont_take_care === true) return false;
+		this.setCValue(val, this.getRealValue());
+	};
+}
+eXcell_edsh.prototype=new eXcell_edtxt;
+eXcell_rotxt.prototype.getRealValue = eXcell_rotxt.prototype.getValue;
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ dhtmlXGridObject.prototype.addBorderSelection = function(LeftTopRow, LeftTopCol, RightBottomRow, RightBottomCol) {
+	if (typeof(this._borders_store) === 'undefined') this._borders_store = [];
+	var border = {
+		id: this.uid(),
+		LeftTopRow: LeftTopRow,
+		LeftTopCol: LeftTopCol,
+		RightBottomRow: RightBottomRow,
+		RightBottomCol: RightBottomCol
+	};
+	for (var i = 0; i < this._borders_store.length; i++) {
+		var bord = this._borders_store[i];
+		if ((border.LeftTopRow === bord.LeftTopRow)&&(border.LeftTopCol === bord.LeftTopCol)&&(border.RightBottomRow === bord.RightBottomRow)&&(border.RightBottomCol === bord.RightBottomCol)) {
+			border = this._borders_store[i];
+			return border;
+		}
+	}
+	this._borders_store.push(border);
+	this.showBorderSelection();
+	return border;
+};
+
+dhtmlXGridObject.prototype.showBorderSelection = function() {
+	for (var i = 0; i < this._borders_store.length; i++)
+		this._showBorderSelection(this._borders_store[i]);
+};
+
+dhtmlXGridObject.prototype._showBorderSelection = function(border) {
+	this._unsetBorderSelection(border.obj);
+
+	// border goes out of grid range
+	var cell1_exists = this.doesCellExist(border.LeftTopRow, border.LeftTopCol);
+	var cell2_exists = this.doesCellExist(border.RightBottomRow, border.RightBottomCol);
+	if ((!cell1_exists) || (!cell2_exists)) return null;
+
+	if (typeof(border.color) === 'undefined')
+		border.color = this.generateBorderColor();
+
+	border.obj = {};
+	border.obj.top = document.createElement('div');
+	border.obj.top.className = 'border_selection_top' + (border.classname ? (' ' + border.classname) : '');
+	border.obj.top.style.borderColor = border.color;
+
+	border.obj.left = document.createElement('div');
+	border.obj.left.className = 'border_selection_left' + (border.classname ? (' ' + border.classname) : '');
+	border.obj.left.style.borderColor = border.color;
+
+	border.obj.bottom = document.createElement('div');
+	border.obj.bottom.className = 'border_selection_bottom' + (border.classname ? (' ' + border.classname) : '');
+	border.obj.bottom.style.borderColor = border.color;
+
+	border.obj.right = document.createElement('div');
+	border.obj.right.className = 'border_selection_right' + (border.classname ? (' ' + border.classname) : '');
+	border.obj.right.style.borderColor = border.color;
+
+
+	var offset = this.getPosition(this.obj);
+	var cell1 = this.cells(border.LeftTopRow, border.LeftTopCol).cell;
+	var cell2 = this.cells(border.RightBottomRow, border.RightBottomCol).cell;
+	var pos1 = this.getPosition(cell1);
+	var pos2 = this.getPosition(cell2);
+	var x1, x2, y1, y2;
+	var borderwidth = 2;
+	if (pos2[0] > pos1[0]) {
+		x1 = pos1[0];
+		x2 = pos2[0] + cell2.offsetWidth;
+	} else {
+		x1 = pos2[0];
+		x2 = pos1[0] + cell1.offsetWidth;
+	}
+	if (pos2[1] > pos1[1]) {
+		y1 = pos1[1];
+		y2 = pos2[1] + cell2.offsetHeight;
+	} else {
+		y1 = pos2[1];
+		y2 = pos1[1] + cell1.offsetHeight;
+	}
+	var x = (x1 - offset[0]);
+	var y = (y1 - offset[1]);
+	var width = (Math.abs(x1 - x2) - borderwidth);
+	var height = (Math.abs(y1 - y2) - borderwidth);
+	border.obj.top.style.left = x + 'px';
+	border.obj.top.style.top = y + 'px';
+	border.obj.top.style.width = width + 'px';
+
+	border.obj.bottom.style.left = x + 'px';
+	border.obj.bottom.style.top = (y + height) + 'px';
+	border.obj.bottom.style.width = width + 'px';
+
+	border.obj.left.style.left = x + 'px';
+	border.obj.left.style.top = y + 'px';
+	border.obj.left.style.height = height + 'px';
+
+	border.obj.right.style.left = (x + width) + 'px';
+	border.obj.right.style.top = y + 'px';
+	border.obj.right.style.height = height + 'px';
+
+	this.objBox.appendChild(border.obj.top);
+	this.objBox.appendChild(border.obj.left);
+	this.objBox.appendChild(border.obj.bottom);
+	this.objBox.appendChild(border.obj.right);
+	return border;
+};
+
+dhtmlXGridObject.prototype.getPosition = function(e) {
+	var left = 0;
+	var top  = 0;
+	while (e.offsetParent) {
+		left += e.offsetLeft - e.scrollLeft;
+		top  += e.offsetTop - e.scrollTop;
+		e     = e.offsetParent;
+	}
+	left += e.offsetLeft;
+	top  += e.offsetTop;
+	return {x:left, y:top};
+};
+
+dhtmlXGridObject.prototype.setColorsBorderSelection = function() {
+	if (!this._default_borders_colors)
+		this._default_borders_colors = [];
+	var presets = [
+		'#ff0000',
+		'#00ff00',
+		'#0000ff',
+		'#00ffff',
+		'#ff00ff',
+		'#533B9C',
+		'#689C00',
+		'#D65200',
+		'#8F7F36',
+		'#FF9100',
+		'#00B530',
+		'#FF0084',
+		'#B300A4',
+		'#4754FF',
+		'#00C3FF'
+	];
+	this._borders_colors = presets.concat(this._default_borders_colors);
+};
+
+dhtmlXGridObject.prototype.generateBorderColor = function() {
+	var color;
+	if (typeof(this._borders_colors) === 'undefined')
+		// the most popular colors
+		this.setColorsBorderSelection();
+	if (this._borders_colors.length === 0) {
+		// generate any color
+		color = '#';
+		for (var i = 0; i < 3; i++) {
+			var c = Math.round(Math.random()*254).toString(16).toLowerCase();
+			if (c.length == 1) c = '0' + c;
+			color += c;
+		}
+		this._default_borders_colors.push(color);
+		return color;
+	}
+
+	var index = 0;
+	color = this._borders_colors[index];
+	this._borders_colors.splice(index, 1);
+	return color;
+};
+
+dhtmlXGridObject.prototype.detachBorderSelection = function(id) {
+	for (var i = 0; i < this._borders_store.length; i++)
+		if (this._borders_store[i].id === id) {
+			if (typeof(this._borders_store[i].obj) !== 'undefined')
+				this._borders_store[i].obj.parentNode.removeChild(this._borders_store[i].obj);
+			this._borders_store.splice(i, 1);
+			this.showBorderSelection();
+			return true;
+		}
+	return false;
+};
+
+dhtmlXGridObject.prototype.clearBorderSelection = function() {
+	this.setColorsBorderSelection();
+	if (typeof(this._borders_store) !== 'undefined')
+		for (var i = 0; i < this._borders_store.length; i++)
+			this._unsetBorderSelection(this._borders_store[i].obj);
+	this._borders_store = [];
+};
+
+dhtmlXGridObject.prototype._unsetBorderSelection = function(obj) {
+	if (typeof(obj) !== 'undefined') {
+		if (typeof(obj.top) != 'undefined') obj.top.parentNode.removeChild(obj.top);
+		if (typeof(obj.left) != 'undefined') obj.left.parentNode.removeChild(obj.left);
+		if (typeof(obj.bottom) != 'undefined') obj.bottom.parentNode.removeChild(obj.bottom);
+		if (typeof(obj.right) != 'undefined') obj.right.parentNode.removeChild(obj.right);
+	}
+};
+
+dhtmlXGridObject.prototype.enableBorderSelection = function(mode) {
+	if (mode !== false) mode = true;
+	var self = this;
+	if (mode) {
+		if (!this._bs_enabled) {
+			this._bs_enabled = true;
+			this._objmousedown = this.obj.onmousedown;
+			this._objmouseclick = this.obj.onclick;
+			this.obj.onmousedown = function(e) {
+				e = e || event;
+				self.startBorderSelection(e);
+			};
+			this.obj.onclick = function(e) {};
+		}
+	} else {
+		if (this._border_hover) {
+			this._border_hover.parentNode.removeChild(this._border_hover);
+			this._border_hover = null;
+		}
+		this._bs_enabled = false;
+		if (this._objmousedown)
+			this.obj.onmousedown = this._objmousedown;
+		if (this._objmouseclick)
+			this.obj.onclick = this._objmouseclick;
+		if (this._mousemovecallback)
+			this.obj.onmousemove = this._mousemovecallback;
+	}
+};
+
+
+dhtmlXGridObject.prototype.startBorderSelection = function(e) {
+	// disable editable cells closing
+	e = e || event;
+	var obj = (e.target || e.srcElement).parentNode;
+	if (obj.className.indexOf('editable') !== -1) return true;
+
+	var offset = this.getPosition(this.obj);
+	var x = e.clientX - offset[0] + document.body.scrollLeft + this.obj.scrollLeft;
+	var y = e.clientY - offset[1] + document.body.scrollTop + this.obj.scrollTop;
+	var cell = this._getCellByPos(x, y);
+	this._border_start = cell;
+	this._border_end = cell;
+	var pos = this.getPosition(cell);
+	x = pos[0] - offset[0];
+	y = pos[1] - offset[1];
+	var width = cell.offsetWidth - 4;
+	var height = cell.offsetHeight - 3;
+
+	var result = this.callEvent("onBorderSelectionStart",[cell.parentNode.idd, cell._cellIndex]);
+	if (result === false) return false;
+
+	if (this._border_hover)
+		this._border_hover.parentNode.removeChild(this._border_hover);
+	this._border_hover = document.createElement('div');
+	this._border_hover.className = 'border_selection';
+	this._border_hover.style.borderColor = this.generateBorderColor();
+	this._border_hover.style.width = '100px';
+	this._border_hover.style.height = '100px';
+
+	this._border_hover.style.left = x + 'px';
+	this._border_hover.style.top = y + 'px';
+	this._border_hover.style.width = width + 'px';
+	this._border_hover.style.height = height + 'px';
+	this.objBox.appendChild(this._border_hover);
+
+	this._mousemovecallback = this.obj.onmousemove;
+	this._bodymouseup = window.onmouseup;
+	var self = this;
+	this.obj.onmousemove = this._border_hover.onmousemove = function(e) {
+		e = e || event;
+		self.moveBorderSelection(e);
+	};
+	document.body.onmouseup = function(e) {
+		e = e || event;
+		self.endBorderSelection(e);
+	};
+	return true;
+};
+
+dhtmlXGridObject.prototype.moveBorderSelection = function(e) {
+	var offset = this.getPosition(this.obj);
+	var x = e.clientX - offset[0] + document.body.scrollLeft + this.obj.scrollLeft;
+	var y = e.clientY - offset[1] + document.body.scrollTop + this.obj.scrollTop;
+
+	var cell1 = this._border_start;
+	var cell2 = this._getCellByPos(x, y);
+	if (cell2)
+		this._border_end = cell2;
+	else
+		cell2 = this._border_end;
+	var cell1_pos = this.getPosition(cell1);
+	var x1 = cell1_pos[0] - offset[0];
+	var y1 = cell1_pos[1] - offset[1];
+	var cell2_pos = this.getPosition(cell2);
+	var x2 = cell2_pos[0] - offset[0];
+	var y2 = cell2_pos[1] - offset[1];
+	var result = this.callEvent("onBorderSelectionMove",[cell1.parentNode.idd, cell1._cellIndex, cell2.parentNode.idd, cell2._cellIndex]);
+	if (result === false) return false;
+
+	x = (x1 < x2) ? x1 : x2;
+	var width = Math.abs(x2 - x1) + ((x1 < x2) ? cell2.offsetWidth : cell1.offsetWidth) - 2;
+
+	y = (y1 < y2) ? y1 : y2;
+	var height = Math.abs(y2 - y1) + ((y1 < y2) ? cell2.offsetHeight : cell1.offsetHeight) - 1;
+
+	width -= 2;
+	height -= 2;
+	this._border_hover.style.left = x + 'px';
+	this._border_hover.style.top = y + 'px';
+	this._border_hover.style.width = width + 'px';
+	this._border_hover.style.height = height + 'px';
+
+
+	/* AUTO SCROLL */
+	var BottomRightX = this.objBox.scrollLeft + this.objBox.clientWidth;
+	var BottomRightY = this.objBox.scrollTop + this.objBox.clientHeight;
+	var TopLeftX = this.objBox.scrollLeft;
+	var TopLeftY = this.objBox.scrollTop;
+	var X = e.clientX - offset[0];
+	var Y = e.clientY - offset[1];
+
+	var nextCall=false;
+	if (this._brsTimer) window.clearTimeout(this._brsTimer);
+
+	if (X+20 >= BottomRightX) {
+		var scrollLeft = this.objBox.scrollLeft;
+		this.objBox.scrollLeft = this.objBox.scrollLeft+20;
+		if (scrollLeft !== this.objBox.scrollLeft)
+			nextCall=true;
+	} else if (X-20 < TopLeftX) {
+		if (this.objBox.scrollLeft > 0) {
+			this.objBox.scrollLeft = this.objBox.scrollLeft-20;
+			nextCall=true;
+		}
+	}
+
+	if (Y+20 >= BottomRightY) {
+		var scrollTop = this.objBox.scrollTop;
+		this.objBox.scrollTop = this.objBox.scrollTop+20;
+		if (scrollTop !== this.objBox.scrollTop) {
+			nextCall=true;
+		}
+	} else {
+		if (Y-20 < TopLeftY) {
+			if (this.objBox.scrollTop > 0) {
+				this.objBox.scrollTop = this.objBox.scrollTop-20;
+				nextCall=true;
+			}
+	}
+	}
+	if (nextCall){
+
+		var a = e.clientX;
+		var b = e.clientY;
+		var self = this;
+		this._blsTimer=window.setTimeout(function(){ self.moveBorderSelection({clientX:a,clientY:b}); },100);
+	}
+	return true;
+};
+
+dhtmlXGridObject.prototype.endBorderSelection = function(e) {
+	this.obj.onmousemove = this._mousemovecallback;
+	this._border_hover.onmousemove = null;
+	this._border_hover.onmouseup = null;
+	this._mousemovecallback = null;
+	if (typeof(this._bodymouseup) !== 'undefined')
+		document.body.onmouseup = this._bodymouseup;
+	var cell1 = this._border_start;
+	var cell2 = this._border_end;
+	var rId1 = cell1.parentNode.idd;
+	var cInd1 = cell1._cellIndex;
+	var rId2 = cell2.parentNode.idd;
+	var cInd2 = cell2._cellIndex;
+	this.callEvent("onBorderSelected",[rId1, cInd1, rId2, cInd2]);
+	if (this._border_hover) {
+		this._border_hover.parentNode.removeChild(this._border_hover);
+		this._border_hover = null;
+	}
+};
+
+dhtmlXGridObject.prototype._getCellByPos = function(x,y){
+	var _x=0;
+	for (var i=0; i < this.obj.rows.length; i++) {
+		y-=this.obj.rows[i].offsetHeight;
+		if (y<=0) {
+			_x=this.obj.rows[i];
+			break;
+		}
+	}
+	if (!_x || !_x.idd) return null;
+	for (var i=0; i < this._cCount; i++) {
+		x-=this.obj.rows[0].childNodes[i].offsetWidth;
+		if (x<=0) {
+			while(true){
+				if (_x._childIndexes && _x._childIndexes[i+1]==_x._childIndexes[i])
+					_x=_x.previousSibling;
+				else
+					return this.cells(_x.idd,i).cell;
+
+			}
+		}
+	}
+	return null;
+};
+
+dhtmlXGridObject.prototype.doesCellExist = function(rId, cInd) {
+	if ((this.doesRowExist(rId)) && (cInd < this.getColumnsNum()))
+		return true;
+	else
+		return false;
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ SpreadsheetBuffer = {
+
+	area_id: 'spreadsheet_buffer_area',
+	area: null,
+	coords: null,
+	cmd: 0,
+
+	init: function() {
+		if (SpreadsheetBuffer.area) return true;
+		this.getArea();
+		dhtmlxEvent(document.body, "keydown", function(e) {
+			if (!SpreadsheetBuffer.callback) return true;
+			var code = e.which;
+			var ctrl = e.ctrlKey || false;
+			var meta = e.metaKey || false;
+			// insert functionality
+			if (code == 86 && (ctrl === true || meta === true)) {
+				SpreadsheetBuffer.from_area();
+				SpreadsheetBuffer.unselect(SpreadsheetBuffer.callback);
+			}
+			// ctrl + c
+			if (code == 67 && (ctrl === true || meta === true)) {
+				SpreadsheetBuffer.callback.dumpCopy();
+				SpreadsheetBuffer.select(SpreadsheetBuffer.callback);
+			}
+			// ctrl + x
+			if (code == 88 && (ctrl === true || meta === true)) {
+				SpreadsheetBuffer.callback.dumpCopy();
+				SpreadsheetBuffer.select(SpreadsheetBuffer.callback);
+				SpreadsheetBuffer.from_area();
+				SpreadsheetBuffer.callback.mapSelection(function(row, col) {
+					if (this.isLocked(row, col)) return false;
+					var style = this.getCellStyle(row, col);
+					style.set('bgcolor', 'ffffff');
+					style.set('color', '000000');
+					style.set('bold', 'false');
+					style.set('italic', 'false');
+					style.set('align', 'left');
+					style.set('lock', 'false');
+					style.set('validator', 'false');
+					SpreadsheetBuffer.callback.applyStyles(row, col);
+					this.renderCell(row, col);
+					return true;
+				});
+			}
+			return true;
+		});
+	},
+
+	getArea: function() {
+		if (this.area) return this.area;
+
+		var div = document.createElement('div');
+		div.className = 'editable';
+
+		var area = document.createElement('textarea');
+		area.id = this.area_id;
+		area.className = 'spread_buffer_area';
+		div.appendChild(area);
+		document.body.appendChild(div);
+		SpreadsheetBuffer.area = area;
+		return this.area;
+	},
+
+	to_area: function(callback, coords) {
+		if (coords === null) return;
+		coords.LeftTopRow = parseInt(coords.LeftTopRow, 10);
+		coords.RightBottomRow = parseInt(coords.RightBottomRow, 10);
+		if (typeof(callback) != "undefined") {
+			SpreadsheetBuffer.callback = callback;
+		}
+		var text;
+		if (coords === null)
+			text = "";
+		else {
+			text = callback.getBlockText(coords);
+		}
+		SpreadsheetBuffer.area.value = text;
+		SpreadsheetBuffer.range = coords;
+		window.setTimeout(function() {
+			if (callback.dont_lose_focus) return false;
+			SpreadsheetBuffer.area.focus();
+			SpreadsheetBuffer.area.select();
+		}, 1);
+	},
+
+	from_area: function() {
+		window.setTimeout(function() {
+			var text = SpreadsheetBuffer.area.value;
+			if (SpreadsheetBuffer.callback.grid.editor) return false;
+			SpreadsheetBuffer.callback.setBlockText(text);
+			SpreadsheetBuffer.area.focus();
+			SpreadsheetBuffer.area.select();
+			return true;
+		}, 100);
+	},
+
+	select: function(ssheet) {
+		if (!SpreadsheetBuffer.range) return false;
+		var r = SpreadsheetBuffer.range;
+		r.color = "#9E9E9E";
+		r.classname = 'solid';
+
+		this.unselect(ssheet);
+		delete r.obj;
+		this._copyborder = ssheet.grid._showBorderSelection(r);
+		return true;
+	},
+	unselect: function(ssheet) {
+		if (this._copyborder)
+			ssheet.grid._unsetBorderSelection(this._copyborder.obj);
+		this._copyborder = null;
+	}
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ /*! class for cells style control
+ **/
+function SpreadSheetCss() {
+	this.rules = {
+		bold: "false",
+		italic: "false",
+		color: "000000",
+		bgcolor: "ffffff",
+		align: "left",
+		validator: "none",
+		lock: "false"
+	};
+}
+
+SpreadSheetCss.prototype = {
+
+	/*! set rule
+	 *	@param name
+	 *		rule name
+	 *	@param value
+	 *		rule value
+	 **/
+	set: function(name, value) {
+		this.rules[name] = value;
+	},
+
+	/*! returns rule by name
+	 *	@param name
+	 *		rule name
+	 *	@return
+	 *		value if exists or false otherwise
+	 **/
+	get: function(name) {
+		if (this.rules[name])
+			return this.rules[name];
+		else
+			return false;
+	},
+
+	/*! returns rules as object
+	 **/
+	get_json: function() {
+		return this.rules;
+	},
+
+
+	set_json: function(rules) {
+		this.rules = rules;
+	},
+
+	get_css: function() {
+		var css = '';
+		for (var i in this.rules)
+			if (this[i + "_to_css"]) css += this[i + "_to_css"](this.rules[i]);
+
+		return css;
+	},
+
+	bold_to_css: function(value) {
+		if (value == "true")
+			return "font-weight: bold;";
+		else
+			return "font-weight: normal;";
+	},
+
+	italic_to_css: function(value) {
+		if (value == "true")
+			return "font-style: italic;";
+		else
+			return "font-style: normal;";
+	},
+
+	bgcolor_to_css: function(value) {
+		return "background-color: #" + value + ";";
+	},
+	align_to_css: function(value) {
+		return "text-align: " + value + ";";
+	},
+	color_to_css: function(value){
+		return "color:#"+value+";";
+	},
+
+	validator_to_css: function(value){
+		return "";
+	},
+
+	lock_to_css: function(value){
+		return "";
+	},
+
+	serialize: function() {
+		var style = [];
+		for (var i in this.rules)
+			if (this.rules[i] == 'true')
+				style.push('1');
+			else if (this.rules[i] == 'false')
+				style.push('0');
+			else
+				style.push(this.rules[i]);
+		return style.join(";");
+	},
+	unserialize: function(style) {
+		style = style.split(';');
+		var c = 0;
+		for (var i in this.rules) {
+			var value = style[c];
+			if (value == '0') value = 'false';
+			if (value == '1') value = 'true';
+			this.rules[i] = value;
+			c++;
+		}
+	}
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ SpreadsheetLoader = {
+
+	request: function(url, params, callback, master, method) {
+		method = method || 'ajax';
+		switch (method) {
+			case 'jsonp':
+				this.jsonp(url, params, callback, master);
+				break;
+			case 'ajax':
+			default:
+				this.ajax(url, params, callback, master);
+				break;
+		}
+	},
+
+	jsonp: function(url, params, callback, master){
+		var id = "dhx_jsonp_" + this.uid();
+		var script = document.createElement('script');
+		script.id = id;
+		script.type = 'text/javascript';
+
+		var head = document.getElementsByTagName("head")[0];
+		if (!params)
+			params = {};
+		params.jsonp = "SpreadsheetLoader."+id;
+		this[id]=function(){
+			callback.apply(master||window, arguments);
+			script.parentNode.removeChild(script);
+			callback = head = master = script = null;
+			delete this[id];
+		};
+
+		var vals = [];
+		for (var key in params)
+			if (typeof(params[key]) == "object")
+				for (var index in params[key])
+					vals.push(key + '[' + index + ']=' + encodeURIComponent(params[key][index]));
+			else
+				vals.push(key + "=" + encodeURIComponent(params[key]));
+
+		url += (url.indexOf("?") == -1 ? "?" : "&") + vals.join("&");
+
+		script.src = url;
+		head.appendChild(script);
+	},
+
+	ajax: function(url, params, callback) {
+		params = this.serialize(params);
+		dhtmlxAjax.post(url, params, function(response) {
+			if (response.xmlDoc.responseText !== '')
+				callback(eval('(' + response.xmlDoc.responseText + ')'));
+		});
+	},
+
+	serialize: function(params, parent) {
+		var parent_start = (!parent) ? '' : parent + '[';
+		var parent_end = (!parent) ? '' : ']';
+		var text = [];
+		for (var i in params) {
+			if (typeof(params[i]) == 'function') continue;
+			if (typeof(params[i]) == 'object')
+				text.push(this.serialize(params[i], (!parent)? i : parent + '[' + i + ']'));
+			else
+				text.push(parent_start + i + parent_end + "=" + encodeURIComponent(params[i]));
+		}
+		return text.join('&');
+	},
+
+	uid: function() {
+		if (!this._seed) this._seed=(new Date).valueOf();	//init seed with timestemp
+		this._seed++;
+		return this._seed;
+	}
+
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ var SpreadSheetConfig = {
+	init:function(){
+		if (!SpreadSheetConfig.win){
+
+			var str = "<div class='spread_config_cont'>";
+			str += "<div>";
+			str += "<label for='spread_config_rows' class='spread_config'>Rows number:</label>";
+			str += "<input type='text' id='spread_config_rows' value='' class='spread_config' />";
+			str += "</div><div>";
+			str += "<label for='spread_config_cols' class='spread_config'>Columns number:</label>";
+			str += "<input type='text' id='spread_config_cols' value='' class='spread_config' />";
+			str += "</div><div>";
+			str += "<input type='checkbox' id='show_row_numbers' value='' class='' />";
+			str += "<label for='show_row_numbers' class='checkbox'>Show row numbers</label>";
+			str += "</div><div>";
+			str += "<input type='checkbox' id='show_export_buttons' value='' class='' />";
+			str += "<label for='show_export_buttons' class='checkbox'>Show export buttons</label>";
+			str += "</div><div>";
+			str += "<input type='button' id='spread_config_save' value='OK' class='spread_config spread_config_button'>";
+			str += "<input type='button' id='spread_config_cancel' value='Cancel' class='spread_config spread_config_button' />";
+			str += "</div>";
+			str += "</div>";
+
+			var d = SpreadSheetConfig.win = document.createElement("DIV");
+			d.className = "dhx_spread_window";
+			d.style.display="none";
+			document.body.appendChild(d);
+			d.innerHTML = str;
+
+			var save = document.getElementById("spread_config_save");
+			dhtmlxEvent(save, "click", function() {
+				var config = SpreadSheetConfig.get();
+				SpreadSheetConfig.callback.refresh(config);
+				SpreadSheetConfig.hide();
+			});
+			var cancel = document.getElementById("spread_config_cancel");
+			dhtmlxEvent(cancel, "click", function() {
+				SpreadSheetConfig.hide();
+			});
+		}
+		return SpreadSheetConfig;
+	},
+	show: function(callback, x, y) {
+		SpreadSheetConfig.callback = callback;
+		var pos = SpreadSheetConfig.get_pos(callback.settings.parent.parent);
+
+		var width = callback.settings.parent.grid.offsetWidth;
+		var height = callback.settings.parent.toolbar.offsetHeight + callback.settings.parent.grid.offsetHeight;
+//		SpreadSheetModal.size(width, height);
+		SpreadSheetModal.show(callback.settings.parent.parent);
+
+		SpreadSheetConfig.set_pos(x, y);
+		SpreadSheetConfig.win.style.display="";
+		document.getElementById('spread_config_rows').focus();
+	},
+
+	hide: function() {
+		SpreadSheetModal.hide();
+		SpreadSheetConfig.win.style.display="none";
+		SpreadSheetConfig.callback = null;
+	},
+
+	get: function() {
+		var config = {};
+		config.rows = parseInt(document.getElementById('spread_config_rows').value, 10);
+		config.cols = parseInt(document.getElementById('spread_config_cols').value, 10);
+		config.show_row_numbers = document.getElementById('show_row_numbers').checked;
+		config.show_export_buttons = document.getElementById('show_export_buttons').checked;
+		return config;
+	},
+
+	set: function(config) {
+		document.getElementById('spread_config_rows').value = config.rows;
+		document.getElementById('spread_config_cols').value = config.cols;
+		document.getElementById('show_row_numbers').checked = (config.show_row_numbers == 1) ? true : false;
+		document.getElementById('show_export_buttons').checked = (config.show_export_buttons == 1) ? true : false;
+	},
+
+	set_pos: function(x, y) {
+		SpreadSheetConfig.win.style.left = x + "px";
+		SpreadSheetConfig.win.style.top = y + "px";
+	},
+
+	/*! returns position of html object
+		@param e
+			html object
+		@return
+			object { x: left, y: top }
+	*/
+	get_pos: function (e) {
+		var left = 0;
+		var top  = 0;
+		while (e.offsetParent) {
+			left += e.offsetLeft - e.scrollLeft;
+			top  += e.offsetTop - e.scrollTop;
+			e     = e.offsetParent;
+		}
+
+		left += e.offsetLeft;
+		top  += e.offsetTop;
+		return {x:left, y:top};
+	}
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ var SpreadSheetHeaderEditor = {
+	ed: null,
+	init:function(){
+		dhtmlxEvent(document.body, "mousedown", function(e) {
+			var target = e.target || e.srcElement;
+			if (target == SpreadSheetHeaderEditor.ed) return;
+			SpreadSheetHeaderEditor.editStop();
+		});
+		return SpreadSheetHeaderEditor;
+	},
+
+	get_input: function() {
+		var ed = document.createElement('input');
+		SpreadSheetHeaderEditor.target.innerHTML = '';
+		SpreadSheetHeaderEditor.target.appendChild(ed);
+		SpreadSheetHeaderEditor.target.className = SpreadSheetHeaderEditor.target.className + ' no_paddings';
+		ed.className = 'header_editor';
+		ed.value = SpreadSheetHeaderEditor.value;
+		return ed;
+	},
+
+	editStart: function(target, value, callback) {
+		if (target === SpreadSheetHeaderEditor.ed) return false;
+		SpreadSheetHeaderEditor.target = target;
+		value  = value.replace(/&lt;/g, '<');
+		value  = value.replace(/&gt;/g, '>');
+		SpreadSheetHeaderEditor.value = value;
+		SpreadSheetHeaderEditor.callback = callback;
+		SpreadSheetHeaderEditor.ed = SpreadSheetHeaderEditor.get_input();
+		target.parentNode.className += ' no_paddings_parent';
+		dhtmlxEvent(SpreadSheetHeaderEditor.ed, "keydown", function(e) {
+			var code = e.which||e.keyCode;
+			if (code == 13 || code == 9)
+				SpreadSheetHeaderEditor.editStop();
+			else if (code == 27)
+				SpreadSheetHeaderEditor.editStop(true);
+		});
+		SpreadSheetHeaderEditor.ed.focus();
+	},
+
+	editStop: function(dont_save) {
+		if (SpreadSheetHeaderEditor.ed === null) return;
+		dont_save = dont_save || false;
+		var value = (dont_save === true) ? SpreadSheetHeaderEditor.value : SpreadSheetHeaderEditor.ed.value;
+		value  = value.replace(/</g, '&lt;');
+		value  = value.replace(/>/g, '&gt;');
+		SpreadSheetHeaderEditor.target.removeChild(SpreadSheetHeaderEditor.ed);
+		SpreadSheetHeaderEditor.target.innerHTML = value;
+		SpreadSheetHeaderEditor.target.className = SpreadSheetHeaderEditor.target.className.replace(' no_paddings', '');
+		SpreadSheetHeaderEditor.target.parentNode.className = SpreadSheetHeaderEditor.target.parentNode.className.replace(' no_paddings_parent', '');
+		if (SpreadSheetHeaderEditor.callback && SpreadSheetHeaderEditor.value != value)
+			SpreadSheetHeaderEditor.callback[0].saveHeadCell(SpreadSheetHeaderEditor.callback[1], value, SpreadSheetHeaderEditor.callback[2]);
+		SpreadSheetHeaderEditor.unload();
+	},
+
+	unload: function() {
+		SpreadSheetHeaderEditor.ed = null;
+		SpreadSheetHeaderEditor.value = null;
+		SpreadSheetHeaderEditor.callback = null;
+		SpreadSheetHeaderEditor.target = null;
+	}
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ if (typeof(SpreadSheetConfig) === 'undefined')
+	var SpreadSheetConfig;
+
+var SpreadSheetMathHint = {
+
+	selected: null,
+	input: null,
+
+	init: function(input) {
+		for (var i = 0; i < this.details.length; i++)
+			this.hints[this.details[i].regexp] = this.details[i].hint;
+
+		this.mathHint = document.createElement('div');
+		this.mathHint.className = 'mathHint';
+		var self = this;
+		this.mathHint.onclick = function(e) {
+			e = e || window.event;
+			e.cancelBubble = true;
+			self.filter(self.input.value);
+		};
+		this.input = input;
+		document.body.appendChild(this.mathHint);
+	},
+
+	filter: function(text) {
+		if (text.substring(0, 1) !== '=') return true;
+		var regexp = /([A-Z0-9]+\()[^\)]*\)?$/i;
+		var match = regexp.exec(text);
+		if ((match)&&(typeof(match[1]) != 'undefined')) {
+			match[0] = match[1];
+		} else {
+			regexp = /[A-Z0-9]+\(?$/i;
+			match = regexp.exec(text);
+		}
+		if (match) {
+			if (typeof(match[0]) != 'undefined')
+				match = match[0];
+			else {
+				this.mathHint.style.display = 'none';
+				return true;
+			}
+		} else {
+			this.mathHint.style.display = 'none';
+			return true;
+		}
+
+		match = match.toUpperCase();
+		var matches = [];
+		for (var i in this.hints)
+			if (i.indexOf(match) === 0)
+				matches.push(this.hints[i]);
+
+		if (matches.length > 0)
+			this.show();
+		else
+			this.hide();
+		this.set(matches);
+	},
+
+	show: function() {
+		var object = (this.input.parentNode && this.input.parentNode.tagName.toLowerCase() == 'td') ? this.input.parentNode : this.input;
+		var pos = SpreadSheetConfig.get_pos(object);
+		this.mathHint.style.left = pos.x + 'px';
+		this.mathHint.style.top = (pos.y + this.input.offsetHeight - 1) + 'px';
+		this.mathHint.style.display = 'block';
+	},
+
+	hide: function() {
+		if (this.mathHint)
+			this.mathHint.style.display = 'none';
+	},
+
+	next: function() {
+		var list = this.mathHint.firstChild;
+		var selected = false;
+		if (list && list.childNodes.length > 0) {
+			for (var i = 0; i < list.childNodes.length; i++) {
+				if (list.childNodes[i].className.indexOf(' selected') !== -1) {
+					list.childNodes[i].className = list.childNodes[i].className.replace(' selected', '');
+					selected = true;
+					break;
+				}
+			}
+			if (selected) {
+				var index = i + 1;
+				if (index >= list.childNodes.length) index = 0;
+				list.childNodes[index].className += ' selected';
+				this.selected = list.childNodes[index].innerHTML;
+			}
+		}
+	},
+
+	prev: function() {
+		var list = this.mathHint.firstChild;
+		var selected = false;
+		if (list && list.childNodes.length > 0) {
+			for (var i = list.childNodes.length - 1; i >= 0; i--) {
+				if (list.childNodes[i].className.indexOf(' selected') !== -1) {
+					list.childNodes[i].className = list.childNodes[i].className.replace(' selected', '');
+					selected = true;
+					break;
+				}
+			}
+			if (selected) {
+				var index = i - 1;
+				if (index < 0) index = list.childNodes.length - 1;
+				list.childNodes[index].className += ' selected';
+				this.selected = list.childNodes[index].innerHTML;
+			}
+		}
+	},
+
+	first: function() {
+		var list = this.mathHint.firstChild;
+		this.unselect();
+		if (list && list.childNodes.length > 0) {
+			list.firstChild.className += ' selected';
+			this.selected = list.firstChild.innerHTML;
+		}
+	},
+
+	unselect: function() {
+		var list = this.mathHint.firstChild;
+		for (var i = 0; i < list.childNodes.length; i++)
+			list.childNodes[i].className = list.childNodes[i].className.replace(' selected', '');
+	},
+
+	select: function(innerHTML) {
+		this.unselect();
+		var list = this.mathHint.firstChild;
+		if (list && list.childNodes.length > 0) {
+			for (var i = 0; i < list.childNodes.length; i++)
+				if (list.childNodes[i].innerHTML == innerHTML) {
+					list.childNodes[i].className += ' selected';
+					this.selected = innerHTML;
+					return true;
+				}
+		}
+		return false;
+	},
+
+	set: function(hints) {
+		for (var i = 0; i < hints.length; i++)
+			hints[i] = '<li class="mathHint_item" onmouseover="SpreadSheetMathHint.select(this.innerHTML);" onclick="SpreadSheetMathHint.use();">' + hints[i] + '</li>';
+		this.mathHint.innerHTML = '<ul>' + hints.join("") + '</ul>';
+		if (this.selected) {
+			if (!this.select(this.selected))
+				this.first();
+		} else
+			this.first();
+	},
+
+	getHintsNumber: function() {
+		var list = this.mathHint.firstChild;
+		if (list)
+			return list.childNodes.length;
+		else
+			return 0;
+	},
+
+	use: function() {
+		var text = this.input.value;
+		var regexp = /[A-Z0-9]+\(?$/i;
+		var match = regexp.exec(text);
+		if (match) {
+			for (var i in this.hints) {
+				if (this.hints[i] == this.selected)
+					text = text.replace(regexp, i);
+			}
+			this.input.value = text;
+			window.setTimeout(function() {
+				SpreadSheetMathHint.input.focus();
+				SpreadSheetMathHint.lookAtCursor(SpreadSheetMathHint.input);
+			}, 50);
+			return true;
+		} else {
+			window.setTimeout(function() {
+				SpreadSheetMathHint.input.focus();
+			}, 50);
+			return false;
+		}
+
+	},
+
+	used: function(check) {
+		var text = this.input.value;
+		check = check || false;
+		if (this.getHintsNumber() === 0) return true;
+		var regexp = /([A-Z0-9]+\(\))$/i;
+		var match = regexp.exec(text);
+		if (!match) {
+			regexp = /([A-Z0-9]+\()$/i;
+			match = regexp.exec(text);
+		}
+		if (!match) {
+			regexp = /([A-Z0-9]+\()[^\)]*\)?$/i;
+			match = regexp.exec(text);
+		}
+		if ((match)&&(typeof(match[1]) != 'undefined')) {
+			match = match[1].toUpperCase();
+			for (var i in this.hints) {
+				if (i.indexOf(match) === 0)
+					if (match == i || check === true)
+						return true;
+			}
+		}
+		return false;
+	},
+
+	attachEvent: function(input, ssheet) {
+		this.set([]);
+		this.input = input;
+		var self = this;
+		this.cursor = input.value.length - 1;
+		input.ssheet = ssheet;
+		input.onmousedown = function(e) {
+			e = window.event||e;
+			var el = e.srcElement||e.target;
+			window.setTimeout(function() {
+				self.lookAtCursor(el);
+			}, 10);
+			return true;
+		};
+		if (!input._math_added)
+			dhtmlxEvent(input, "keydown", function(e) {
+				e = e||window.event;
+				var code = e.keyCode||e.which;
+				if ((code === 9)&&(SpreadSheetMathHint.used(true) === true)) {
+					return (ssheet.grid.editor ? true : false);
+				}
+				if (code !== 13) {
+					var el = e.srcElement||e.target;
+					window.setTimeout(function() {
+						self.lookAtCursor(el);
+					}, 10);
+				}
+				return self.mathKeyDown(e);
+			});
+		input._math_added = true;
+		window.setTimeout(function() {
+			self.showBorders(input);
+			self.lookAtCursor(input);
+		}, 10);
+	},
+
+	lookAtCursor: function(el) {
+		if (typeof(el.ssheet) === 'undefined')
+			return false;
+		if (!el.parentNode) return;
+		this.cursor = this.getCursorPos(el);
+		if (this.cursor === -1)
+			this.cursor = el.value.length;
+	},
+
+	getCaret: function(node) {
+		if (typeof(node.selectionStart) !== 'undefined') {
+			return node.selectionStart;
+		} else if (!document.selection) {
+			return 0;
+		}
+
+		var c = "\001";
+		var sel = document.selection.createRange();
+		var dul = sel.duplicate();
+		var len = 0;
+
+		dul.moveToElementText(node);
+		sel.text = c;
+		len = dul.text.indexOf(c);
+		sel.moveStart('character',-1);
+		sel.text = "";
+		return len;
+	},
+
+	mathKeyDown: function(e) {
+		var self = this;
+		var input = this.input;
+		var code = e.keyCode||e.which;
+		if (code == 40) {
+			this.next();
+			return false;
+		}
+		if (code == 38) {
+			this.prev();
+			return false;
+		}
+		if (code == 13) {
+			if (this.used()) {
+				input.ssheet.grid.clearBorderSelection();
+				input.ssheet.mathSave(input);
+				input.ssheet.grid._key_events.k13_0_0();
+				return true;
+			} else {
+				input.ssheet.grid.autocomplete = true;
+				this.use(input);
+			}
+		}
+		if (code == 27) {
+			input.ssheet.grid.clearBorderSelection();
+			input.ssheet.mathCancel();
+			return true;
+		}
+		window.setTimeout(function() {
+			self.showBorders(input);
+			self.lookAtCursor(input);
+			self.filter(input.value);
+		}, 100);
+		return true;
+	},
+
+	showBorders: function(input) {
+		if (typeof(input.ssheet) === 'undefined')
+			return false;
+		if (input.value.substring(0, 1) !== '=') {
+			input.ssheet.grid.clearBorderSelection();
+			input.ssheet.grid.enableBorderSelection(false);
+			return true;
+		}
+		input.ssheet.grid.enableBorderSelection(true);
+		input.ssheet.grid.clearBorderSelection();
+		var regexp = /\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)/i;
+
+		var value = input.value;
+		while (regexp.test(value)) {
+			var matches = regexp.exec(value);
+			value = value.replace(regexp, '');
+			var LeftTopRow = matches[2];
+			var LeftTopCol = input.ssheet.getColIndex(matches[1]);
+			var RightBottomRow = matches[4];
+			var RightBottomCol = input.ssheet.getColIndex(matches[3]);
+			input.ssheet.grid.addBorderSelection(LeftTopRow, LeftTopCol, RightBottomRow, RightBottomCol);
+		}
+
+		regexp = /\$?([A-Z]+)\$?(\d+)/i;
+		while (regexp.test(value)) {
+			var matches = regexp.exec(value);
+			value = value.replace(regexp, '');
+			var LeftTopRow = matches[2];
+			var LeftTopCol = input.ssheet.getColIndex(matches[1]);
+			var RightBottomRow = LeftTopRow;
+			var RightBottomCol = LeftTopCol;
+			input.ssheet.grid.addBorderSelection(LeftTopRow, LeftTopCol, RightBottomRow, RightBottomCol);
+		}
+	},
+
+	setRange: function(range) {
+		var formula = this.input.value.substring(0, this.cursor);
+		var regexp = /\$?([A-Z]+)\$?(\d+):\$?([A-Z]+)\$?(\d+)$/i;
+		if (regexp.test(formula)) {
+			formula = formula.replace(regexp, range);
+		} else {
+			regexp = /\$?([A-Z]+)\$?(\d+)$/i;
+			if (regexp.test(formula))
+				formula = formula.replace(regexp, range);
+			else {
+				formula += range;
+			}
+		}
+		var pos = formula.length;
+		formula += this.input.value.substring(this.cursor);
+		this.input.value = formula;
+		this.cursor = formula.length;
+		this.setCursorPos(this.input, pos);
+		this.cursor = pos;
+		this.filter(this.input.value);
+		this.showBorders(this.input);
+	},
+
+	getCursorPos: function(el) {
+		el.focus();
+		if(el.selectionStart) {
+			return el.selectionStart;
+		}
+		if (document.selection) {
+			var r = document.selection.createRange();
+			if (r === null) {
+				return el.value.length;
+			}
+			var re = el.createTextRange();
+			var rc = re.duplicate();
+			re.moveToBookmark(r.getBookmark());
+			rc.setEndPoint('EndToStart', re);
+			return rc.text.length;
+		}
+		return el.value.length;
+	},
+
+	setCursorPos: function(el, pos) {
+		el.focus();
+		if (el.setSelectionRange) {
+			el.setSelectionRange(pos, pos);
+		} else if (el.createTextRange) {
+			var range = el.createTextRange();
+			range.collapse(true);
+			range.moveEnd('character', pos);
+			range.moveStart('character', pos);
+			range.select();
+		}
+	},
+
+	hints: {},
+	details: [
+		{
+			name: 'SUM',
+			regexp: 'SUM(',
+			hint: 'SUM(arg1; arg2; arg3; ...)',
+			dsc: 'Sums the arquments ',
+			samples: '=SUM(1; 3; 5) // the result is 9'
+		}, {
+			name: 'SUB',
+			regexp: 'SUB(',
+			hint: 'SUB(arg1; arg2; arg3; ...)',
+			dsc: 'Subtracts the second and subsequent arguments from the first argument',
+			samples: '=SUB(10; 3; 5) // the result is 2'
+		}, {
+			name: 'MULT',
+			regexp: 'MULT(',
+			hint: 'MULT(arg1; arg2; arg3; ...)',
+			dsc: 'Multiplies the arquments',
+			samples: '=MULT(2; 3; 5) // the result is 30'
+		}, {
+			name: 'DIV',
+			regexp: 'DIV(',
+			hint: 'DIV(arg1; arg2; arg3; ...)',
+			dsc: 'Divides the first argument by the second and subsequent arguments',
+			samples: '=DIV(20;2;5) // the result is 2'
+		}, {
+			name: 'SQRT',
+			regexp: 'SQRT(',
+			hint: 'SQRT(arg1)',
+			dsc: 'Returns the square root of the argument ',
+			samples: '=SQRT(16) // the result is 4'
+		}, {
+			name: 'SQR',
+			regexp: 'SQR(',
+			hint: 'SQR(arg1)',
+			dsc: 'Returns the square of the arqument',
+			samples: '=SQR(3) // the result is 9'
+		}, {
+			name: 'POW',
+			regexp: 'POW(',
+			hint: 'POW(arg1; arg2)',
+			dsc: 'Returns the first argument raised to power of the second argument ',
+			samples: '=POW(2;5) // the result is 32'
+		}, {
+			name: 'MOD',
+			regexp: 'MOD(',
+			hint: 'MOD(arg1; arg2)',
+			dsc: 'Returns the remainder after the first argument is divided by the second argument',
+			samples: '=MOD(10;4)  // the result is 2'
+		}, {
+			name: 'ABS',
+			regexp: 'ABS(',
+			hint: 'ABS(arg1)',
+			dsc: '	Returns the absolute value of the argument ',
+			samples: '=ABS(-5)  // the result is 5 <br> =ABS(5)  // the result is 5'
+		}, {
+			name: 'EXP',
+			regexp: 'EXP(',
+			hint: 'EXP(arg1)',
+			dsc: 'Returns e raised to power of the argument ',
+			samples: '=EXP(2) // the result is 7.3890561 '
+		}, {
+			name: 'LN',
+			regexp: 'LN(',
+			hint: 'LN(arg1)',
+			dsc: 'Returns the natural logarithm of the argument ',
+			samples: '=LN(7.3890561) // the result is 2 '
+		}, {
+			name: 'LOG',
+			regexp: 'LOG(',
+			hint: 'LOG(arg1; arg2)',
+			dsc: 'Returns the logarithm of the first argument to a base of the second argument',
+			samples: '=LOG(32;2) // the result is 5 '
+		}, {
+			name: 'LOG10',
+			regexp: 'LOG10(',
+			hint: 'LOG10(arg1)',
+			dsc: 'Returns the base-10 logarithm of the argument ',
+			samples: '=LOG10(100) // the result is 2 '
+		}, {
+			name: 'SIN',
+			regexp: 'SIN(',
+			hint: 'SIN(arg1)',
+			dsc: 'Returns the sine of the argument ',
+			samples: '=SIN(0) // the result is 0 '
+		}, {
+			name: 'COS',
+			regexp: 'COS(',
+			hint: 'COS(arg1)',
+			dsc: 'Returns the cosine of the arqument ',
+			samples: '=COS(0) // the result is 1 '
+		}, {
+			name: 'TAN',
+			regexp: 'TAN(',
+			hint: 'TAN(arg1)',
+			dsc: 'Returns the tangent of the argument ',
+			samples: '=TAN(0) // the result is 0 '
+		}, {
+			name: 'ASIN',
+			regexp: 'ASIN(',
+			hint: 'ASIN(arg1)',
+			dsc: 'Returns the arcsine (in radians) of the argument ',
+			samples: '=ASIN(0) // the result is 0 '
+		}, {
+			name: 'ACOS',
+			regexp: 'ACOS(',
+			hint: 'ACOS(arg1)',
+			dsc: 'Returns the arccosine (in radians) of the arqument ',
+			samples: '=ACOS(1) // the result is 0 '
+		}, {
+			name: 'ATAN',
+			regexp: 'ATAN(',
+			hint: 'ATAN(arg)',
+			dsc: 'Returns the arctangent (in radians) of the argument ',
+			samples: '=ATAN(1) // the result is 0.78539816 '
+		}, {
+			name: 'PI',
+			regexp: 'PI()',
+			hint: 'PI()',
+			dsc: 'Returns the mathematical constant called pi',
+			samples: '=PI() // the result is 3.14159265'
+		}
+	],
+
+	all: function(parent, callback) {
+		SpreadSheetModal.show(parent);
+		
+		var d = document.createElement("DIV");
+		d.className = "dhx_spread_window functions_window";
+		parent.appendChild(d);
+		d.innerHTML = this.getForm();
+		
+		var left = (parent.offsetWidth - d.offsetWidth)/2 + 'px';
+		var top = (parent.offsetHeight - d.offsetHeight)/2 + 'px';
+		d.style.left = left;
+		d.style.top = top;
+		
+		this._all_cont = d;
+
+		var btns = d.getElementsByTagName('input');
+		var self = this;
+		// insert callback
+		btns[0].onclick = function() { self.functions_enter(callback); };
+		// cancel callback
+		btns[1].onclick = function() { self.functions_escape(callback); };
+		var sel = this._all_cont.getElementsByTagName('select');
+		sel = sel[0];
+		dhtmlxEvent(sel, "keydown", function() {
+			var code = e.keyCode||e.which;
+			if (code === 13) self.functions_enter(callback);
+			if (code == 27) self.functions_escape(callback);
+		});
+		dhtmlxEvent(sel, "dblclick", function() {
+			self.functions_enter(callback);
+		});
+		sel.focus();
+		this.functionDetails(this.details[0].name);
+	},
+
+	getForm: function() {
+		var str = "<div class='spread_config_cont'>";
+		str += "<div class='functions_list'>";
+		str += "<select size='15' onchange='SpreadSheetMathHint.functionDetails();'>";
+		for (var i = 0; i < this.details.length; i++) {
+			str += "<option value='" + this.details[i].name + "'>" + this.details[i].name + "</option>";
+		}
+		str += "</select>";
+		str += "</div>";
+		str += "<div class='function_details'></div>";
+		str += "<div class='controls_bar'>";
+		str += "<input type='button' class='spread_config spread_config_button' value='Insert' />";
+		str += "<input type='button' class='spread_config spread_config_button' value='Close' />";
+		str += "</div>";
+		str += "</div>";
+		str += "</div>";
+		return str;
+	},
+
+	functionDetails: function(f) {
+		if (!this._all_cont) return;
+		var sel = this._all_cont.getElementsByTagName('select');
+		sel = sel[0];
+		if (f)
+			sel.value = f;
+		else
+			f = sel.options[sel.selectedIndex].value;
+		
+
+		var item = this.function_by_name(f);
+		if (item === false) return;
+
+		var str = "<div class='line'><span class='label'>Name:</span> " + item.name + "</div>";
+		str += "<div class='line'><span class='label'>Description:</span> " + item.dsc + "</div>";
+		str += "<div class='line'><span class='label'>Usage:</span> " + item.hint + "</div>";
+		if (item.samples)
+			str += "<div class='line'><span class='label'>Example:</span> " + item.samples + "</div>";
+		this._all_cont.childNodes[0].childNodes[1].innerHTML = str;
+	},
+	close_all: function() {
+		this._all_cont.parentNode.removeChild(this._all_cont);
+		SpreadSheetModal.hide();
+	},
+	get_all_selection: function() {
+		var sel = this._all_cont.getElementsByTagName('select');
+		sel = sel[0];
+		var f = sel.options[sel.selectedIndex].value;
+		return this.function_by_name(f);
+	},
+
+	function_by_name: function(name) {
+		for (var i = 0; i < this.details.length; i++)
+			if (this.details[i].name == name) {
+				return this.details[i];
+				break;
+			}
+		return false;
+	},
+
+	functions_enter: function(callback) {
+		var f = this.get_all_selection();
+		this.close_all();
+		if (typeof(callback.insert) !== 'undefined') callback.insert(f);
+	},
+
+	functions_escape: function(callback) {
+		this.close_all();
+		if (typeof(callback.insert) !== 'undefined') callback.cancel();
+	},
+	
+	function_ending: function(value) {
+		var regexp = /^=.*\([^\)]*$/i;
+		var match = regexp.exec(value);
+		if (match) value += ')';
+		return value;
+	}
+
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ var SpreadSheetModal = {
+	x: 0,
+	y: 0,
+	width: null,
+	height: null,
+	_init_modal:function(parent){
+		if (this._modal) return true;
+		var d = document.createElement("DIV");
+		d.className = "dhx_spread_modal";
+		d.style.display="none";
+		d.style.left = this.x + 'px';
+		d.style.top = this.y + 'px';
+		d.style.width = (this.width !== null) ? (this.width + 'px') : '100%';
+		d.style.height = (this.height !== null) ? (this.height + 'px') : '100%';
+		parent = parent || document.body;
+		parent.appendChild(d);
+		this._modal = d;
+	},
+	show: function(parent) {
+		this._init_modal(parent);
+		this._modal.style.display = 'block';
+	},
+	hide: function() {
+		if (this._modal) {
+			this._modal.style.display = 'none';
+			this._modal.parentNode.removeChild(this._modal);
+			this._modal = null;
+		}
+	},
+	position: function(x, y) {
+		this.x = x;
+		this.y = y;
+		console.log(x, y);
+	},
+	size: function(width, height) {
+		this.width = width;
+		this.height = height;
+	}
+}
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ dhtmlXGridObject.prototype._OnSelectionStart = function(event, obj)
+{
+
+	var self = this;
+	if (this._blockselection_process) this._OnSelectionStop(event, this);
+	if (event.button == 2) return;
+	var src = event.srcElement || event.target;
+	if (this.editor){
+		if (src.tagName && (src.tagName=="INPUT" || src.tagName=="TEXTAREA"))   return;
+		this.editStop();
+	}
+	
+	if (!self.isActive) self.setActive(true);
+	var pos = this.getPosition(this.obj);
+	var x = event.clientX - pos[0] +document.body.scrollLeft;
+	var y = event.clientY - pos[1] +document.body.scrollTop;
+	this._CreateSelection(x-4, y-4);
+
+	if (src == this._selectionObj) {
+		this._HideSelection();
+		this._startSelectionCell = null;
+	} else {
+	    while (src.tagName.toLowerCase() != 'td') {
+	        src = src.parentNode;
+			if (typeof(src.tagName) === 'undefined') return null;
+		}
+	    this._startSelectionCell = src;
+	}
+	if (this._startSelectionCell && this._startSelectionCell._cellIndex > 0)
+		this.selectCell(this._startSelectionCell.parentNode, this._startSelectionCell._cellIndex, true, false, false, false);
+	if (this._startSelectionCell){
+		if (!this.callEvent("onBeforeBlockSelected",[this._startSelectionCell.parentNode.idd, this._startSelectionCell._cellIndex]))
+			return this._startSelectionCell = null;
+	}
+
+	this.obj.onmousedown = null;
+	this.obj[_isIE?"onmouseleave":"onmouseout"] = function(e){ if (self._blsTimer) window.clearTimeout(self._blsTimer); };	    
+	this.obj.onmmold=this.obj.onmousemove;
+	this.obj.onmuold=this.obj.onmouseup;
+	this._init_pos=[x,y];
+	this._selectionObj.onmousemove = this.obj.onmousemove = function(e) {e = e||event; e.returnValue = false;  self._OnSelectionMove(e);}
+
+	this._oldDMP=document.body.onmouseup;
+	this._blockselection_process = true;
+	document.body.onmouseup = this._selectionObj.onmouseup = this.obj.onmouseup = function(e) {
+		e = e||event; self._OnSelectionStop(e, this); return true; };
+	this.callEvent("onBeforeBlockSelection",[]);
+	document.body.onselectstart = function(){return false};//avoid text select	    
+};
+
+
+dhtmlXGridObject.prototype._OnSelectionMove = function(event) {
+	var self=this;
+	this._ShowSelection();
+	var pos = this.getPosition(this.obj);
+	var X = event.clientX - pos[0] + (document.body.scrollLeft||(document.documentElement?document.documentElement.scrollLeft:0));
+	var Y = event.clientY - pos[1] + (document.body.scrollTop||(document.documentElement?document.documentElement.scrollTop:0));
+
+	if ((Math.abs(this._init_pos[0]-X)<3) && (Math.abs(this._init_pos[1]-Y)<3)) return this._HideSelection();
+	
+	var temp = this._endSelectionCell;
+	if(this._startSelectionCell==null)
+ 		this._endSelectionCell  = this._startSelectionCell = this.getFirstParentOfType(event.srcElement || event.target,"TD");		
+	else {
+		if (event.srcElement || event.target) {
+			if ((event.srcElement || event.target).className == "dhtmlxGrid_selection")
+				this._endSelectionCell=(this._getCellByPos(X,Y)||this._endSelectionCell);
+			else {
+				var t = this.getFirstParentOfType(event.srcElement || event.target,"TD");
+				if (t.parentNode.idd) this._endSelectionCell = t;
+			}
+		}
+	}
+	this.selectCell(this._startSelectionCell.parentNode, this._startSelectionCell._cellIndex, true, false, false, false);
+		
+	if (this._endSelectionCell){
+		if (!this.callEvent("onBeforeBlockSelected",[this._endSelectionCell.parentNode.idd, this._endSelectionCell._cellIndex]))
+			this._endSelectionCell = temp;
+	}
+
+	/* AUTO SCROLL */
+	var BottomRightX = this.objBox.scrollLeft + this.objBox.clientWidth;
+	var BottomRightY = this.objBox.scrollTop + this.objBox.clientHeight;
+	var TopLeftX = this.objBox.scrollLeft;
+	var TopLeftY = this.objBox.scrollTop;
+
+	var nextCall=false;
+	if (this._blsTimer) window.clearTimeout(this._blsTimer);	
+	
+	if (X+20 >= BottomRightX) {
+		this.objBox.scrollLeft = this.objBox.scrollLeft+20;
+		nextCall=true;
+	} else if (X-20 < TopLeftX) {
+		this.objBox.scrollLeft = this.objBox.scrollLeft-20;
+		nextCall=true;
+	}
+	if (Y+20 >= BottomRightY && !this._realfake) {
+		this.objBox.scrollTop = this.objBox.scrollTop+20;
+		nextCall=true;
+	} else if (Y-20 < TopLeftY && !this._realfake) {
+		this.objBox.scrollTop = this.objBox.scrollTop-20;
+		nextCall=true;		
+	}
+	this._selectionArea = this._RedrawSelectionPos(this._startSelectionCell, this._endSelectionCell);
+	
+
+	if (nextCall){ 
+		var a=event.clientX;
+		var b=event.clientY;
+		this._blsTimer=window.setTimeout(function(){self._OnSelectionMove({clientX:a,clientY:b})},100);
+	}
+	return true;
+}
+
+
+dhtmlXGridObject.prototype._OnSelectionStop = function(event)
+{
+	var self = this;
+	if (this._blsTimer) window.clearTimeout(this._blsTimer);	
+	this.obj.onmousedown = function(e) {if (self._bs_mode)  self._OnSelectionStart((e||event), this); return true;}
+	this.obj.onmousemove = this.obj.onmmold||null;
+	this.obj.onmouseup = this.obj.onmuold||null;
+	this._selectionObj.onmousemove = null;
+	this._selectionObj.onmouseup = null;
+	document.body.onmouseup = this._oldDMP||null;
+	this._blockselection_process = false;
+	if ( parseInt( this._selectionObj.style.width ) < 2 && parseInt( this._selectionObj.style.height ) < 2) {
+		this._HideSelection();
+	} else {
+	    var src = this.getFirstParentOfType(event.srcElement || event.target,"TD");
+	    if ((!src) || (!src.parentNode.idd)){
+	    	src=this._endSelectionCell;
+    		}
+    	if (!src) return this._HideSelection();
+	    while (src.tagName.toLowerCase() != 'td')
+	        src = src.parentNode;
+	    this._stopSelectionCell = src;
+	    this._selectionArea = this._RedrawSelectionPos(this._startSelectionCell, this._stopSelectionCell);
+		this.callEvent("onBlockSelected",[]);
+	}
+	document.body.onselectstart = function(){};//avoid text select
+}
+
+dhtmlXGridObject.prototype._RedrawSelectionPos = function(LeftTop, RightBottom)
+{
+
+	var pos = {};
+	pos.LeftTopCol = LeftTop._cellIndex;
+	pos.LeftTopRow = this.getRowIndex( LeftTop.parentNode.idd );
+	pos.RightBottomCol = RightBottom._cellIndex;
+	pos.RightBottomRow = this.getRowIndex( RightBottom.parentNode.idd );
+
+	var LeftTop_width = LeftTop.offsetWidth;
+	var LeftTop_height = LeftTop.offsetHeight;
+	LeftTop = this.getPosition(LeftTop, this.obj);
+
+	var RightBottom_width = RightBottom.offsetWidth;
+	var RightBottom_height = RightBottom.offsetHeight;
+	RightBottom = this.getPosition(RightBottom, this.obj);
+
+	var Left, Right, Top, Bottom, foo;
+    if (LeftTop[0] < RightBottom[0]) {
+		Left = LeftTop[0];
+		Right = RightBottom[0] + RightBottom_width;
+    } else {
+    	foo = pos.RightBottomCol;
+        pos.RightBottomCol = pos.LeftTopCol;
+        pos.LeftTopCol = foo;
+		Left = RightBottom[0];
+		Right = LeftTop[0] + LeftTop_width;
+    }
+
+    if (LeftTop[1] < RightBottom[1]) {
+		Top = LeftTop[1];
+		Bottom = RightBottom[1] + RightBottom_height;
+    } else {
+    	foo = pos.RightBottomRow;
+        pos.RightBottomRow = pos.LeftTopRow;
+        pos.LeftTopRow = foo;
+		Top = RightBottom[1];
+		Bottom = LeftTop[1] + LeftTop_height;
+    }
+
+    var Width = Right - Left - 2;
+    var Height = Bottom - Top - 2;
+
+	if (!this._selectionObj)
+		this._CreateSelection(Left, Top);
+
+	this._selectionObj.style.left = Left + 'px';
+	this._selectionObj.style.top = Top + 'px';
+	this._selectionObj.style.width =  Width  + 'px';
+	this._selectionObj.style.height = Height + 'px';
+	return pos;
+}
+
+
+
+dhtmlXGridObject.prototype._CreateSelection_original = dhtmlXGridObject.prototype._CreateSelection;
+dhtmlXGridObject.prototype._CreateSelection = function(x, y) {
+	var result = this._CreateSelection_original(x, y);
+	var self = this;
+	this._selectionObj.onmousedown = function(e) {
+		if (self._bs_mode) self._OnSelectionStart((e||window.event),this); return true;
+	};
+	return result;
+};
+
+
+dhtmlXGridObject.prototype._refreshBlockSelection = function(dont_show) {
+	var area = this._selectionArea;
+	if (!area) return;
+	var c1 = this.cells(this.getRowId(area.LeftTopRow), area.LeftTopCol).cell;
+	var c2 = this.cells(this.getRowId(area.RightBottomRow), area.RightBottomCol).cell;
+	this.selectCell(area.LeftTopRow, area.LeftTopCol);
+	this._RedrawSelectionPos(c1, c2);
+	this._ShowSelection();
+	if (!dont_show) this.moveToVisible(c2);
+};
+
+dhtmlXGridObject.prototype._clearBlockSelection = function() {
+	this._HideSelection();
+};
+
+dhtmlXGridObject.prototype._selectionLeft = function(step) {
+	var area = this.getSelectedBlock();
+	area.RightBottomCol = (area.RightBottomCol + step < this.getColumnsNum()) ? (area.RightBottomCol + step) : (this.getColumnsNum() - 1);
+	area.LeftTopRow = this.getRowIndex(area.LeftTopRow);
+	area.RightBottomRow = this.getRowIndex(area.RightBottomRow);
+	this._selectionArea = area;
+	this._refreshBlockSelection();
+};
+
+dhtmlXGridObject.prototype._selectionRight = function(step) {
+	var area = this.getSelectedBlock();
+	area.RightBottomCol = (area.RightBottomCol - step > 0) ? (area.RightBottomCol - step) : 1;
+	area.LeftTopRow = this.getRowIndex(area.LeftTopRow);
+	area.RightBottomRow = this.getRowIndex(area.RightBottomRow);
+	this._selectionArea = area;
+	this._refreshBlockSelection();
+};
+
+dhtmlXGridObject.prototype._selectionUp = function(step) {
+	var area = this.getSelectedBlock();
+	var row = this.getRowIndex(area.RightBottomRow);
+	row = (row - step >= 0) ? (row - step) : 0;
+	area.RightBottomRow = row;
+	area.LeftTopRow = this.getRowIndex(area.LeftTopRow);
+	this._selectionArea = area;
+	this._refreshBlockSelection();
+};
+
+dhtmlXGridObject.prototype._selectionDown = function(step) {
+	var area = this.getSelectedBlock();
+	var row = this.getRowIndex(area.RightBottomRow);
+	row = (row + step < this.getRowsNum()) ? (row + step) : (this.getRowsNum() - 1);
+	area.RightBottomRow = row;
+	area.LeftTopRow = this.getRowIndex(area.LeftTopRow);
+	this._selectionArea = area;
+	this._refreshBlockSelection();
+};
+
+dhtmlXGridObject.prototype._selectAll = function() {
+	var area = {
+		LeftTopRow: 0,
+		LeftTopCol: 1,
+		RightBottomRow: this.getRowsNum() - 1,
+		RightBottomCol: this.getColumnsNum() - 1
+	};
+	this._selectionArea = area;
+	this._refreshBlockSelection(true);
+};
+
+
+dhtmlXGridObject.prototype.setBlockSelection = function(sel) {
+	sel.LeftTopRow = this.getRowIndex(sel.LeftTopRow);
+	sel.RightBottomRow = this.getRowIndex(sel.RightBottomRow);
+	this.selectCell(sel.LeftTopRow, sel.LeftTopCol);
+	this._selectionArea = sel;
+	this._refreshBlockSelection();
+};
+
+
+dhtmlXGridObject.prototype.getSelectedBlock = function() {
+	// if block selection exists
+	if (this._selectionArea) {
+		return {
+			LeftTopRow: this.getRowId(this._selectionArea.LeftTopRow),
+			LeftTopCol: this._selectionArea.LeftTopCol,
+			RightBottomRow: this.getRowId(this._selectionArea.RightBottomRow),
+			RightBottomCol: this._selectionArea.RightBottomCol
+		};
+		return this._selectionArea;
+	} else if (this.getSelectedRowId() !== null){
+		// if one cell is selected
+			return {
+				LeftTopRow: this.getSelectedRowId(),
+				LeftTopCol: this.getSelectedCellIndex(),
+				RightBottomRow: this.getSelectedRowId(),
+				RightBottomCol: this.getSelectedCellIndex()
+			};
+		} else
+			return null;
+};
+
+
+dhtmlxSpreadSheet.prototype.doClick=function(el, fl, selMethod, show){
+	if (!this.selMultiRows) selMethod=0; //block programmatical multiselecton if mode not enabled explitly
+	var psid = this.row ? this.row.idd : 0;
+
+	this.setActive(true);
+
+	if (!selMethod)
+		selMethod=0;
+
+	if (this.cell != null)
+		this.cell.className=this.cell.className.replace(/cellselected/g, "");
+
+	if (el.tagName == "TD"){
+		if (this.checkEvent("onSelectStateChanged"))
+			var initial = this.getSelectedId();
+		var prow = this.row;
+	if (selMethod == 1){
+			var elRowIndex = this.rowsCol._dhx_find(el.parentNode)
+			var lcRowIndex = this.rowsCol._dhx_find(this.lastClicked)
+
+			if (elRowIndex > lcRowIndex){
+				var strt = lcRowIndex;
+				var end = elRowIndex;
+			} else {
+				var strt = elRowIndex;
+				var end = lcRowIndex;
+			}
+
+			for (var i = 0; i < this.rowsCol.length; i++)
+				if ((i >= strt&&i <= end)){
+					if (this.rowsCol[i]&&(!this.rowsCol[i]._sRow)){
+						if (this.rowsCol[i].className.indexOf("rowselected")
+							== -1&&this.callEvent("onBeforeSelect", [
+							this.rowsCol[i].idd,
+							psid
+						])){
+							this.rowsCol[i].className+=" rowselected";
+							this.selectedRows[this.selectedRows.length]=this.rowsCol[i]
+						}
+					} else {
+						this.clearSelection();
+						return this.doClick(el, fl, 0, show);
+					}
+				}
+		} else if (selMethod == 2){
+			if (el.parentNode.className.indexOf("rowselected") != -1){
+				el.parentNode.className=el.parentNode.className.replace(/rowselected/g, "");
+				this.selectedRows._dhx_removeAt(this.selectedRows._dhx_find(el.parentNode))
+				var skipRowSelection = true;
+				show = false;
+			}
+		}
+		this.editStop()
+		if (typeof (el.parentNode.idd) == "undefined")
+			return true;
+		if ((!skipRowSelection)&&(!el.parentNode._sRow)){
+			if (this.callEvent("onBeforeSelect", [
+				el.parentNode.idd, el._cellIndex,
+				psid
+			])){
+				if (this.getSelectedRowId() != el.parentNode.idd){
+					if (selMethod == 0)
+						this.clearSelection();
+					this.cell=el;
+					if ((prow == el.parentNode)&&(this._chRRS))
+						fl=false;
+					this.row=el.parentNode;
+					this.row.className+=" rowselected"
+
+					if (this.cell && _isIE && _isIE == 8 ){
+						//fix incorrect table cell size in IE8 bug
+						var next = this.cell.nextSibling;
+						var parent = this.cell.parentNode;
+						parent.removeChild(this.cell)
+						parent.insertBefore(this.cell,next);
+					}
+
+					if (this.selectedRows._dhx_find(this.row) == -1)
+						this.selectedRows[this.selectedRows.length]=this.row;
+				} else {
+					this.cell=el;
+					this.row = el.parentNode;
+				}
+			} else fl = false;
+		} 
+
+		if (this.cell && this.cell.parentNode.className.indexOf("rowselected") != -1)
+			this.cell.className=this.cell.className.replace(/cellselected/g, "")+" cellselected";
+
+		if (selMethod != 1)
+			if (!this.row)
+				return;
+		this.lastClicked=el.parentNode;
+
+		var rid = this.row.idd;
+		var cid = this.cell;
+
+		if (fl&& typeof (rid) != "undefined" && cid && !skipRowSelection) {
+			var self = this;
+			self.onRowSelectTime=setTimeout(function(){
+				if (self.callEvent)
+					self.callEvent("onRowSelect", [
+						rid,
+						cid._cellIndex
+					]);
+			}, 100);
+		} else this.callEvent("onRowSelectRSOnly",[rid]);
+
+		if (this.checkEvent("onSelectStateChanged")){
+			var afinal = this.getSelectedId();
+
+			if (initial != afinal)
+				this.callEvent("onSelectStateChanged", [afinal,initial]);
+		}
+	}
+	this.isActive=true;
+	if (show !== false && this.cell && this.cell.parentNode.idd)
+		this.moveToVisible(this.cell)
+};
+
+
+dhtmlXGridObject.prototype.editStop=function(mode){
+	if (_isOpera)
+		if (this._Opera_stop){
+			if ((this._Opera_stop*1+50) > (new Date).valueOf())
+				return;
+
+			this._Opera_stop=null;
+		}
+
+	if (this.editor&&this.editor !== null){
+		this.editor.cell.className=this.editor.cell.className.replace("editable", "");
+
+		if (mode){
+			var t = this.editor.val;
+			this.editor.detach(false);
+			this.editor.setValue(t);
+			this.editor=null;
+
+			this.callEvent("onEditCancel", [
+				this.row.idd,
+				this.cell._cellIndex,
+				t
+			]);
+			return;
+		}
+
+		if (this.editor.detach())
+			this.cell.wasChanged=true;
+
+		var g = this.editor;
+		this.editor=null;
+		var z = this.callEvent("onEditCell", [
+			2,
+			this.row.idd,
+			this.cell._cellIndex,
+			g.getValue(),
+			g.val
+		]);
+
+		if (( typeof (z) == "string")||( typeof (z) == "number"))
+			g[g.setImage ? "setLabel" : "setValue"](z);
+
+		else if (!z)
+			g[g.setImage ? "setLabel" : "setValue"](g.val);
+
+		if (this._ahgr && this.multiLine) this.setSizes();
+	}
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ function dhtmlxUndo() {
+	var stack = [];
+	var deep = 20;
+	var step = -1;
+	var self = this;
+	var pop = function(ssheet) {
+		var state = stack[step];
+		stack[step] = self.states[state.type].refresh(ssheet, state);
+		return state;
+	};
+	this.push = function(state) {
+		stack.splice(step + 1, stack.length - step - 1);
+		stack.push(state);
+		if (stack.length > deep)
+			stack.splice(0, 1);
+		step = stack.length - 1;
+	};
+	this.undo = function(ssheet) {
+		if (step < 0) return null;
+		var state = pop(ssheet);
+		step--;
+		return state;
+	};
+	this.redo = function(ssheet) {
+		if (step + 1 >= stack.length) return null;
+		step++;
+		var state = pop(ssheet);
+		return state;
+	};
+	this.debug = function() {
+		console.log(stack[step], step, stack);
+	};
+	
+	this.can_undo = function() {
+		return (step >= 0) ? true : false;
+	};
+	this.can_redo = function() {
+		return (step < stack.length - 1) ? true : false;
+	};
+
+	// states description
+	this.states = {
+		cells: {
+			get: function(minrow, mincol, maxrow, maxcol) {
+				var values = [];
+				var styles = [];
+				var width = [];
+				this.mapCells(minrow, mincol, maxrow, maxcol, function(row, col) {
+					var value = this.grid.cells(row, col).getRealValue();
+					values[row + '__' + col] = value;
+					var style = this.getCellStyle(row, col);
+					styles[row + '__' + col] = style.serialize();
+					width[col] = this.grid.getColWidth(col);
+				});
+				var sel = this.grid.getSelectedBlock();
+				return {
+					values: values,
+					styles: styles,
+					width: width,
+					sel: sel,
+					range: {
+						minrow: minrow,
+						mincol: mincol,
+						maxrow: maxrow,
+						maxcol: maxcol
+					}
+				};
+			},
+			set: function(state) {
+				var values = state.values;
+				var styles = state.styles;
+				var r = state.range;
+				this.mapCells(r.minrow, r.mincol, r.maxrow, r.maxcol, function(row, col) {
+					if (typeof(values[row + '__' + col]) !== 'undefined') {
+						var value = values[row + '__' + col];
+						this.setValue(row, col, value);
+						this.to_stack(row, col);
+					}
+					if (typeof(styles[row + '__' + col]) !== 'undefined') {
+						var style = this.getCellStyle(row, col);
+						style.unserialize(styles[row + '__' + col]);
+					}
+					this.renderCell(row, col);
+				});
+				var width = state.width;
+				for (var col in width) {
+					this.grid.setColWidth(col, width[col]);
+					this.saveHeadCell(col);
+				}
+				var sel = state.sel;
+				this.grid.setBlockSelection(sel);
+				this.applyStyles();
+			},
+			refresh: function(ssheet, state) {
+				var r = state.range;
+				state = this.get.apply(ssheet, [r.minrow, r.mincol, r.maxrow, r.maxcol]);
+				state.type = "cells";
+				return state;
+			}
+		},
+
+		header: {
+			get: function(col) {
+				var els = this.grid.hdr.getElementsByTagName('div');
+				var name = (typeof(els[col])!= "undefined") ? els[col].innerHTML : this.getColName(col);
+				var width = this.grid.getColWidth(col);
+				return {
+					col: col,
+					name: name,
+					width: width
+				};
+			},
+			set: function(state) {
+				this.grid.setColWidth(state.col, state.width);
+				var els = this.grid.hdr.getElementsByTagName('div');
+				if (typeof(els[state.col])!= "undefined") els[state.col].innerHTML = state.name;
+				this.saveHeadCell(state.col, state.name);
+				this.grid._refreshBlockSelection();
+			},
+			refresh: function(ssheet, state) {
+				state = this.get.apply(ssheet, [state.col]);
+				state.type = "header";
+				return state;
+			}
+		}
+	};
+
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ dhtmlxSpreadSheet.prototype.addContext = function() {
+	var menu;
+	if (this.context) {
+		menu = this.context;
+	} else {
+		menu = new dhtmlXMenuObject();
+		menu.setImagePath(this.settings.image_path);
+		menu.setIconPath(this.settings.icons_path);	
+		menu.renderAsContextMenu();
+		menu.addNewChild(null, 1, "lock", "Lock", false, "lock.png");
+		menu.addNewChild(null, 2, "validator", "Validate", false, "validate.png");
+		menu.addRadioButton("child", "validator", 1, "none", "None", "validators", true, false);
+		menu.addRadioButton("child", "validator", 2, "number", "Number", "validators", false, false);
+		menu.addRadioButton("child", "validator", 3, "email", "Email", "validators", false, false);
+		menu.addRadioButton("child", "validator", 4, "positive", "Positive", "validators", false, false);
+		menu.addRadioButton("child", "validator", 5, "not_empty", "Not empty", "validators", false, false);
+		var self = this;
+		this.grid.attachEvent("onBeforeContextMenu", function(row, col){
+			self._ctxCells = [{ row: row, col: col }];
+			return self.onBeforeContextMenu(row, col);
+        });
+		menu.attachEvent("onBeforeContextMenu", function(){
+			var block = self.grid.getSelectedBlock();
+			if (block === null) return false;
+			var cells = [];
+			for (var i = block.LeftTopRow; i <= block.RightBottomRow; i++) {
+				for (var j = block.LeftTopCol; j <= block.RightBottomCol; j++) {
+					cells.push({ row: i, col: j });
+				}
+			}
+			self._ctxCells = cells;
+			return self.onBeforeContextMenu(cells[0].row, cells[0].col);
+        });
+		menu.attachEvent("onRadioClick", function(menuitemId, type) {
+			self._validatorIsSetted(menuitemId,type);
+			return true;
+		});
+		menu.attachEvent("onClick", function(id) {
+			switch (id) {
+				case 'lock':
+					var range = self._old_ctx();
+					var value = self.isLocked(range.minrow, range.mincol);
+					for (var i = 0; i < self._ctxCells.length; i++)
+						self.lockCell(self._ctxCells[i].row, self._ctxCells[i].col, !value);
+					break;
+				default:
+					break;
+			}
+		});
+		this.context = menu;
+	}
+
+	return menu;
+};
+
+
+dhtmlxSpreadSheet.prototype._old_ctx = function() {
+	if (!this._ctxCells) return;
+	var minrow = 100000;
+	var mincol = 100000;
+	var maxrow = -1;
+	var maxcol = -1;
+	for (var i = 0; i < this._ctxCells.length; i++) {
+		minrow = Math.min(minrow, this._ctxCells[i].row);
+		mincol = Math.min(mincol, this._ctxCells[i].col);
+		maxrow = Math.max(maxrow, this._ctxCells[i].row);
+		maxcol = Math.max(maxcol, this._ctxCells[i].col);
+	}
+	this._old("cells", [minrow, mincol, maxrow, maxcol]);
+	return {
+		minrow: minrow,
+		mincol: mincol,
+		maxrow: maxrow,
+		maxcol: maxcol
+	};
+};
+
+dhtmlxSpreadSheet.prototype.onBeforeContextMenu = function(row, col){
+	if (col == 0) return false;
+	if (this.settings.read_only) return false;
+	var style = this.getCellStyle(row, col);
+	var json = style.get_json();
+	this.context.setRadioChecked("validators", json.validator);
+	this.context.setItemText("lock", json.lock == "true" ? "Unlock" : "Lock");
+	return true;
+}
+
+dhtmlxSpreadSheet.prototype._validatorIsSetted = function(menuitemid, type) {
+	if (!this._ctxCells) return;
+	var self = this;
+	window.setTimeout(function() {
+		var value = self.context.getRadioChecked("validators");
+		self.context.hideContextMenu();
+		self._old_ctx();
+		for (var i = 0; i < self._ctxCells.length; i++) {
+			var row = self._ctxCells[i].row;
+			var col = self._ctxCells[i].col;
+			if (self.isLocked(row, col)) continue;
+			var style = self.getCellStyle(row, col);
+			style.set('validator', value);
+			self.to_stack(row, col);
+			self.validateCell(row, col);
+		}
+		self._ctxCells = null;
+	}, 1);
+};
+
+
+dhtmlxSpreadSheet.prototype.lockCell = function(row, col, value) {
+	this.context.hideContextMenu();
+	var style = this.getCellStyle(row, col);
+	var lock = style.get('lock');
+	var inverse_value = lock == 'false' ? 'true' : 'false';
+	if (typeof(value) != 'undefined')
+		value = (value == true) ? 'true' : 'false';
+	else
+		value = inverse_value;
+	style.set('lock', value);
+	this.to_stack(row, col);
+	this.renderCell(row, col);
+};
+
+dhtmlxSpreadSheet.prototype.isLocked = function(row, col) {
+	var style = this.getCellStyle(row, col);
+	var lock = style.get('lock');
+	return lock == 'false' ? false : true;
+};
+
+dhtmlxSpreadSheet.prototype.validate = function() {
+	for (var i = 0; i < this.settings.rows; i++) {
+		var row = i + 1;
+		for (var j = 1; j <= this.settings.cols; j++) {
+			this.validateCell(row, j);
+		}
+	}
+}
+
+dhtmlxSpreadSheet.prototype.validateCell = function(row, col) {
+	var cell = this.grid.cells(row, col);
+	var style = this.getCellStyle(row, col);
+	var json = style.get_json();
+	var validator = this.validators[json.validator]
+	
+	var value = cell.getValue();
+	if (validator && this[validator] && this[validator](value) == false) {
+		cell.cell.className += ' invalid';
+	} else {
+		cell.cell.className = cell.cell.className.replace(/ invalid/g, '');
+	}
+};
+
+
+dhtmlxSpreadSheet.prototype.render = function() {
+	for (var i = 0; i < this.settings.rows; i++) {
+		var row = i + 1;
+		for (var j = 1; j <= this.settings.cols; j++) {
+			this.renderCell(row, j);
+		}
+	}
+};
+
+
+dhtmlxSpreadSheet.prototype.renderCell = function(row, col) {
+	var cell = this.grid.cells(row, col);
+	var style = this.getCellStyle(row, col);
+	var json = style.get_json();
+	this.validateCell(row, col);
+
+	if (json.lock == 'true') {
+		cell.cell.className += ' locked';
+	} else {
+		cell.cell.className = cell.cell.className.replace(/ locked/g, '');
+	}
+};
+
+dhtmlxSpreadSheet.prototype._is_number = function(value) {
+	var reg = /^\-?\d+(\.\d+)?$/;
+	value = value.toString().trim();
+	if (reg.test(value)) return true;
+	return false;
+}
+
+dhtmlxSpreadSheet.prototype._is_email = function(value) {
+	var reg = /^.+@.+\..{2,4}$/;
+	value = value.toString().trim();
+	if (reg.test(value)) return true;
+	return false;
+}
+
+dhtmlxSpreadSheet.prototype._is_positive = function(value) {
+	var reg = /^\d+(\.\d+)?$/;
+	value = value.toString().trim();
+	if (reg.test(value)) return true;
+	return false;
+}
+
+dhtmlxSpreadSheet.prototype._is_not_empty = function(value) {
+	value = value.toString().trim();
+	if (value) return true;
+	return false;
+}
+
+dhtmlxSpreadSheet.prototype.validators = {
+	"none": null,
+	"number": "_is_number",
+	"email": "_is_email",
+	"positive": "_is_positive",
+	"not_empty": "_is_not_empty"
+};
+
+
+/*! additional event which occurs when block-selection container is shown.
+ *  is used to make double click on selected cell a little better.
+ **/
+dhtmlXGridObject.prototype._ShowSelection = function()
+{
+	if (this._selectionObj) {
+		this.callEvent("onBlockSelectionShown", []);
+	    this._selectionObj.style.display = '';
+	}
+}
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ dhtmlxSpreadSheet.prototype.toPDF = function(url) {
+	var xml = this._getExport(true);
+	var form = document.createElement('div');
+	form.style.display = 'none';
+	document.body.appendChild(form);
+	form.innerHTML = '<form method="post" action="' + url + '" accept-charset="utf-8"  enctype="application/x-www-form-urlencoded" target="blank"><input type="hidden" name="grid_xml" id="grid_xml"/></form>';
+	form.firstChild.firstChild.value = xml;
+	form.firstChild.submit();
+	form.parentNode.removeChild(form);
+};
+
+dhtmlxSpreadSheet.prototype.toExcel = function(url) {
+	var xml = this._getExport();
+	var iframe = document.createElement('iframe');
+	iframe.style.display = 'none';
+	iframe.name = 'dhx_' + this.grid.uid();
+	iframe.onload = function() {
+		window.setTimeout(function() {
+			iframe.parentNode.removeChild(iframe);
+		}, 3000);
+	};
+	document.body.appendChild(iframe);
+
+	var form = document.createElement('div');
+	form.style.display = 'none';
+	document.body.appendChild(form);
+	form.innerHTML = '<form method="post" action="' + url + '" accept-charset="utf-8"  enctype="application/x-www-form-urlencoded" target="' + iframe.name + '"><input type="hidden" name="grid_xml" id="grid_xml"/></form>';
+	form.firstChild.firstChild.value = xml;
+	form.firstChild.submit();
+	form.parentNode.removeChild(form);
+};
+
+dhtmlxSpreadSheet.prototype._getExport = function(firstcol) {
+	var maxrow = 0, maxcol = 1;
+	this.mapCells(1, 1, this.settings.rows, this.settings.cols, function(row, col) {
+		var cell = this.getCellValue(row, col);
+		if (cell.value.length > 0) {
+			if (row > maxrow) maxrow = row;
+			if (col > maxcol) maxcol = col;
+		}
+	});
+	if (maxrow < 5) maxrow = Math.min(5 || this.settings.rows);
+	if (maxcol < 5) maxcol = Math.min(5 || this.settings.cols);
+	var head = this._getExportHeader(maxrow, maxcol, firstcol);
+	var rows = this._getExportData(maxrow, maxcol, firstcol);
+	var orient = this._getExportWidth(maxrow, maxcol, firstcol);
+	var xml = '<rows profile="full_color"' + orient + '><head>' + head + '</head>' + rows + '</rows>';
+	return xml;
+};
+
+dhtmlxSpreadSheet.prototype._getExportHeader = function(maxrow, maxcol, firstcol) {
+	var cols = [];
+	if (firstcol) {
+		var firstcol = this._headToXML({ name: '#', width: 100 });
+		cols.push(firstcol);
+	}
+	var summarywidth = 0;
+	for (var i = 1; i <= maxcol; i++) {
+		var col = this.getCol(i);
+		summarywidth += col.width;
+		var xml = this._headToXML(col);
+		cols.push(xml);
+	}
+	if (firstcol) cols[0] = this._headToXML({ name: '#', width: Math.round(summarywidth*0.04) });
+	return '<columns>' + cols.join('') + '</columns>';
+};
+
+dhtmlxSpreadSheet.prototype._getExportWidth = function(maxrow, maxcol, firstcol) {
+	var summarywidth = 0;
+	for (var i = 1; i <= maxcol; i++)
+		summarywidth += this.getCol(i).width;
+	if (firstcol) summarywidth += summarywidth*0.04;
+
+	if (summarywidth < 1200) return '';
+	return ' orientation="landscape"';
+};
+
+dhtmlxSpreadSheet.prototype._headToXML = function(col) {
+	var xml = '<column width="' + col.width + '" align="left" type="ro" hidden="false"><![CDATA[' + col.name + ']]></column>';
+	return xml;
+};
+
+dhtmlxSpreadSheet.prototype._getExportData = function(maxrow, maxcol, firstcol) {
+	var rows = [];
+	this.mapCells(1, 1, maxrow, maxcol, function(row, col, rind, cind) {
+		var cell = this.getCellValue(row, col);
+		cell.style = this.getCellStyle(row, col);
+		if (!rows[rind]) {
+			rows[rind] = [];
+			if (firstcol) rows[rind].push('<cell bgColor="#D1E5FE" align="center"><![CDATA[' + row + ']]></cell>');
+		}
+		rows[rind].push(this._cellToXML(cell));
+	});
+	for (var i = 0; i < rows.length; i++)
+		rows[i] = '<row>' + rows[i].join('') + '</row>'
+	return rows.join('');
+};
+
+dhtmlxSpreadSheet.prototype._cellToXML = function(cell) {
+	var xml = "<cell";
+	xml += " bgColor=\"#" + cell.style.get('bgcolor') + "\"";
+	xml += " textColor=\"#" + cell.style.get('color') + "\"";
+	xml += " bold=\"" + ((cell.style.get('bold') === 'true') ? 'bold' : 'normal') + "\"";
+	xml += " italic=\"" + ((cell.style.get('italic') === 'true') ? 'italic' : 'normal') + "\"";
+	xml += " align=\"" + cell.style.get('align') + "\"";
+	xml += "><![CDATA[";
+	xml += cell.value || ' ';
+	xml += "]]></cell>";
+	return xml;
+};
+/*
+ (c) Dinamenta, UAB 2013
+ Licensing: You allowed to use this component for free under GPL or you need to obtain Commercial/Enterprise license to use it in non-GPL project
+ Contact: sales@dhtmlx.com
+ */
+ dhtmlxSpreadSheet.prototype.attachGridKeys = function(grid) {
+	if (!grid._key_events.k13_0_0_original) {
+
+		var k13_0_0_original = grid._key_events.k13_0_0;
+		var k13_0_0 = function() {
+			if (this.ssheet.settings.math === true && this.editor && SpreadSheetMathHint.used(false)) return false;
+			this.editStop();
+			this.callEvent("onEnter", [
+				(this.row ? this.row.idd : null),
+				(this.cell ? this.cell._cellIndex : null)
+			]);
+			k13_0_0_original.call(this);
+			this._still_active=true;
+		};
+		grid._key_events.k13_0_0 = function() {
+			k13_0_0.apply(grid, arguments);
+		};
+	}
+
+	// clear selected cells functionality
+	grid._key_events.k46_0_0 = function() {
+		if (this.editor) return false;
+		SpreadsheetBuffer.getArea().value = "";
+		SpreadsheetBuffer.from_area();
+	};
+	// tab is pressed
+	grid._key_events.k9_0_0 = function() {
+		this.editStop();
+		if (!this.callEvent("onTab",[true])) return true;
+		if (this.cell && (this.cell._cellIndex+1)>=this._cCount) return;
+		this._clearBlockSelection();
+		var z=this._getNextCell(null,1);
+		if (z && this.row==z.parentNode){
+			this.selectCell(z.parentNode,z._cellIndex,true,true);
+			this._still_active=true;
+		}
+	};
+
+	// shift + left
+	grid._key_events.k39_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionLeft(1);
+	};
+	// shift + right
+	grid._key_events.k37_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionRight(1);
+	};
+	// shift + up
+	grid._key_events.k38_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionUp(1);
+	};
+	// shift + down
+	grid._key_events.k40_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionDown(1);
+	};
+	// shift + page_up
+	grid._key_events.k33_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionUp(30);
+	};
+	// shift + page_down
+	grid._key_events.k34_0_1 = function() {
+		if (this.editor) return false;
+		this._selectionDown(30);
+	};
+
+	// hide block selection when right
+	if (!grid._key_events.k39_0_0_original) {
+		var k39_0_0_original = grid._key_events.k39_0_0;
+		grid._key_events.k39_0_0 = function() {
+			if (this.editor) return false;
+			this._clearBlockSelection();
+			k39_0_0_original.call(this);
+		};
+	}
+
+	// hide block selection when left
+	if (!grid._key_events.k37_0_0_original) {
+		var k37_0_0_original = grid._key_events.k37_0_0;
+		grid._key_events.k37_0_0 = function() {
+			if (this.editor) return false;
+			this._clearBlockSelection();
+			k37_0_0_original.call(this);
+		};
+	}
+
+	// hide block selection when left
+	if (!grid._key_events.k38_0_0_original) {
+		var k38_0_0_original = grid._key_events.k38_0_0;
+		grid._key_events.k38_0_0 = function() {
+			if (this.editor) return false;
+			this._clearBlockSelection();
+			k38_0_0_original.call(this);
+		};
+	}
+
+	// hide block selection when left
+	if (!grid._key_events.k40_0_0_original) {
+		var k40_0_0_original = grid._key_events.k40_0_0;
+		grid._key_events.k40_0_0 = function() {
+			if (this.editor) return false;
+			this._clearBlockSelection();
+			k40_0_0_original.call(this);
+		};
+	}
+
+	grid._key_events.k37_1_0 = function(){
+		if (this.editor) return false;
+		this.selectCell(this.row,1,true);
+	};
+
+	// ctrl+A hot key
+	grid._key_events.k65_1_0 = function() {
+		if (this.editor) return false;
+		this._selectAll();
+	};
+
+	// ctrl + Home
+	grid._key_events.k36_1_0 = function() {
+		if (this.editor || !this.rowsCol.length) return false;
+		this.selectCell(this.rowsCol[0],1,true);
+	};
+
+	// ctrl+I - italic
+	grid._key_events.k73_1_0 = function() {
+		if (this.editor) return false;
+		var state = this.ssheet.toolbar.getItemState('italic');
+		this.ssheet.setCellsStyle('italic', !state);
+	};
+	// Ctrl+B - bold
+	grid._key_events.k66_1_0 = function() {
+		if (this.editor) return false;
+		var state = this.ssheet.toolbar.getItemState('bold');
+		this.ssheet.setCellsStyle('bold', !state);
+	};
+	// Ctrl+Z
+	grid._key_events.k90_1_0 = function() {
+		if (this.editor) return false;
+		this.ssheet._undo("undo");
+	};
+	// Ctrl+Y
+	grid._key_events.k89_1_0 = function() {
+		if (this.editor) return false;
+		this.ssheet._undo("redo");
+	};
+
+	grid._key_events.k_other = function(ev) {
+		if (this.editor) return false;
+		if (!ev.ctrlKey && !ev.metaKey && ev.keyCode>=40 && (ev.keyCode < 91 || (ev.keyCode >95 && ev.keyCode <111) || ev.keyCode >= 187))
+			if (this.cell) {
+				var c=this.cells4(this.cell);
+				if (c.isDisabled()) return false;
+				var t=c.getValue();
+				this.editCell();
+				if (this.editor) {
+					this.editor.val=t;
+					if (this.editor.obj && this.editor.obj.select)
+						this.editor.obj.select();
+				} else c.setValue(t);
+			}
+	};
+};
