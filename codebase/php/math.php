@@ -20,6 +20,14 @@ class Math {
 		$expr = $this->processDiv($expr);
 		if ($this->exception !== false) return $this->exception;
 		$expr = $this->processSub($expr);
+// Added by CRL for slope
+		if ($this->exception !== false) return $this->exception;
+		$expr = $this->processSlope($expr);
+
+		if ($this->exception !== false) return $this->exception;
+		$expr = $this->processYint($expr);
+
+// CRL
 		if ($this->exception !== false) return $this->exception;
 		$expr = $this->processSum($expr);
 		if ($this->exception !== false) return $this->exception;
@@ -91,6 +99,41 @@ class Math {
 		$result = $this->toString($result);
 		return $result;
 	}
+
+// Add by CRL for slope calculation
+	public function processSlope($expr) {
+		$regexp = "/({$this->minus}{$this->num}|{$this->num})\s*(\s*\+\s*({$this->minus}{$this->num}|{$this->num}))+/";
+                
+		$expr = preg_replace_callback($regexp, Array($this, 'processSlopeCallback'), $expr);
+		return $expr;
+	}
+
+	public function processSlopeCallback($matches) {
+		$args = explode("+", $matches[0]);
+		for ($i = 0; $i < count($args); $i++)
+			$args[$i] = trim($args[$i]);
+		$result = call_user_func_array(Array($this, "SLOPE"), $args);
+		$result = $this->toString($result);
+		return $result;
+	}
+	public function processYint($expr) {
+		$regexp = "/({$this->minus}{$this->num}|{$this->num})\s*(\s*\+\s*({$this->minus}{$this->num}|{$this->num}))+/";
+                
+		$expr = preg_replace_callback($regexp, Array($this, 'processYintCallback'), $expr);
+		return $expr;
+	}
+
+	public function processYintCallback($matches) {
+		$args = explode("+", $matches[0]);
+		for ($i = 0; $i < count($args); $i++)
+			$args[$i] = trim($args[$i]);
+		$result = call_user_func_array(Array($this, "YINT"), $args);
+		$result = $this->toString($result);
+		return $result;
+	}
+////
+
+
 
 	public function processSub($expr) {
 		$regexp = "/({$this->minus}{$this->num}|{$this->num})\s*(\s*\-\s*({$this->minus}{$this->num}))+/";
@@ -203,11 +246,75 @@ class Math {
 	public function SUM() {
 		$sum = 0;
 		$args = $this->parseArgs(func_get_args());
+                //var_dump($args);
 		if (!$this->checkArgsNumber($args, 1)) return "";
 		for($i = 0; $i < count($args); $i++)
 			$sum += $args[$i];
 		return $sum;
 	}
+
+/// Added by CRL to calculate slope
+	public function SLOPE() {
+
+                $args = $this->parseArgs(func_get_args());
+                $y = array();
+		$x = array();
+		foreach ($args as $k => $v) {
+		    if ($k % 2 == 0) {
+			$x[] = $v;
+		    }
+		    else {
+			$y[] = $v;
+		    }
+		}
+                $sigmax = 0;
+                $sigmay = 0;
+                $sigmaxy = 0;
+                $sigmax2 = 0;
+                $numpoints = count($x);
+                for($i = 0; $i < $numpoints; $i++) {
+                $sigmax += $x[$i];
+                $sigmay += $y[$i];
+                $sigmaxy += $x[$i] * $y[$i];
+                $sigmax2 += $x[$i] * $x[$i];
+                }
+                $slope = ($numpoints * $sigmaxy - $sigmax * $sigmay)/($numpoints * $sigmax2 - $sigmax * $sigmax);
+
+                return $slope;
+	}
+
+	public function YINT() {
+
+                $args = $this->parseArgs(func_get_args());
+                $y = array();
+		$x = array();
+		foreach ($args as $k => $v) {
+		    if ($k % 2 == 0) {
+			$x[] = $v;
+		    }
+		    else {
+			$y[] = $v;
+		    }
+		}
+                $sigmax = 0;
+                $sigmay = 0;
+                $sigmaxy = 0;
+                $sigmax2 = 0;
+                $numpoints = count($x);
+                for($i = 0; $i < $numpoints; $i++) {
+                $sigmax += $x[$i];
+                $sigmay += $y[$i];
+                $sigmaxy += $x[$i] * $y[$i];
+                $sigmax2 += $x[$i] * $x[$i];
+                }
+                
+                $slope = ($numpoints * $sigmaxy - $sigmax * $sigmay)/($numpoints * $sigmax2 - $sigmax * $sigmax);
+                $yint = $sigmay / $numpoints - $slope * $sigmax / $numpoints;
+
+                return $yint;
+	}
+///
+///
 
 	public function SUB() {
 		$args = $this->parseArgs(func_get_args());

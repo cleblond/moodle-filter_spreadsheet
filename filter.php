@@ -31,7 +31,18 @@ class filter_spreadsheet extends moodle_text_filter {
     
     
     public function filter($text, array $options = array()) {
-        global $CFG, $USER, $id;
+        global $CFG, $USER, $id, $cmid, $course;
+        ///print_object($course);
+        //$modinfo = get_fast_modinfo($course);
+        //print_object($modinfo->id);
+
+        //print_object($modinfo);
+        //$cm = $modinfo->get_cm($cmid);
+        //print_object($cm);
+        //$info = get_fast_modinfo($course);
+        //print_object($info);
+
+        //$context = context_module::instance($cm->id);
         $search = '/<div class="eo_spreadsheet (.*?)".*?<\/div>/';
         $id     = 1;
         $newtext = preg_replace_callback($search, array($this, 'filter_spreadsheet_callback') , $text, -1, $count);   //end newtext
